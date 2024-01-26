@@ -1,0 +1,112 @@
+#andres{
+  font-size: 39px;
+  color: rgb(42, 86, 209);
+}
+div p {
+      font-size: 29px;
+}
+
+article p,article h3 {
+
+       font-size: 19px;
+ color: lightgreen;
+}
+#andres {
+  border: 7px aquamarine outset;
+}
+/* dotted
+  dashed
+   solid
+   double
+   groove
+   ridge
+   inset
+   outsed
+   none
+   hidden
+
+*/
+.roda{
+      background-color: darkgrey;
+      color: rgba(0,0,0, 1);
+      border: 7px coral outset;
+      margin: 5px;
+      padding: 5px;
+}
+u.ola {
+      color: rgb(42, 160, 26);
+      font-size: 29px;
+}
+b.is{
+     font-size: 25px;
+     color: burlywood;
+}
+p.id {
+
+   font-size: 25px;
+   color: mediumturquoise;
+
+}
+p.oso {
+     font-size: 25px;
+     color: gold;
+}
+
+p.d {
+      font-size: 25px;
+      border: 6px rgb(39, 60, 124) outset;
+      margin: 5px 5px 5px 5px;
+}
+p.r {
+font-size: 25px;
+color: dodgerblue;
+}
+h1.q {
+
+      font-size: 25px;
+      border: 6px salmon inset;
+      color: lemonchiffon;
+
+}
+p.y {
+      font-size: 25px;
+      color: brown;
+}
+
+p.w {
+font-size: 25px;
+color: rosybrown;
+}
+p.a {
+      border: 6px sandybrown outset;
+  font-size: 25px;
+  color: antiquewhite;
+  
+
+
+      }
+
+p.z{
+font-size: 25px;
+color: darkorchid;
+
+
+ }
+ p.m {
+font-size: 25px;
+color: indianred;
+
+ }
+
+h2.g {
+      font-size: 25px;
+      color: rgb(219, 57, 28);
+      border: 6px rgb(72, 128, 26) outset;
+      background-color: rgb(233, 166, 85);
+ }
+p.n{
+
+font-size: 25px;
+color: lightsteelblue;
+
+}
