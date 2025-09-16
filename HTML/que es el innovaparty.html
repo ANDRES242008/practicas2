@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Innovaparty — Evento Especial</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f7ff;
+      --gradient: linear-gradient(90deg, #6a5af9 0%, #1d1abe 60%, #ffd700 100%);
+      --accent: #6a5af9;
+      --muted: #5a5f75;
+      --card: #ffffff;
+      --radius: 14px;
+    }
+    body {
+      background: linear-gradient(180deg, var(--bg), #ffffff 60%);
+      font-family: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial;
+      color:#202545;
+    }
+    .hero {
+      padding:4.5rem 1rem;
+      text-align:center;
+    }
+    .hero .title {
+      font-size:clamp(2rem, 4.5vw, 3.5rem);
+      font-weight:800;
+      letter-spacing:-0.02em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subtitle {
+      color:var(--muted);
+      font-size:1.05rem;
+      margin-top:.6rem
+    }
+    .card-feature {
+      border:none;
+      border-radius:var(--radius);
+      box-shadow: 0 8px 30px rgba(35,69,110,0.06);
+      background: #fff;
+    }
+    footer {
+      margin-top:3rem;
+      padding:2rem 0;
+      color:var(--muted);
+    }
+    .btn-gradient {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: .7rem 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform .2s ease;
+    }
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="container">
+    <nav class="d-flex justify-content-between align-items-center py-3">
+      <div class="d-flex align-items-center gap-3">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--gradient);display:grid;place-items:center;color:white;font-weight:700">IN</div>
+        <div>
+          <div style="font-weight:700">Innovaparty</div>
+          <small style="color:var(--muted);font-size:.8rem">Evento especial de Innovatech</small>
+        </div>
+      </div>
+      <div>
+        <a class="btn-gradient btn-sm" href="index.html">Volver</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="mb-3 d-inline-block" style="background:rgba(106,90,249,0.1); color:var(--accent); border-radius:999px; padding:.35rem .7rem; font-weight:600;">Evento especial</div>
+      <h1 class="title">¿Qué es el Innovaparty?</h1>
+      <p class="subtitle mx-auto" style="max-width:760px">
+        Un evento único donde celebramos la innovación, presentamos nuevos productos y compartimos experiencias con toda la comunidad tecnológica.
+      </p>
+    </div>
+  </section>
+
+  <main class="container py-4" id="beneficios">
+    <div class="card p-4 card-feature mb-4">
+      <h5>1. Descuentos exclusivos</h5>
+      <p style="color:var(--muted)">Aprovecha promociones únicas y descuentos especiales en productos seleccionados, disponibles solo durante el evento.</p>
+    </div>
+
+    <div class="card p-4 card-feature mb-4">
+      <h5>2. Presentación de nuevos productos</h5>
+      <p style="color:var(--muted)">Sé de los primeros en conocer nuestros lanzamientos más recientes antes que lleguen a tiendas.</p>
+    </div>
+
+    <div class="card p-4 card-feature mb-4">
+      <h5>3. Actividades interactivas</h5>
+      <p style="color:var(--muted)">Participa en concursos, desafíos tecnológicos y retos con premios increíbles.</p>
+    </div>
+
+    <div class="card p-4 card-feature mb-4">
+      <h5>4. Sorteos con premios</h5>
+      <p style="color:var(--muted)">Gana dispositivos exclusivos, cupones de regalo y mucho más durante las dinámicas del evento.</p>
+    </div>
+
+    <div class="card p-4 card-feature mb-4">
+      <h5>5. Networking y comunidad</h5>
+      <p style="color:var(--muted)">Conecta con otros apasionados por la tecnología, comparte ideas y crea nuevas colaboraciones.</p>
+    </div>
+  </main>
+
+  <footer class="container text-center">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 text-md-start mb-3 mb-md-0">
+        <strong>Innovaparty</strong><br>
+        <small style="color:var(--muted)">© Innovatech — Evento especial 2025</small>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <small style="color:var(--muted)">Innovación · Tecnología · Comunidad</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

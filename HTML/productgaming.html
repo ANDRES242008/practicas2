@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalle del Producto</title>
+<link rel="stylesheet" href="../CSS/compartido.css" />
+ <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/cartcompartido.css" />
+  <style>
+.breadcrumb {
+  z-index: 1;
+  margin: 20px;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+.image-gallery {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+.product-image {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  height: auto;
+}
+.product-info {
+  display: flex;
+  gap: 40px;
+  max-width: 700px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-info-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.product-info-left h1,
+.product-info-left div,
+.product-info-left label,
+.product-info-left input,
+.product-info-left button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-info-right {
+  flex: 1;
+}
+.price-original {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
+.price-descuento {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 24px;
+}
+      /* New styles for improved specs layout */
+      .specs-container {
+        width: 100%;
+        margin-top: 10px; /* Reduced margin to bring closer */
+        font-family: Arial, sans-serif;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .specs-header {
+        background: linear-gradient(135deg, #1D1ABE, #00AEEF);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        cursor: pointer; /* Make header clickable */
+        user-select: none;
+      }
+
+      .specs-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 25px;
+      }
+
+      .specs-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .specs-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+.specs-name {
+  font-weight: 700;
+  color: #1D1ABE;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.specs-value {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  
+  .specs-item {
+    padding: 12px;
+  }
+  
+  .specs-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .product-info-left, .product-info-right {
+    width: 100%;
+  }
+  
+  .image-gallery {
+    max-width: 100%;
+  }
+}
+
+.btn-carrito {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #1D1ABE, #00AEEF); /* Changed to blue gradient */
+  color: white;
+  border: none;
+  padding: 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(29, 26, 190, 0.5); /* Adjusted shadow color */
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 100%; /* Make width 100% to match specs container */
+  display: block;
+  margin-left: 0; /* Align left */
+  margin-right: 0;
+}
+.btn-carrito:hover {
+  background: linear-gradient(135deg, #00AEEF, #1D1ABE); /* Hover gradient reversed */
+  box-shadow: 0 8px 16px rgba(0, 174, 239, 0.7);
+  transform: translateY(-3px);
+}
+.btn-carrito:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 174, 239, 0.5);
+}
+.footer {
+  background: linear-gradient(to right, #2e2e2e, #3e3e3e);
+  color: #ffffff;
+  padding: 60px 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: #ff7096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ff7096;
+  text-decoration: underline;
+}
+.social-icons a:hover {
+  transform: scale(1.15);
+}
+.social-icons a {
+  display: inline-block;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+.social-icons img {
+  width: 34px;
+  height: 34px;
+  background-color: #ff7096;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+      /* Cambios aquí: el contador junto al nombre */
+      .product-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .product-title-row h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .product-qty {
+        width: 70px;
+        height: 36px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-left: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+/* Responsive header adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+    </style>
+  <script src="../JS/cartcompartido.js"></script>
+  <script>
+    // Toggle specs visibility on header click
+    document.addEventListener('DOMContentLoaded', () => {
+      const specsHeader = document.querySelector('.specs-header');
+      const specsGrid = document.getElementById('specs-body');
+      if (specsHeader && specsGrid) {
+        specsHeader.addEventListener('click', () => {
+          if (specsGrid.style.display === 'none') {
+            specsGrid.style.display = 'grid';
+          } else {
+            specsGrid.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+
+
+
+
+ <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+  <img src="../img/logos/e.jpg" alt="Logo INOVATECH">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+      <div class="cart-panel">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+   <div class="pago-cuota">
+  <a href="pagodecuotas.html">Pago de Cuota</a>
+</div>
+  </nav>
+   <main>
+
+
+
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inicio</a> >
+    <a href="gaming.html">Muebles Gaming </a> >
+    <span id="product-name-breadcrumb">Producto</span>
+  </nav>
+
+  <main class="product-detail">
+    <div class="image-gallery">
+      <div class="main-image-container">
+        <img id="product-image" class="product-image" src="" alt="Imagen del producto" />
+      </div>
+    </div>
+
+      <div class="product-info" style="gap: 20px;"> <!-- Reduced gap from 40px to 20px -->
+        <div class="product-info-left" style="flex: 1 1 60%;"> <!-- Increased flex basis to 60% -->
+          <h1 id="product-name">Producto</h1>
+          <div>
+            <span class="price-original" id="price-original"></span>
+            <span class="price-descuento" id="price-descuento"></span>
+          </div>
+          <div style="margin-top: 15px;">
+            <label for="quantity-input" style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 6px;">Cantidad:</label>
+            <input type="number" id="quantity-input" value="1" min="1" style="width: 100px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 12px; display: block;" />
+            <button class="btn-carrito" id="add-to-cart-btn" style="width: 100%; padding: 14px 0; font-size: 18px; border-radius: 6px;">Agregar al carrito</button>
+          </div>
+          <div class="specs-container" aria-label="Especificaciones del producto" style="margin-top: 20px;"> <!-- Moved specs container here -->
+            <div class="specs-header">
+              <h2>Especificaciones Técnicas</h2>
+            </div>
+            <div class="specs-grid" id="specs-body">
+              <!-- Specs will be inserted here -->
+            </div>
+          </div>
+        </div>
+        <div class="product-info-right" style="flex: 1 1 40%; display: none;"> <!-- Hide right column -->
+          <!-- Removed specs container from here -->
+        </div>
+      </div>
+  </main>
+
+  <script>
+    // Sample product data for demonstration
+    const products = [
+   {
+  id: 170,
+  name: "Silla Gamer Elite",
+  image: "../img/SILLAS/Gamer _ set up_ silla gamer _ black _.jpeg",
+  priceOriginal: "$150.00",
+  priceDescuento: "$135.00",
+  specs: {
+    "🪑 Tipo": "Silla gaming ergonómica (color negro)",
+    "🔄 Reclinación": "Hasta 150° para descanso",
+    "⚙️ Ajustes": "Altura y reposabrazos ajustables (3D)",
+    "🧵 Material": "PU cuero negro con costuras reforzadas",
+    "🛠 Soporte": "Cojín lumbar y cervical incluidos",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 171,
+  name: "Silla Gamer Pro",
+  image: "../img/SILLAS/silla.jpeg",
+  priceOriginal: "$180.00",
+  priceDescuento: "$153.00",
+  specs: {
+    "🪑 Tipo": "Silla gaming premium (acabado tela)",
+    "🔄 Reclinación": "Función de reclinado con bloqueo",
+    "⚙️ Ajustes": "Reposabrazos 3D y ajuste de altura",
+    "🧵 Material": "Tela transpirable y espuma de alta densidad",
+    "🛠 Soporte": "Refuerzo lumbar integrado",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 172,
+  name: "Silla Gamer Comfort",
+  image: "../img/SILLAS/¡descubre La Comodidad Definitiva Para Tus….jpeg",
+  priceOriginal: "$200.00",
+  priceDescuento: "$160.00",
+  specs: {
+    "🪑 Tipo": "Silla gamer con soporte cervical (color blanco/rosa posible en imagen)",
+    "🔄 Reclinación": "Hasta 180° (posición casi horizontal)",
+    "⚙️ Ajustes": "Altura, inclinación y reposabrazos regulables",
+    "🧵 Material": "Cuero sintético premium y cojines viscoelásticos",
+    "🛠 Extras": "Cojín cervical removible",
+    "✅ Garantía": "2 años (limitada)"
+  }
+},
+{
+  id: 173,
+  name: "Escritorio Gamer ThunderX3",
+  image: "../img/SILLAS/ThunderX3- Mesa gaming con iluminación RGB y….jpeg",
+  priceOriginal: "$250.00",
+  priceDescuento: "$187.50",
+  specs: {
+    "🎮 Superficie": "Amplia y resistente (soporta múltiples monitores)",
+    "🌈 Iluminación": "RGB integrada con control de efectos",
+    "🔌 Gestión de cables": "Canal oculto para organización",
+    "🦾 Construcción": "Estructura robusta y patas angulares",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 174,
+  name: "Silla Gamer Premium",
+  image: "../img/SILLAS/Cadeira Gamer Black Hawk com Apoio Cervical….jpeg",
+  priceOriginal: "$300.00",
+  priceDescuento: "$210.00",
+  specs: {
+    "🪑 Tipo": "Silla deportiva con soporte cervical (Black Hawk)",
+    "🔄 Reclinación": "Hasta 180°",
+    "⚙️ Ajustes": "Reposabrazos ajustables y altura regulable",
+    "🧵 Material": "Tapizado duradero y acolchado alto",
+    "🚀 Base": "Base metálica con ruedas silenciosas",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 175,
+  name: "Silla Gamer Ergonomía",
+  image: "../img/SILLAS/Amazon_com_ RESPAWN 110 Ergonomic Gaming Chair….jpeg",
+  priceOriginal: "$220.00",
+  priceDescuento: "$187.00",
+  specs: {
+    "🪖 Estilo": "Edición RESPAWN (camuflaje) disponible",
+    "🪑 Ergonomía": "Respaldo alto con soporte lumbar y cervical",
+    "💺 Extras": "Reposapiés extensible",
+    "⚙️ Ajustes": "Altura, inclinación y reposabrazos regulables",
+    "🚀 Base": "Ruedas reforzadas para uso intensivo",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 176,
+  name: "Escritorio Gamer Esquinero ShadowEdge",
+  image: "../img/SILLAS/mesa blanca.jpeg",
+  priceOriginal: "$175.00",
+  priceDescuento: "$140.00",
+  specs: {
+    "🧩 Diseño": "Escritorio esquinero (optimiza esquinas)",
+    "⚪ Acabado": "Bordes blancos y superficie resistente",
+    "📚 Almacenamiento": "Estantería lateral integrada",
+    "🖥️ Uso": "Espacio para doble monitor y periféricos",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 177,
+  name: "Silla Gamer Dowinx Pro",
+  image: "../img/SILLAS/Cadeira Gamer Ii Reclinável 180º Giratória Preta….jpeg",
+  priceOriginal: "$160.00",
+  priceDescuento: "$144.00",
+  specs: {
+    "🎨 Diseño": "Negro con acentos púrpura",
+    "🪑 Ergonomía": "Respaldo alto y soporte lumbar",
+    "💺 Extras": "Reposapiés retráctil",
+    "⚙️ Ajustes": "Altura e inclinación regulables",
+    "🛞 Base": "Ruedas suaves y giratorias",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 178,
+  name: "Silla Gamer Deluxe",
+  image: "../img/SILLAS/silla con celeste.jpeg",
+  priceOriginal: "$280.00",
+  priceDescuento: "$210.00",
+  specs: {
+    "🎨 Diseño": "Negro con acentos azul (ThunderX3)",
+    "🪑 Ergonomía": "Soporte lumbar y cervical",
+    "🔄 Reclinación": "Reclinable con bloqueo",
+    "⚙️ Ajustes": "Reposabrazos ajustables y control de altura",
+    "🛞 Base": "Ruedas reforzadas",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 179,
+  name: "Escritorio Gamer Elevado",
+  image: "../img/SILLAS/mesa azul.jpeg",
+  priceOriginal: "$130.00",
+  priceDescuento: "$110.50",
+  specs: {
+    "🎨 Diseño": "Moderno con acentos azules",
+    "🖥️ Plataforma": "Elevada para optimizar postura",
+    "🗄️ Almacenamiento": "Cajonera doble integrada",
+    "📂 Uso": "Espacio para consolas y routers",
+    "🛠 Construcción": "Materiales resistentes",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 180,
+  name: "Silla Gamer ThunderX3 STYLE",
+  image: "../img/SILLAS/ThunderX3 Spain Professional Gaming Chair Bc3 Blue.jpeg",
+  priceOriginal: "$240.00",
+  priceDescuento: "$192.00",
+  specs: {
+    "🎨 Diseño": "Negro con azul eléctrico (ThunderX3 STYLE)",
+    "🪑 Ergonomía": "Respaldo alto y cojín lumbar",
+    "🔄 Reclinación": "Hasta 135°",
+    "⚙️ Ajustes": "Reposabrazos acolchados",
+    "🛞 Base": "Ruedas estándar",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 181,
+  name: "Escritorio Gamer Esquinero BlackFire",
+  image: "../img/SILLAS/b94213bd-e8b1-470d-a72c-454406dda68d.jpeg",
+  priceOriginal: "$190.00",
+  priceDescuento: "$161.50",
+  specs: {
+    "🧩 Diseño": "Escritorio esquinero (BlackFire)",
+    "🗄️ Almacenamiento": "Estantes laterales integrados",
+    "🎮 Superficie": "Amplia para setup gamer",
+    "🎨 Detalles": "Acentos en naranja",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 182,
+  name: "Escritorio Gamer Modular",
+  image: "../img/SILLAS/mesa amarilla.jpeg",
+  priceOriginal: "$170.00",
+  priceDescuento: "$136.00",
+  specs: {
+    "🎨 Diseño": "Negro con acentos amarillos (modular)",
+    "🖥️ Plataforma": "Amplia para monitores y periféricos",
+    "🗄️ Organización": "Cajón lateral y estantes abiertos",
+    "🔷 Característica": "Configuración modular y soporte para torre",
+    "🛠️ Construcción": "Estructura resistente",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 183,
+  name: "Silla Gamer Merax Viper",
+  image: "../img/SILLAS/PRICES MAY VARY_ ✔Ergonomic Design of Gaming….jpeg",
+  priceOriginal: "$320.00",
+  priceDescuento: "$240.00",
+  specs: {
+    "🎨 Diseño": "Negro con acentos verde (Merax Viper)",
+    "🪑 Ergonomía": "Soporte lumbar y cervical",
+    "� Reclinación": "Hasta 150°",
+    "⚙️ Ajustes": "Reposabrazos ajustables y control de altura",
+    "🛞 Base": "Ruedas reforzadas",
+    "✅ Garantía": "1 año"
+  }
+},
+{
+  id: 184,
+  name: "Silla Gamer Dowinx Sakura",
+  image: "../img/SILLAS/silla rosada.jpeg",
+  priceOriginal: "$140.00",
+  priceDescuento: "$126.00",
+  specs: {
+    "� Diseño": "Rosa y blanco (Dowinx Sakura)",
+    "🪑 Ergonomía": "Soporte cervical y lumbar",
+    "💺 Extras": "Reposapiés retráctil y cojines incluidos",
+    "⚙️ Ajustes": "Reposabrazos regulables",
+    "🛞 Base": "Ruedas negras",
+    "✅ Garantía": "1 año"
+  }
+}
+
+    ];
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function loadProduct() {
+      const productId = parseInt(getQueryParam('id'));
+      const product = products.find(p => p.id === productId);
+      if (!product) {
+        document.body.innerHTML = "<h2>Producto no encontrado</h2>";
+        return;
+      }
+
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-name-breadcrumb').textContent = product.name;
+      document.getElementById('product-image').src = product.image;
+      document.getElementById('product-image').alt = product.name;
+      document.getElementById('price-original').textContent = product.priceOriginal;
+      document.getElementById('price-descuento').textContent = product.priceDescuento;
+
+      const specsBody = document.getElementById('specs-body');
+      specsBody.innerHTML = '';
+      for (const [key, value] of Object.entries(product.specs)) {
+        const specItem = document.createElement('div');
+        specItem.className = 'specs-item';
+        
+        const specName = document.createElement('div');
+        specName.className = 'specs-name';
+        specName.textContent = key;
+        
+        const specValue = document.createElement('div');
+        specValue.className = 'specs-value';
+        specValue.textContent = value;
+        
+        specItem.appendChild(specName);
+        specItem.appendChild(specValue);
+        specsBody.appendChild(specItem);
+      }
+    }
+
+    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+      const productId = parseInt(getQueryParam('id'));
+      const product = products.find(p => p.id === productId);
+      const quantityInput = document.getElementById('quantity-input');
+      let quantity = 1;
+      if (quantityInput) {
+        quantity = parseInt(quantityInput.value);
+        if (isNaN(quantity) || quantity < 1) {
+          quantity = 1;
+        }
+      }
+      if (product) {
+        window.cart.addToCart(product, quantity);
+        window.cart.updateCartUI();
+        alert(`Producto "${product.name}" agregado al carrito (Cantidad: ${quantity})`);
+      } else {
+        alert('Producto no encontrado');
+      }
+    });
+
+
+
+
+
+     document.addEventListener('DOMContentLoaded', () => {
+      const label = document.querySelector('.categories-label');
+      const menu = document.querySelector('.menu-items');
+
+      function toggleMenu() {
+        const isVisible = menu.style.display === 'grid';
+        menu.style.display = isVisible ? 'none' : 'grid';
+        label.setAttribute('aria-expanded', String(!isVisible));
+      }
+
+      label.addEventListener('click', (e) => {
+        e.stopPropagation(); // evita que el clic cierre inmediatamente
+        toggleMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!label.contains(e.target) && !menu.contains(e.target)) {
+          menu.style.display = 'none';
+          label.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Accesibilidad con Enter o espacio
+      label.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+    });
+
+
+    window.onload = loadProduct;
+
+ 
+  </script>
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

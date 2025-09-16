@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #f5f5f5;
+}
+
+.tech-carousel {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.tech-carousel h2 {
+  color: #1d1abe;
+  margin-bottom: 30px;
+}
+
+.tech-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px #00000033;
+  padding: 20px;
+  text-align: center;
+  width: 280px;
+  margin: auto;
+}
+
+.tech-card img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.tech-card h3 {
+  margin: 10px 0 5px;
+  color: #1d1abe;
+}
+
+.tech-card p {
+  font-size: 0.9rem;
+}
+
+.tech-card button {
+  background: #1d1abe;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.tech-card button:hover {
+  background: #4c5efc;
+}
+
+/* Swiper pagination y arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #5611a8;
+}
+
+.swiper-pagination-bullet {
+  background: #1d1abe;
+}

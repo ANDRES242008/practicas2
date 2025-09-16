@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Mejorado</title>
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon"> 
+  <style>
+    .contact-form {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .contact-form h2 {
+      text-align: center;
+      color: #1D1ABE;
+      margin-bottom: 25px;
+      animation: slideDown 0.6s ease;
+    }
+    fieldset {
+      border: none;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.6s ease;
+    }
+    legend {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #1D1ABE;
+      box-shadow: 0 0 6px rgba(29,26,190,0.3);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background: #1D1ABE;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background: #152bb2;
+    }
+    .form-note {
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .mensaje-enviado {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: linear-gradient(to right, #e6f3ff, #ccf3ff);
+      border-radius: 8px;
+      color: #1D1ABE;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .mensaje-enviado.mostrar {
+      display: block;
+      opacity: 1;
+      transform: scale(1.03);
+    }
+    .error-msg {
+      color: #d50000;
+      font-size: 0.95rem;
+      margin-top: 2px;
+      margin-bottom: 8px;
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    .loader {
+      display: none;
+      margin: 20px auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #1D1ABE;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <section class="contact-form" role="form" aria-label="Formulario de contacto">
+    <h2>Contáctanos</h2>
+    <form id="formulario" autocomplete="on" novalidate aria-labelledby="contact-heading">
+      <fieldset>
+        <legend>Datos personales</legend>
+        <label for="nombre">Nombre completo *</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required autocomplete="name" aria-required="true" />
+        <div id="error-nombre" class="error-msg"></div>
+
+        <label for="email">Correo electrónico *</label>
+        <input type="email" id="email" name="email" placeholder="nombre@ejemplo.com" required autocomplete="email" aria-required="true" />
+        <div id="error-email" class="error-msg"></div>
+
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+503 1234 5678" autocomplete="tel" pattern="^\+?\d{0,3}\s?\d{4}\s?\d{4}$" />
+        <div id="error-telefono" class="error-msg"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consulta</legend>
+        <label for="motivo">Motivo de la consulta *</label>
+        <select id="motivo" name="motivo" required aria-required="true">
+          <option value="">Selecciona un motivo</option>
+          <option value="soporte">Soporte técnico</option>
+          <option value="ventas">Información de producto</option>
+          <option value="otros">Otros</option>
+        </select>
+        <div id="error-motivo" class="error-msg"></div>
+
+        <label for="comentario">Comentario *</label>
+        <textarea id="comentario" name="comentario" placeholder="Escribe tu comentario aquí..." required aria-required="true"></textarea>
+        <div id="error-comentario" class="error-msg"></div>
+      </fieldset>
+
+      <!-- Honeypot anti-spam -->
+      <input type="text" name="website" id="website" style="display:none" tabindex="-1" autocomplete="off">
+
+      <!-- Adjuntar archivo -->
+      <label for="archivo">Adjuntar archivo (opcional)</label>
+      <input type="file" id="archivo" name="archivo" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" />
+
+      <p class="form-note">(*) Campos obligatorios</p>
+      <button type="submit" id="btnEnviar">Enviar</button>
+      <button type="button" id="btnLimpiar">Limpiar</button>
+      <div class="loader" id="loader"></div>
+    </form>
+    <div id="mensaje" class="mensaje-enviado" role="alert">¡Gracias, tu mensaje fue enviado correctamente! 🎉</div>
+  </section>
+  <script>
+    // Guardar y recuperar datos en localStorage
+    const formulario = document.getElementById("formulario");
+    const campos = ["nombre", "email", "telefono", "motivo", "comentario"];
+    campos.forEach(campo => {
+      const input = document.getElementById(campo);
+      input.value = localStorage.getItem("form_" + campo) || "";
+      input.addEventListener("input", () => {
+        localStorage.setItem("form_" + campo, input.value);
+      });
+    });
+
+    // Validación visual
+    function mostrarError(id, mensaje) {
+      const div = document.getElementById("error-" + id);
+      div.textContent = mensaje;
+      div.style.display = mensaje ? "block" : "none";
+    }
+
+    function limpiarErrores() {
+      campos.forEach(campo => mostrarError(campo, ""));
+    }
+
+    // Formateo de teléfono
+    document.getElementById("telefono").addEventListener("input", function() {
+      this.value = this.value.replace(/[^\d+ ]/g, '').replace(/(\d{4})(\d{1,4})/, '$1 $2');
+    });
+
+    // Botón limpiar
+    document.getElementById("btnLimpiar").addEventListener("click", function() {
+      formulario.reset();
+      limpiarErrores();
+      campos.forEach(campo => localStorage.removeItem("form_" + campo));
+      document.getElementById("archivo").value = "";
+    });
+
+    // Confirmación antes de enviar
+    formulario.addEventListener("submit", function(e) {
+      e.preventDefault();
+      limpiarErrores();
+
+      let valido = true;
+      // Honeypot anti-spam
+      if (document.getElementById("website").value !== "") return;
+
+      // Validación personalizada
+      if (!formulario.nombre.value.trim()) {
+        mostrarError("nombre", "El nombre es obligatorio.");
+        valido = false;
+      }
+      if (!formulario.email.value.trim() || !/^[^@]+@[^@]+\.[a-z]{2,}$/i.test(formulario.email.value)) {
+        mostrarError("email", "Correo electrónico inválido.");
+        valido = false;
+      }
+      if (formulario.telefono.value && !/^\+?\d{0,3}\s?\d{4}\s?\d{4}$/.test(formulario.telefono.value)) {
+        mostrarError("telefono", "Formato de teléfono inválido.");
+        valido = false;
+      }
+      if (!formulario.motivo.value) {
+        mostrarError("motivo", "Selecciona un motivo.");
+        valido = false;
+      }
+      if (!formulario.comentario.value.trim()) {
+        mostrarError("comentario", "El comentario es obligatorio.");
+        valido = false;
+      }
+
+      // Confirmación antes de enviar
+      if (!valido) return;
+      if (!confirm("¿Deseas enviar el formulario?")) return;
+
+      // Loader
+      document.getElementById("loader").style.display = "block";
+      document.getElementById("btnEnviar").disabled = true;
+
+      // Simulación de envío (aquí iría tu lógica de envío real)
+      setTimeout(() => {
+        formulario.reset();
+        limpiarErrores();
+        campos.forEach(campo => localStorage.removeItem("form_" + campo));
+        document.getElementById("archivo").value = "";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("btnEnviar").disabled = false;
+
+        const mensaje = document.getElementById("mensaje");
+        mensaje.style.display = "block";
+        mensaje.classList.add("mostrar");
+        mensaje.innerHTML = "🎉 ¡Gracias, tu mensaje fue enviado correctamente!";
+        mensaje.style.background = "linear-gradient(to right, #d0ffe4, #cafff7)";
+        mensaje.style.color = "#008080";
+
+        setTimeout(() => {
+          mensaje.classList.remove("mostrar");
+          mensaje.style.display = "none";
+          window.location.href = "index.html";
+        }, 3000);
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

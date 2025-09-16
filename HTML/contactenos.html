@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contactenos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/contactenos.css"
+</head>
+<body>
+<header>
+  <h1 class="titulo-central">ELIGA A CUALQUIERA DE NUESTROS SERVIDORES<br>ELLOS RESPONDERÁN SUS DUDAS</h1>
+  <div class="separador-linea"></div>
+</header>
+
+   <div class="contenedor">
+  <!-- Tarjeta 1 -->
+  <div class="card principal" id="card-1" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)">
+    <div class="card-image" style="background-color: rgb(71, 166, 185);">
+      <img src="https://s5-onboarding-digital-angular.vercel.app/assets/time_managment.svg" alt="Imagen 1">
+    </div>
+    <div class="card-content">
+      <h3>Andres Marroquin</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      <div class="card-navigation">
+        <div>
+          <span class="dot active-dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="buttons">
+          <button onclick="nextCard()" class="next-button">&#8594;</button>
+        </div>
+      </div>
+       <div class="redes-por-tarjeta">
+      <a href="https://wa.me/50300000000" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/usuario" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/usuario" target="_blank" aria-label="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 2 -->
+  <div class="card siguiente" id="card-2" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)">
+  <div class="card-image" style="background-color: rgb(211, 212, 217);">
+    <img src="https://s5-onboarding-digital-angular.vercel.app/assets/programming.svg" alt="Imagen 2">
+  </div>
+  <div class="card-content">
+    <h3>Roberto Lemus</h3>
+    <p>Proin dolor massa, feugiat sit amet fringilla ac...</p>
+    <div class="card-navigation">
+      <div>
+        <span class="dot"></span>
+        <span class="dot active-dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="buttons">
+        <button onclick="previousCard()" class="previous-button">&#8592;</button>
+        <button onclick="nextCard()" class="next-button">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- 🔗 Íconos sociales dentro de la tarjeta -->
+    <div class="redes-por-tarjeta">
+      <a href="https://wa.me/50300000000" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/usuario" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/usuario" target="_blank" aria-label="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Tarjeta 3 -->
+  <div class="card siguiente2" id="card-3" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)">
+    <div class="card-image" style="background-color: rgb(255, 209, 103);">
+      <img src="https://s5-onboarding-digital-angular.vercel.app/assets/meditation.svg" alt="Imagen 3">
+    </div>
+    <div class="card-content">
+      <h3>Antony Rosa</h3>
+      <p>Justo a ornare posuere, justo elit tincidunt mi...</p>
+      <div class="card-navigation">
+        <div>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot active-dot"></span>
+        </div>
+        <div class="buttons">
+          <button onclick="previousCard()" class="previous-button">&#8592;</button>
+          <button onclick="nextCard()" class="next-button">&#8594;</button>
+        </div>
+      </div>
+       <div class="redes-por-tarjeta">
+      <a href="https://wa.me/50300000000" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/usuario" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/usuario" target="_blank" aria-label="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 4 -->
+  <div class="card siguiente2" id="card-4" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)">
+    <div class="card-image" style="background-color: rgb(150, 230, 150);">
+      <img src="https://s5-onboarding-digital-angular.vercel.app/assets/team.svg" alt="Imagen 4">
+    </div>
+    <div class="card-content">
+      <h3>Daniel Rodriguez</h3>
+      <p>Colabora con tu equipo usando herramientas digitales...</p>
+      <div class="card-navigation">
+        <div>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="buttons">
+          <button onclick="previousCard()" class="previous-button">&#8592;</button>
+          <button onclick="nextCard()" class="next-button">&#8594;</button>
+        </div>
+      </div>
+       <div class="redes-por-tarjeta">
+      <a href="https://wa.me/50300000000" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/usuario" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/usuario" target="_blank" aria-label="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta 5 -->
+  <div class="card siguiente2" id="card-5" ontouchstart="onTouchStart(event)" ontouchend="onTouchEnd(event)">
+    <div class="card-image" style="background-color: rgb(255, 153, 204);">
+      <img src="https://s5-onboarding-digital-angular.vercel.app/assets/welcome.svg" alt="Imagen 5">
+    </div>
+    <div class="card-content">
+      <h3>Geraldo Alvarado</h3>
+      <p>¡Listos para tus mejores ideas! Innovador, flexible...</p>
+      <div class="card-navigation">
+        <div>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="buttons">
+          <button onclick="previousCard()" class="previous-button">&#8592;</button>
+        </div>
+      </div>
+       <div class="redes-por-tarjeta">
+      <a href="https://wa.me/50300000000" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/usuario" target="_blank" aria-label="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/usuario" target="_blank" aria-label="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+    </div>
+    </div>
+  </div>
+
+ <script src="../JS/contactenos.js"></script>
+</body>
+</html>

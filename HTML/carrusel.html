@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" type="text/css" href="../CSS/estilos.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+      <script src="https://cdn.tailwindcss.com"></script>
+       <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+    <title>INOVATECH</title>
+</head>
+<body>
+<style> 
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+ </style>
+ 
+     <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+   <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/e.jpg" alt="Logo INOVATECH">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="../HTML/sucursal.html"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+    <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+   <div class="pago-cuota">
+  <a href="pagodecuotas.html">Pago de Cuota</a>
+</div>
+  </nav>
+   <main>
+
+<section class="banner-are" aria-label="Banners promocionales">
+  <article class="banner-bige" role="region" aria-roledescription="slider" aria-label="Ofertas Exclusivas Online">
+
+    <div class="tag" aria-label="Exclusivo Online">Exclusivo Online</div>
+
+    <div class="slider-content" aria-live="polite">
+      <div class="slider-tracks">
+        <div class="slide">
+         <a href="productexclusivo.html?id=78">
+  <img src="../img/exclusivo/24blanco.jpeg" alt="gal3axi s24 de 1 terabyte" /></a>
+      <div class="price" aria-hidden="true">$1199.00</div>
+      <small>Precio Regular $1400.00</small>
+      <div class="title">Samsung Galaxy S24 Ultra de 12GB de RAM con 1TB </div>
+      <div class="discount-tag">-31% OFF</div>
+    </div>
+
+    <div class="slide">
+       <a href="productexclusivo.html?id=85">
+      <img src="../img/exclusivo/logitechblanco.jpeg" alt="Logitech MX Master 3S" /></a>
+      <div class="price" aria-hidden="true">$129.00</div>
+      <small>Precio Regular $99.00</small>
+      <div class="title">Logitech MX Master 3S profesional</div>
+      <div class="discount-tag">23% OFF</div>
+    </div>
+
+    <div class="slide">
+       <a href="productexclusivo.html?id=76">
+      <img src="../img/exclusivo/iphone14 2.jpeg" alt="iphone 14 pro max" /></a>
+      <div class="price" aria-hidden="true">$999.00</div>
+      <small>Precio Regular $1200.00</small>
+      <div class="title">Iphone 14 Pro Max de 8GB y 254GB de almacenamiento</div>
+      <div class="discount-tag">-17% OFF</div>
+    </div>
+
+    <div class="slide">
+        <a href="productexclusivo2.html?id=88">
+      <img src="../img/exclusivo/xboxblanco.jpeg" alt="Xbox Series X 4TB con Wi-Fi 5G" /></a>
+      <div class="price" aria-hidden="true">$349.00</div>
+      <small>Precio Regular $399.00</small>
+      <div class="title">Xbox Series X 4TB con Wi-Fi 5G</div>
+      <div class="discount-tag">-13% OFF</div>
+    </div>
+
+    <div class="slide">
+      <a href="productexclusivo.html?id=83">
+      <img src="../img/exclusivo/OLED.jpeg" alt="Nintendo Switch blanco" /></a>
+      <div class="price" aria-hidden="true">$260.00</div>
+      <small>Precio Regular $300.44</small>
+      <div class="title">Nintendo Switch blanco OLED</div>
+      <div class="discount-tag">-21% OFF</div>
+    </div>
+
+    <div class="slide">
+      <img src="../img/exclusivo/echo4.jpeg" alt="Amazon Echo Dot 5th Gen" />
+      <div class="price" aria-hidden="true">$49.00</div>
+      <small>Precio Regular $69.00</small>
+      <div class="title">Amazon Echo Dot 5th Gen Ultima generacion</div>
+      <div class="discount-tag">-29% OFF</div>
+    </div>
+
+    <div class="slide">
+      <a href="productexclusivo.html?id=82">
+      <img src="../img/exclusivo/goproblanco.jpeg" alt="GoPro HERO12 Black" /></a>
+      <div class="price" aria-hidden="true">$429.00</div>
+      <small>Precio Regular $499.00</small>
+      <div class="title">GoPro HERO12 Black contra el agua</div>
+      <div class="discount-tag">-14% OFF</div>
+    </div>
+
+
+
+
+    <div class="slide">
+      <a href="productexclusivo.html?id=81">
+      <img src="../img/exclusivo/sonyblanco.jpeg" alt="Sony WH-1000XM5" /></a>
+      <div class="price" aria-hidden="true">$349.00</div>
+      <small>Precio Regular $399.00</small>
+      <div class="title">Sony WH-1000XM5 con cancelacion de ruido </div>
+      <div class="discount-tag">-13% OFF</div>
+    </div>
+
+
+
+    <div class="slide">
+      <a href="productexclusivo2.html?id=100">
+      <img src="../img/exclusivo/fifitblanco.jpeg" alt="Fitbit Charge 6 marcador de ritmo cardiaco etc." /></a>
+      <div class="price" aria-hidden="true">$139.00</div>
+      <small>Precio Regular $159.00</small>
+      <div class="title">Fitbit Charge 6 marcador de ritmo cardiaco etc.</div>
+      <div class="discount-tag">-13% OFF</div>
+    </div>
+
+    <div class="slide">
+      <img src="../img/exclusivo/Portátil Go 4 JBL blanca - R$ 254,8.jpeg" alt="Bocina JBL resistente al agua" />
+      <div class="price" aria-hidden="true">$60.00</div>
+      <small>Precio Regular $80.00</small>
+      <div class="title">Bocina JBL Go 4 con IP67</div>
+      <div class="discount-tag">-23% OFF</div>
+    </div>
+  </div>
+</div>
+
+    <button class="prev-slide" aria-label="Anterior">‹</button>
+    <button class="next-slide" aria-label="Siguiente">›</button>
+
+    <div class="carouse-nav" role="tablist" aria-label="Indicadores del slider">
+      <div class="carouse-do active" aria-label="Slide 1"></div>
+      <div class="carouse-do" aria-label="Slide 2"></div>
+      <div class="carouse-do" aria-label="Slide 3"></div>
+      <div class="carouse-do" aria-label="Slide 4"></div>
+      <div class="carouse-do" aria-label="Slide 5"></div>
+      <div class="carouse-do" aria-label="Slide 6"></div>
+      <div class="carouse-do" aria-label="Slide 7"></div>
+    </div>
+ 
+
+  </article>
+
+      <article class="banner-small" role="region" aria-label="45 porciento de descuento en celulares">
+        <div><strong>HASTA 45%</strong> DE DESCUENTO EN CELULARES</div>
+        <img src="../img/prin/Apple iPhone 15 Pro 1TB - Titânio branco - iPhone 15 Pro - Magazine Lufermar.jpeg" alt="Dos celulares modernos de colores verde y morado" />
+        <a href="celurares.html" class="btn-buy" aria-label="Comprar celulares con descuento">Comprar</a>
+      </article>
+    </section>   
+<br>
+
+<!-- REEMPLAZA tu <section class="tech-carousel"> ... </section> por ESTE BLOQUE -->
+<section class="tech-carousel" aria-label="Productos tecnológicos destacados">
+  <h2 style="margin-left:18px;">Productos tecnológicos destacados</h2>
+
+  <style>
+    /* estilos encapsulados para evitar romper el resto */
+    .blue-cards-wrap{background: #eaf8ff; padding:18px;border-radius:12px;margin:12px;}
+    .blue-track{display:flex;gap:18px;transition:transform .4s ease;will-change:transform;padding:12px;}
+    .blue-card{
+      min-width:240px;
+      background: #ffffff;
+      border-radius:10px;
+      box-shadow:0 6px 16px rgba(21,49,80,0.06);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+    }
+    .blue-card .image-wrap{height:150px;background:linear-gradient(to bottom, #f6fbff, #eef9ff);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .blue-card img{max-width:100%;max-height:100%;display:block;cursor:pointer;}
+    .blue-card .card-body{padding:14px;text-align:center;flex:1;display:flex;flex-direction:column;}
+    .blue-card .title{color:#1a4bd8;text-decoration:none;font-weight:600;margin:6px 0;font-size:16px;}
+    .blue-card .prices{margin:8px 0;}
+    .blue-card .price-old{color:#9aa4b2;text-decoration:line-through;font-size:13px}
+    .blue-card .price-new{color:#0b6fbf;font-weight:700;margin-left:8px}
+    .blue-card .btn{margin-top:12px;padding:10px 12px;border-radius:8px;border:0;cursor:pointer;background:linear-gradient(90deg,#0b63c9,#36b3ff);color:white;font-weight:700}
+    /* controls */
+    .blue-control{position:relative;margin-top:10px;display:flex;justify-content:space-between;align-items:center}
+    .blue-arrow{background:#fff;border-radius:999px;border:0;box-shadow:0 6px 20px rgba(20,20,20,.06);width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .blue-dots{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px}
+    .blue-dot{width:10px;height:10px;border-radius:50%;background:#d7d7d7;cursor:pointer}
+    .blue-dot.active{background:#2746b0}
+    /* responsive: reduce card size */
+    @media (max-width:1100px){ .blue-card{min-width:210px} .blue-card .image-wrap{height:130px} }
+    @media (max-width:700px){ .blue-card{min-width:170px} .blue-card .image-wrap{height:110px} }
+  </style>
+
+  <div class="blue-cards-wrap" id="blueCardsWrap">
+    <div style="position:relative;">
+      <div id="blueTrack" class="blue-track" aria-live="polite">
+        <!-- Card 1 -->
+        <article class="blue-card" role="group" aria-label="Gamepad multiversal">
+          <a href="product.html?id=gamepad" class="image-wrap" title="gamepad multiversal">
+            <img src="../img/prin/Bluetooth Mobile Game Controller For iPhone_Android - iPhone Controller.jpeg" alt="gamepad multiversal">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=gamepad" class="title">gamepad multiversal</a>
+            <div class="prices"><span class="price-old">$40.00</span> <span class="price-new">$30.00</span></div>
+            <button class="btn" data-id="gamepad">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="blue-card" role="group" aria-label="Kit teclado + mouse">
+          <a href="product.html?id=kitmouse" class="image-wrap" title="kit teclado + mouse">
+            <img src="../img/prin/Kit Teclado e Mouse Gamer Multimídia Teclas Destacadas em Vermelho.jpeg" alt="kit teclado + mouse">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=kitmouse" class="title">kit teclado + mouse</a>
+            <div class="prices"><span class="price-old">$30.99</span> <span class="price-new">$20.00</span></div>
+            <button class="btn" data-id="kitmouse">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="blue-card" role="group" aria-label="PS5 Pro 1TB">
+          <a href="product.html?id=ps5pro" class="image-wrap" title="PS5 pro 1T">
+            <img src="../img/prin/PS5.jpeg" alt="PS5 pro 1T">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=ps5pro" class="title">PS5 pro 1T de almacenamiento</a>
+            <div class="prices"><span class="price-old">$500.99</span> <span class="price-new">$339.00</span></div>
+            <button class="btn" data-id="ps5pro">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="blue-card" role="group" aria-label="OPPO A91">
+          <a href="product.html?id=oppoa91" class="image-wrap" title="OPPO A91">
+            <img src="../img/celulares/oppo 91.jpeg" alt="OPPO A91">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=oppoa91" class="title">OPPO A91</a>
+            <div class="prices"><span class="price-old">$400.99</span> <span class="price-new">$300.00</span></div>
+            <button class="btn" data-id="oppoa91">Agregar al carrito</button>
+          </div>
+        </article>
+        <!-- Card 5 -->
+           <article class="blue-card" role="group" aria-label="OPPO A91">
+          <a href="product.html?id=oppoa91" class="image-wrap" title="OPPO A91">
+            <img src="../img/celulares/oppo 91.jpeg" alt="OPPO A91">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=oppoa91" class="title">OPPO A91</a>
+            <div class="prices"><span class="price-old">$400.99</span> <span class="price-new">$300.00</span></div>
+            <button class="btn" data-id="oppoa91">Agregar al carrito</button>
+          </div>
+        </article>
+
+           <article class="blue-card" role="group" aria-label="OPPO A91">
+          <a href="product.html?id=oppoa91" class="image-wrap" title="OPPO A91">
+            <img src="../img/celulares/oppo 91.jpeg" alt="OPPO A91">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=oppoa91" class="title">OPPO A91</a>
+            <div class="prices"><span class="price-old">$400.99</span> <span class="price-new">$300.00</span></div>
+            <button class="btn" data-id="oppoa91">Agregar al carrito</button>
+          </div>
+        </article>  
+
+         <article class="blue-card" role="group" aria-label="OPPO A91">
+          <a href="product.html?id=oppoa91" class="image-wrap" title="OPPO A91">
+            <img src="../img/celulares/oppo 91.jpeg" alt="OPPO A91">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=oppoa91" class="title">OPPO A91</a>
+            <div class="prices"><span class="price-old">$400.99</span> <span class="price-new">$300.00</span></div>
+            <button class="btn" data-id="oppoa91">Agregar al carrito</button>
+          </div>
+        </article>  
+
+         <article class="blue-card" role="group" aria-label="OPPO A91">
+          <a href="product.html?id=oppoa91" class="image-wrap" title="OPPO A91">
+            <img src="../img/celulares/oppo 91.jpeg" alt="OPPO A91">
+          </a>
+          <div class="card-body">
+            <a href="product.html?id=oppoa91" class="title">OPPO A91</a>
+            <div class="prices"><span class="price-old">$400.99</span> <span class="price-new">$300.00</span></div>
+            <button class="btn" data-id="oppoa91">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <!-- Puedes duplicar / añadir más tarjetas aquí si quieres -->
+      </div>
+
+      <!-- flechas/flechas absolutos -->
+      <div class="blue-control" style="position:relative;margin-top:6px;">
+        <button id="bluePrev" class="blue-arrow" aria-label="Anterior">
+          ‹
+        </button>
+        <div style="flex:1"></div>
+        <button id="blueNext" class="blue-arrow" aria-label="Siguiente">
+          ›
+        </button>
+      </div>
+
+      <!-- puntos -->
+      <div class="blue-dots" id="blueDots" aria-label="Paginación del carrusel" role="tablist"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const track = document.getElementById('blueTrack');
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('bluePrev');
+      const next = document.getElementById('blueNext');
+      const dots = document.getElementById('blueDots');
+      let index = 0;
+
+      function visibleCount(){
+        const w = track.parentElement.clientWidth;
+        if(w >= 1200) return 4;
+        if(w >= 900) return 3;
+        if(w >= 600) return 2;
+        return 1;
+      }
+
+      function update(){
+        const vis = visibleCount();
+        const cardWidth = slides[0].getBoundingClientRect().width + 18; // 18 gap
+        const maxIndex = Math.max(0, slides.length - vis);
+        index = Math.min(Math.max(0, index), maxIndex);
+        track.style.transform = `translateX(${-(index * cardWidth)}px)`;
+        renderDots();
+        prev.disabled = index === 0;
+        next.disabled = index === maxIndex;
+      }
+
+      function renderDots(){
+        dots.innerHTML = '';
+        const pages = Math.max(1, Math.ceil(slides.length / visibleCount()));
+        for(let i=0;i<pages;i++){
+          const d = document.createElement('div');
+          d.className = 'blue-dot' + (i === Math.floor(index / Math.max(1,visibleCount())) ? ' active' : '');
+          d.setAttribute('role','tab');
+          d.setAttribute('aria-label','Página ' + (i+1));
+          d.addEventListener('click', ()=> { index = i * 1; update(); });
+          dots.appendChild(d);
+        }
+      }
+
+      prev.addEventListener('click', ()=> { index = Math.max(0, index - 1); update(); });
+      next.addEventListener('click', ()=> { index = index + 1; update(); });
+
+      window.addEventListener('resize', ()=> { setTimeout(update,100); });
+
+      // botones agregar al carrito: intenta llamar a window.addToCart(id) si existe
+      track.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.btn');
+        if(!btn) return;
+        const id = btn.getAttribute('data-id');
+        if(window.addToCart && typeof window.addToCart === 'function'){
+          try { window.addToCart(id); }
+          catch(err){ console.error('addToCart falló', err); }
+        } else {
+          console.log('Agregar al carrito:', id);
+        }
+      });
+
+      // inicializar
+      // esperar a que imágenes carguen por si afectan layout
+      const imgs = track.querySelectorAll('img');
+      let loaded = 0;
+      if(imgs.length === 0) { update(); }
+      imgs.forEach(img=>{
+        if(img.complete) loaded++;
+        else img.addEventListener('load', ()=>{ loaded++; if(loaded === imgs.length) update(); });
+      });
+      setTimeout(update,220);
+    })();
+  </script>
+</section>
+
+  
+      <br>
+      <br>
+
+
+
+
+<section class="collection-section">
+  <h2>Colecciones destacadas</h2>
+
+  <div class="collection-grid">
+ 
+    
+
+    
+   
+    <div class="collection" data-group="personas">
+      <img src="../img/gadget/Nintendo Switch.jpg" alt="Personas" class="main-image" />
+      <div class="label">Productos destacados</div>
+      <div class="count">🏆</div>
+      <div class="thumbnails">
+        <a href="productexclusivo.html?id=82">
+        <img src="../img/exclusivo/gopro2.jpeg" />
+        </a>
+   <a href="productexclusivo.html?id=83">
+        <img src="../img/gadget/Nintendo Switch.jpg" />
+        </a>
+         <a href="productgadget.html?id=1">
+        <img src="../img/gadget/adaptador otg.jpeg" />
+        </a>
+      </div>
+    </div>
+
+
+     <div class="collection" data-group="personas">
+     <a href="productgadget.html?id=11">
+      <img src="../img/gadget/style pen .jpeg" alt="Personas" class="main-image" />
+      </a>
+      <div class="label">Productos destacados</div>
+      <div class="count">🏆</div>
+      <div class="thumbnails">
+        <a href="productexclusivo.html?id=87">
+        <img src="../img/exclusivo/echo4.jpeg" />
+        </a>
+        <a href="productgadget.html?id=9">
+        <img src="../img/gadget/power ban.jpeg" />
+        </a>
+        <a href="productabletas.html?id=44">
+        <img src="../img/tabletas/Amazon Fire 7 .jpeg" />
+        </a>
+      </div>
+    </div>
+    
+  
+    <div class="collection" data-group="personas">
+      <img src="../img/telefonos fijos/fijo14.jpeg" alt="Personas" class="main-image" />
+      <div class="label">Productos destacados</div>
+      <div class="count">🏆</div>
+      <div class="thumbnails">
+        <img src="../img/gadget/Cargador Inalambrico Magnetic.jpeg" />
+        <img src="../img/gadget/Controle Remoto.jpeg" />
+        <img src="../img/prin/Smart TV 50_ 4K UHD Hitachi 504Ks20.jpeg" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="tech-carousel">
+  <h2>Productos tecnológicos destacados</h2>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide tech-card">
+        <img src="../img/exclusivo/JBL Go 4 Black).jpeg" alt="Laptop" />
+        <h3>Bocina JBL Go 4</h3>
+        <p class="price">$70.00</p>
+        <p>Bocina contra el agua IP67</p>
+        <button>Agregar al carrito</button>
+      </div>
+      <div class="swiper-slide tech-card">
+        <img src="../img/prin/adaptador.jpg" alt="Smartphone" />
+        <h3>adaptadores</h3>
+        <p class="price">$849.00</p>
+        <p>adaptadores para telefonos </p>
+        <button>Agregar al carrito</button>
+      </div>
+      <div class="swiper-slide tech-card">
+        <img src="../img/exclusivo/bocina.jpeg" alt="Auriculares" />
+        <h3>Amazon echo 4 </h3>
+        <p class="price">$70.00</p>
+        <p>Bocina de la mas alta calidad </p>
+        <button>Agregar al carrito</button>
+      </div>
+
+      <div class="swiper-slide tech-card">
+        <img src="../img/prin/Fone De Ouvido Sem Fio 1hora Aut205n Bluetooth 5_3 Preto.jpg" alt="Auriculares" />
+        <h3>Audifonos AURORA 5G</h3>
+        <p class="price">$40.00</p>
+        <p>Sonido envolvente y cancelación de ruido</p>
+        <button>Agregar al carrito</button>
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<br>
+<br>
+
+<section class="auto-carousel" aria-label="Carrusel automático de productos">
+  <div class="auto-carousel__track">
+    <a href="https://tu-pagina-1.com" class="auto-carousel__slide" aria-label="Audífonos inalámbricos de las mejores marcas">
+      <img src="IMG/audi.jpeg" alt="Audífonos inalámbricos negros" />
+      <div class="auto-carousel__caption">Audífonos inalámbricos de las mejores marcas</div>
+    </a>
+    <a href="celurares.html" class="auto-carousel__slide" aria-label="Cargadores inalámbricos multiplataforma de todas las marcas">
+      <img src="IMG/gaalxy34.jpeg" alt="Cargador inalámbrico con teléfono" />
+      <div class="auto-carousel__caption">Cargadores inalámbricos multiplataforma de todas las marcas</div>
+    </a>
+    <a href="" class="auto-carousel__slide" aria-label="Controles de videojuegos Xbox y PlayStation">
+      <img src="../img/prin/What are three games you want to see announced for Nintendo Switch 2_.jpeg" alt="Control de Xbox y PlayStation" />
+      <div class="auto-carousel__caption">Controles de videojuegos de Xbox, PlayStation etc.</div>
+    </a>
+    <a href="celurares.html" class="auto-carousel__slide" aria-label="Todo en equipos electrónicos con los mejores precios">
+      <img src="../img/celulares/iPhone 12 (Product Red).jpeg" alt="Persona con dispositivo electrónico" />
+      <div class="auto-carousel__caption">equipos electrónicos con los mejores precios</div>
+    </a>
+    <a href="https://tu-pagina-5.com" class="auto-carousel__slide" aria-label="Parlantes Bluetooth para exteriores">
+  <img src="../img/exclusivo/bocina.jpeg" alt="Parlante Bluetooth resistente al agua" />
+  <div class="auto-carousel__caption">Parlantes Bluetooth para exteriores</div>
+</a>
+
+<a href="tabletas.html" class="auto-carousel__slide" aria-label="Tablets con pantalla HD y batería de larga duración">
+  <img src="../img/tabletas/huawei.jpeg" alt="Tablet moderna encendida mostrando apps" />
+  <div class="auto-carousel__caption">Tablets HD con batería potente</div>
+</a>
+
+<a href="gadget.html" class="auto-carousel__slide" aria-label="Smartwatches deportivos y elegantes">
+  <img src="../img/gadget/lente macro.jpeg" alt="Smartwatch negro con pantalla encendida" />
+  <div class="auto-carousel__caption">Gadget y Accesorios de las mejores marcas</div>
+</a>
+   
+  </div>
+</section>
+
+ 
+<br>
+<br>
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script src="../JS/script.js">
+      </script>
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="#">¿Por qué es seguro?</a></li>
+          <li><a href="#">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="#">INOVAPARTY</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="#">Beneficios RadioShack</a></li>
+          <li><a href="#">ServiShack</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Políticas generales</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+           <li><a href="formulario.html">+50376482812</a></li>
+            <li><a href="formulario.html">INOVATECH24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384012.png" alt="YouTube"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>

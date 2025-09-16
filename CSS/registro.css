@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(#5611a8, #27004f);
+}
+
+.register-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-box {
+  background: white;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px #00000044;
+  width: 300px;
+  text-align: center;
+}
+
+.register-box h2 {
+  margin-bottom: 20px;
+  color: #27004f;
+}
+
+.register-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-box input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#reg-password {
+  width: 100%;
+  padding-right: 36px;
+  box-sizing: border-box;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.register-btn {
+  background: #1d1abe;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.register-btn:hover {
+  background: #4c5efc;
+}
+
+.extra-option {
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+.extra-option a {
+  color: #d50000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .register-box {
+    width: 90%;
+    padding: 25px;
+  }
+}
+
+
+
+.loader {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #5611a8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

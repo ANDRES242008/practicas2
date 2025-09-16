@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="../CSS/celulares.css" />
+  <link rel="stylesheet" href="../CSS/cartcelulares.css" />
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+  <style>
+
+
+.breadcrumb {
+  z-index: 1;
+  margin: 20px;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+.image-gallery {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+.product-image {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  height: auto;
+}
+.product-info {
+  display: flex;
+  gap: 40px;
+  max-width: 700px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-info-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.product-info-left h1,
+.product-info-left div,
+.product-info-left label,
+.product-info-left input,
+.product-info-left button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-info-right {
+  flex: 1;
+}
+.price-original {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
+.price-descuento {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 24px;
+}
+      /* New styles for improved specs layout */
+      .specs-container {
+        width: 100%;
+        margin-top: 10px; /* Reduced margin to bring closer */
+        font-family: Arial, sans-serif;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .specs-header {
+        background: linear-gradient(135deg, #1D1ABE, #00AEEF);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        cursor: pointer; /* Make header clickable */
+        user-select: none;
+      }
+
+      .specs-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 25px;
+      }
+
+      .specs-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .specs-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+.specs-name {
+  font-weight: 700;
+  color: #1D1ABE;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.specs-value {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  
+  .specs-item {
+    padding: 12px;
+  }
+  
+  .specs-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .product-info-left, .product-info-right {
+    width: 100%;
+  }
+  
+  .image-gallery {
+    max-width: 100%;
+  }
+}
+
+.btn-carrito {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #1D1ABE, #00AEEF); /* Changed to blue gradient */
+  color: white;
+  border: none;
+  padding: 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(29, 26, 190, 0.5); /* Adjusted shadow color */
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 100%; /* Make width 100% to match specs container */
+  display: block;
+  margin-left: 0; /* Align left */
+  margin-right: 0;
+}
+.btn-carrito:hover {
+  background: linear-gradient(135deg, #00AEEF, #1D1ABE); /* Hover gradient reversed */
+  box-shadow: 0 8px 16px rgba(0, 174, 239, 0.7);
+  transform: translateY(-3px);
+}
+.btn-carrito:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 174, 239, 0.5);
+}
+.footer {
+  background: linear-gradient(to right, #2e2e2e, #3e3e3e);
+  color: #ffffff;
+  padding: 60px 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: #ff7096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ff7096;
+  text-decoration: underline;
+}
+.social-icons a:hover {
+  transform: scale(1.15);
+}
+.social-icons a {
+  display: inline-block;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+.social-icons img {
+  width: 34px;
+  height: 34px;
+  background-color: #ff7096;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+      /* Cambios aquí: el contador junto al nombre */
+      .product-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .product-title-row h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .product-qty {
+        width: 70px;
+        height: 36px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-left: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+/* Responsive header adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+
+ #product-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .color-selector {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .color-btn:hover {
+      transform: scale(1.1);
+      border-color: #999;
+    }
+
+    .color-btn.selected {
+      border: 3px solid #000;
+      box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    }
+
+   
+    </style>
+  <script src="../JS/cartcelulares.js"></script>
+  <script>
+    // Toggle specs visibility on header click
+    document.addEventListener('DOMContentLoaded', () => {
+      const specsHeader = document.querySelector('.specs-header');
+      const specsGrid = document.getElementById('specs-body');
+      if (specsHeader && specsGrid) {
+        specsHeader.addEventListener('click', () => {
+          if (specsGrid.style.display === 'none') {
+            specsGrid.style.display = 'grid';
+          } else {
+            specsGrid.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+
+
+
+
+ <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/logo.jpg">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+     <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="videos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+  </nav>
+   <main>
+
+
+
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inicio</a> >
+    <a href="celurares.html">Celulares</a> >
+    <span id="product-name-breadcrumb">Producto</span>
+  </nav>
+
+  <main class="product-detail">
+    <div class="image-gallery">
+      <div class="main-image-container">
+        <img id="product-image" class="product-image" src="" alt="Imagen del producto" />
+      </div>
+    </div>
+
+      <div class="product-info" style="gap: 20px;"> <!-- Reduced gap from 40px to 20px -->
+<div class="product-info-left" style="flex: 1 1 60%;">
+          <h1 id="product-name">Producto</h1>
+          <div>
+            <span class="price-original" id="price-original"></span>
+            <span class="price-descuento" id="price-descuento"></span>
+          </div>
+          
+          <!-- Color selection buttons -->
+          <div id="color-selection" style="margin: 15px 0; text-align: center;">
+            <label style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 10px;">Color:</label>
+            <div id="color-buttons-container" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <div class="color-selector">
+  <button class="color-btn selected" data-color="blanco" style="background-color:#ffffff;" title="Negro"></button>
+  
+  <button class="color-btn" data-color="negro" style="background-color:#1b1b1a;" title="Oro"></button>
+</div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 15px;">
+            <label for="quantity-input" style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 6px;">Cantidad:</label>
+            <input type="number" id="quantity-input" value="1" min="1" style="width: 100px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 12px; display: block;" />
+            <button class="btn-carrito" id="add-to-cart-btn" style="width: 100%; padding: 14px 0; font-size: 18px; border-radius: 6px;">Agregar al carrito</button>
+          </div>
+          <div class="specs-container" aria-label="Especificaciones del producto" style="margin-top: 20px;"> <!-- Moved specs container here -->
+            <div class="specs-header">
+              <h2>Especificaciones Técnicas</h2>
+            </div>
+            <div class="specs-grid" id="specs-body">
+              <!-- Specs will be inserted here -->
+            </div>
+          </div>
+        </div>
+        <div class="product-info-right" style="flex: 1 1 40%; display: none;"> <!-- Hide right column -->
+          <!-- Removed specs container from here -->
+        </div>
+      </div>
+  </main>
+
+  <script>
+    // Sample product data for demonstration
+    const products = [
+      {
+        id: 16,
+        name: "Nothing Phone 1 ",
+        image: "img/exclusivo/iphone14 2.jpeg",
+        images: {
+          "blanco": "../img/celulares/Nothing Phone (1).jpeg",
+        
+          "negro": "../img/celulares/Köp Nothing phone (1) med abonnemang - Mobiltelefoner - Telenor i 2022 _ Mobiltelefoner, Reparera.jpeg"
+        },
+       priceOriginal: "$790.00",
+       priceDescuento: "$690.00",
+        specs: {
+         "Color": "Blanco, Negro",
+"Pantalla": "6.55 pulgadas, AMOLED (Super AMOLED), 120 Hz, HDR10+, 1080×2400 px (~402 ppi), hasta 1200 nits, Gorilla Glass 5",
+"Memoria": "8 GB o 12 GB RAM LPDDR5 / 128 GB o 256 GB almacenamiento UFS 3.1",
+"Batería": "4500 mAh; carga rápida 33 W (0-50 % en 30 min, carga completa ≈70 min); carga inalámbrica 15 W; carga inversa 5 W",
+"Conectividad": "5G (NSA/SA), LTE, GSM; Wi-Fi 6 (802.11 a/b/g/n/ac/ax), Bluetooth 5.2, NFC; USB-C 2.0; GPS/GLONASS/BeiDou/Galileo; IP53; sensor de huella óptico bajo pantalla; parlantes estéreo; Glyph Interface (LED trasero)",
+"Cámara": "Dual trasera 50 MP principal (Sony IMX766, OIS/EIS, ƒ/1.88) + 50 MP ultra-gran angular (Samsung JN1, ƒ/2.2); frontal 16 MP (ƒ/2.45); grabación hasta 4K@30 fps, 1080p@30/60 fps; HDR, modo nocturno",
+"Procesador": "Qualcomm Snapdragon 778G Plus (6 nm, octa-core Kryo 670, GPU Adreno 642L)",
+"Sistema Operativo": "Android 12 con Nothing OS 1.0 (actualizable hasta Android 15 con Nothing OS 3.x)"
+        }
+      },
+      {
+        id: 17,
+    name: "Galaxy S24 Ultra",
+    image: "img/exclusivo/24blanco.jpeg",
+    images: { "blanco": "../img/exclusivo/24blanco.jpeg", "negro": "../img/celulares/gaalxy34.jpeg" },
+    priceOriginal: "$1200.00",
+    priceDescuento: "$1000.00",
+    specs: {
+      "Color": "Negro,blanco",
+      "Pantalla": "6.8 pulgadas 120Hz de tasa de refresco Dynamic AMOLED 2X",
+      "Memoria": "12GB RAM / 512GB almacenamiento",
+      "Batería": "5000mAh con carga rápida de 45W",
+      "Conectividad": "5G, Wi-Fi 6E",
+      "Cámara": "Cuádruple cámara de hasta 200MP con zoom óptico 100x",
+      "Procesador": "Snapdragon 8 Gen 3 for Galaxy",
+      "Sistema Operativo": "Android 14"
+    }
+      },
+      {
+        id: 18,
+    name: "Samsung Galaxy A55 5G",
+    image: "../img/celulares/galaxy a 55 blanco.jpeg",
+    images: { "blanco": "../img/celulares/galaxy a 55 blanco.jpeg", "negro": "../img/celulares/galaxy a 55.jpeg" },
+    priceOriginal: "$500.99",
+    priceDescuento: "$450.99",
+    specs: {
+      "Color": "Negro",
+      "Pantalla": "6.6 pulgadas Super AMOLED FHD+ 120Hz de taza de refresco",
+      "Memoria": "12GB RAM / 256GB almacenamiento",
+      "Batería": "5000mAh con carga rápida de 25W",
+      "Conectividad": "5G, Wi-Fi 6",
+      "Cámara": "50MP + 12MP + 5MP",
+      "Procesador": "Exynos 1480",
+      "Sistema Operativo": "Android 14"
+      }
+      },
+      {
+       id: 19,
+    name: "Iphone 16e",
+    image: "../img/celulares/Apple's iPhone 16e Is Here_ Features, Price, Colors, & More.jpeg",
+    images: { "blanco": "../img/celulares/Apple's iPhone 16e Is Here_ Features, Price, Colors, & More.jpeg", "negro": "../img/celulares/iPhone 16e (128 GB) - Preto - Distribuidor Autorizado.jpeg" },
+    priceOriginal: "$900.00",
+    priceDescuento: "$800.50",
+    specs: {
+      "Color": "Blanco, Negro",
+      "Pantalla": "6.1 pulgadas, Super Retina XDR OLED, HDR, True Tone, 2532×1170 px (~460 ppi), 800 nits (típico) / 1200 nits (HDR), relación de contraste 2 000 000:1, Haptic Touch",
+      "Memoria": "8 GB RAM / 128 GB, 256 GB o 512 GB almacenamiento",
+      "Batería": "Hasta 26 h de reproducción de vídeo; hasta 90 h de audio; carga inalámbrica Qi (7.5 W), sin MagSafe",
+      "Conectividad": "5G sub-6 GHz (C1 modem, sin mmWave), Wi-Fi 6, USB-C 2.0, Face ID, botón de acción, IP68, satélite (SOS, asistencia en carretera, mensajes, Buscar)",
+      "Cámara": "Trasera 48 MP Fusion 2-in-1 (f/1.6, OIS, zoom óptico 2×), grabación 4K@60 fps, Modo Noche, Photonic Engine; Frontal 12 MP TrueDepth (f/1.9, Face ID, 4K@60 fps)",
+      "Procesador": "Apple A18 (6 núcleos; 4-core GPU; Neural Engine 16 núcleos); módem Apple C1 (sin mmWave 5G)",
+      "Sistema Operativo": "iOS 18 (18.3 / 18.3.1) con Apple Intelligence"
+    }
+      },
+       {
+    id: 20,
+    name: "Samsung Galaxy A36 5G",
+  image: "../img/celulares/Samsung Galaxy A36 5g 128 Gb _ 6 Gb - Awesome White Neu & Eu.jpeg",
+    images: { "blanco": "../img/celulares/Samsung Galaxy A36 5g 128 Gb _ 6 Gb - Awesome White Neu & Eu.jpeg", "negro": "../img/celulares/Samsung Galaxy A36 5G Sim Free Smartphone w_ 8GB Ram & 256GB Storage - QVC UK.jpeg" },
+    priceOriginal: "$600.00",
+    priceDescuento: "$549.00",
+    specs: {
+      "Color": "Negro (Awesome Black), Blanco (Awesome White)",
+      "Pantalla": "6.7 pulgadas Super AMOLED (FHD+ 2340 × 1080 px), tasa de refresco 120 Hz, brillo HBM hasta 1200 nits, pico hasta 1900 nits, Corning Gorilla Glass Victus+",
+      "Memoria": "6 GB / 8 GB / 12 GB RAM LPDDR4X / 128 GB o 256 GB almacenamiento UFS 2.2 (no expandible vía microSD)",
+      "Batería": "5000 mAh; carga rápida de 45 W (≈66 % en 30 min, carga completa ≈68 min)",
+      "Conectividad": "5G (NSA/SA), Wi-Fi 6, Bluetooth 5.4, NFC, USB-C, eSIM y dual SIM, sensor de huella bajo pantalla, IP67 resistencia al agua y polvo",
+      "Cámara trasera": "50 MP principal (f/1.8, PDAF, OIS) + 8 MP ultra gran angular (f/2.2, 123°) + 5 MP macro (f/2.4); grabación hasta 4K@30fps, 1080p@60fps con EIS",
+      "Cámara frontal": "12 MP (f/2.2); vídeo 4K@30fps, 1080p@30fps con HDR",
+      "Procesador": "Qualcomm Snapdragon 6 Gen 3 (4 nm, Octa-core; 4×2.4 GHz Cortex-A78 + 4×1.8 GHz Cortex-A55), GPU Adreno 710",
+      "Sistema Operativo": "Android 15 con One UI 7, hasta 6 actualizaciones mayores y 6 años de parches de seguridad"
+    }
+  },
+  {
+    id: 21,
+    name: "Iphone 11 pro max",
+    image: "../img/celulares/descarga.jpeg",
+    images: { "blanco": "../img/celulares/descarga.jpeg", "negro": "../img/celulares/descarga (1).jpeg" },
+    priceOriginal: "$500.00",
+    priceDescuento: "$404.00",
+    specs: {
+      "Color": "negro, blanco",
+      "Pantalla": "6.5 pulgadas Super Retina XDR OLED, resolución 2688 x 1242 px",
+      "Memoria": "4 GB de RAM, opciones de 64 GB / 256 GB / 512 GB de almacenamiento",
+      "Batería": "3969 mAh, carga rápida de 18W y carga inalámbrica",
+      "Conectividad": "4G LTE, Wi-Fi 6, Bluetooth 5.0, NFC, Face ID, Lightning",
+      "Cámara trasera": "Triple: 12 MP (wide) + 12 MP (ultra wide) + 12 MP (telephoto)",
+      "Cámara frontal": "12 MP TrueDepth con grabación 4K",
+      "Procesador": "Apple A13 Bionic (7 nm+), Hexa-core",
+      "Sistema Operativo": "iOS 13 (actualizable a iOS 17)"
+    }
+  },
+  {
+    id: 22,
+    name: "Iphone 13 pro max",
+    image: "../img/celulares/iPhone 13 Pro Max.jpeg",
+    images: { "blanco": "../img/celulares/iPhone 13 Pro Max.jpeg", "negro": "../img/celulares/iphone 13 negro.jpeg" },
+    priceOriginal: "$700.00",
+    priceDescuento: "$590.50",
+    specs: {
+      "Color": "Rojo",
+      "Pantalla": "6.7 pulgadas Super Retina XDR OLED, resolución 2778 x 1284 px, HDR10, Dolby Vision",
+      "Memoria": "6 GB de RAM, opciones de 128 GB / 256 GB / 512 GB de almacenamiento",
+      "Batería": "3687 mAh, carga rápida de 20W, carga inalámbrica MagSafe de 15W",
+      "Conectividad": "5G, Wi-Fi 6, Bluetooth 5.0, NFC, Face ID, Lightning",
+      "Cámara trasera": "Triple: 12 MP (wide) + 12 MP (ultra wide) + 12 MP (telephoto) + sensor LiDAR",
+      "Cámara frontal": "12 MP TrueDepth con grabación 4K y modo nocturno",
+      "Procesador": "Apple A14 Bionic (5 nm), Hexa-core",
+      "Sistema Operativo": "iOS 14 (actualizable a iOS 17)"
+    }
+  },
+  {
+    id: 23,
+    name: "Iphone 16",
+    image: "../img/celulares/iphone 16 blanco .jpeg",
+    images: { "blanco": "../img/celulares/Apple iPhone 16 Plus 256Gb - White.jpeg", "negro": "../img/celulares/iphone 16 negro.jpeg" },
+    priceOriginal: "$1200.00",
+    priceDescuento: "$900.00",
+    specs: {
+    "Color": "Negro, Blanco",
+"Pantalla": "6.1 pulgadas Super Retina XDR OLED, 60 Hz, HDR10, Dolby Vision, resolución 2556 × 1179 px",
+"Memoria": "6 GB de RAM, opciones de 128 GB / 256 GB / 512 GB de almacenamiento",
+"Batería": "3279 mAh, carga rápida de 20W, carga inalámbrica MagSafe de 15W",
+"Conectividad": "5G, Wi-Fi 6, Bluetooth 5.3, NFC, Face ID, Lightning",
+"Cámara trasera": "Doble: 48 MP (wide) + 12 MP (ultra wide)",
+"Cámara frontal": "12 MP TrueDepth con autofoco y grabación 4K",
+"Procesador": "Apple A17 Bionic (3 nm), Hexa-core",
+"Sistema Operativo": "iOS 17 (actualizable a iOS 18+)"
+
+    }
+  },
+  {
+    id: 24,
+    name: "Oppo A91",
+    image:"../img/celulares/oppo a60 blanco.jpeg",
+    images: { "blanco": "../img/celulares/oppo a60 blanco.jpeg", "negro": "../img/celulares/Opoo a60 negro.jpeg" },
+    priceOriginal: "$210.00",
+    priceDescuento: "$180.50",
+    specs: {
+      "Color": "Azul relámpago",
+      "Pantalla": "6.4 pulgadas AMOLED, resolución Full HD+ (2400 x 1080 px), Gorilla Glass 5",
+      "Memoria": "8 GB de RAM, 128 GB de almacenamiento interno (expandible con microSD)",
+      "Batería": "4025 mAh, carga rápida VOOC Flash Charge 3.0 de 20W",
+      "Conectividad": "4G LTE, Wi-Fi 802.11ac, Bluetooth 5.0, USB-C, GPS, Jack 3.5 mm",
+      "Cámara trasera": "Cuádruple: 48 MP (principal) + 8 MP (ultra gran angular) + 2 MP (macro) + 2 MP (profundidad)",
+      "Cámara frontal": "16 MP con embellecimiento AI",
+      "Procesador": "MediaTek Helio P70 (12 nm), Octa-core",
+      "Sistema Operativo": "Android 9 Pie con ColorOS 6.1 (actualizable)"
+    }
+  },
+  {
+    id: 25,
+    name: "Oneplus 12",
+    image: "../img/celulares/OnePlus 12 - Glacial White.jpeg",
+    images: { "blanco": "../img/celulares/OnePlus 12 - Glacial White.jpeg", "negro": "../img/celulares/Discover the Features of the OnePlus 12 - Technocastel.jpeg" },
+    priceOriginal: "$600.00",
+    priceDescuento: "$500.00",
+     specs: {
+      "Color": "Negro, Blanco (Edición especial)",
+      "Pantalla": "6.82 pulgadas AMOLED LTPO, resolución QHD+ (3168 x 1440 px), tasa de refresco 120 Hz, brillo máximo 4500 nits",
+      "Memoria": "12 GB / 16 GB RAM, 256 GB / 512 GB / 1 TB de almacenamiento UFS 4.0",
+      "Batería": "5400 mAh, carga rápida SUPERVOOC 100W, carga inalámbrica 50W, carga reversible 10W",
+      "Conectividad": "5G, Wi-Fi 7, Bluetooth 5.4, USB-C 3.2, NFC, GPS dual",
+      "Cámara trasera": "50 MP (Sony LYT-808 principal OIS) + 64 MP (periscopio 3x OIS) + 48 MP (ultra gran angular)",
+      "Cámara frontal": "32 MP",
+      "Procesador": "Qualcomm Snapdragon 8 Gen 3 (4 nm), Octa-core",
+      "Sistema Operativo": "Android 14 con OxygenOS 14"
+    }
+  },
+  {
+    id: 26,
+    name: "Samsung Galaxy Z flip 7 FE",
+    image: "../img/celulares/Dimensiones filtradas del Galaxy Z Fold 7 y Galaxy Z Flip 7 prometen nuevos récords.jpeg",
+    images: { "blanco": "../img/celulares/Dimensiones filtradas del Galaxy Z Fold 7 y Galaxy Z Flip 7 prometen nuevos récords.jpeg", "negro": "../img/celulares/Samsung Galaxy Z Flip7 FE - 6,7_ Smartphone med 8GB RAM og 128GB Lager - Sort.jpeg" },
+    priceOriginal: "$1200.00",
+    priceDescuento: "$1100.50",
+    specs: {
+      "Color": "Negro, Blanco",
+      "Pantalla": "6.7 pulgadas, Dynamic AMOLED 2X, FHD+ (2640 × 1080 px), tasa de refresco adaptativa 1–120 Hz",
+      "Memoria": "8 GB RAM LPDDR5 / 128 GB o 256 GB almacenamiento UFS 3.1",
+      "Batería": "4000 mAh (dual-cell), carga rápida de 25 W (USB-PD 3.0 / QC 2.0, 50 % en ~30 min), carga inalámbrica 15 W, carga inversa 4.5 W",
+      "Conectividad": "5G (SA/NSA, sub-6/-mmWave en modelos USA), Wi-Fi 6E, Bluetooth 5.4, NFC (región-dependiente), USB-C 3.2, sensor de huella lateral, IP48 resistencia",
+      "Cámara trasera": "50 MP (wide, f/1.8, Dual Pixel AF, OIS) + 12 MP (ultra-gran angular, f/2.2)",
+      "Cámara frontal": "10 MP (wide, f/2.2)",
+      "Procesador": "Exynos 2400 (4 nm, deca-core) con GPU Xclipse 940",
+      "Sistema Operativo": "Android 16 con One UI 8"
+    }
+  },
+  {
+    id: 27,
+    name: "VIVO X100 PRO",
+    image: "../img/celulares/VIVO X100 PRO blanco.jpeg",
+    images: { "blanco": "../img/celulares/VIVO X100 PRO blanco.jpeg", "negro": "../img/celulares/Vivo X100 Pro negro.jpeg" },
+    priceOriginal: "$1040.00",
+    priceDescuento: "$850.00",
+    specs: {
+     "Color": "Negro,Blanco",
+"Pantalla": "6.78 pulgadas AMOLED (FHD+ 2800 × 1260 px), LTPO, hasta 120 Hz de refresco, brillo pico hasta 3000 nits",
+"Memoria": "16 GB RAM LPDDR5X / 512 GB almacenamiento UFS 4.0",
+"Batería": "5400 mAh (dual-cell), carga rápida 100 W FlashCharge y carga inalámbrica 50 W",
+"Conectividad": "5G (sub-6 GHz/NSA/SA), Wi-Fi 6, Bluetooth 5.4, NFC, USB-C, IP68",
+"Cámara trasera": "50 MP (principal, IMX989, OIS, f/1.75) + 50 MP ultra-gran angular (f/2.0) + 50 MP telefoto periscópico 4.3× óptico (f/2.5, OIS)",
+"Cámara frontal": "32 MP (f/2.0)",
+"Procesador": "MediaTek Dimensity 9300 (4 nm, octa-core, GPU Immortalis-G720)",
+"Sistema Operativo": "Android 14 con Funtouch OS 14"
+
+    }
+  },
+  {
+    id: 28,
+    name: "OPPO find X8",
+    image: "../img/celulares/OPPO Find X8 Pro blanco.jpeg",
+    images: { "blanco": "../img/celulares/OPPO Find X8 Pro blanco.jpeg", "negro": "../img/celulares/OPPO Find X8 Pro negro.jpeg" },
+    priceOriginal: "$260.00",
+    priceDescuento: "$200.00",
+    specs: {
+      "Color": "blanco,negro",
+"Pantalla": "6.59 pulgadas, LTPO AMOLED flexible, resolución FHD+ (2760 × 1256 px), tasa de refresco 120 Hz, brillo pico 4500 nits, vidrio Corning Gorilla Glass 7i",
+"Memoria": "12 GB o 16 GB RAM LPDDR5X / 256 GB, 512 GB o 1 TB almacenamiento UFS 4.0",
+"Batería": "5630 mAh (Si-Carbon), carga rápida de 80 W, carga inalámbrica de 50 W + carga inversa de 10 W",
+"Conectividad": "5G, Wi-Fi 7, Bluetooth 5.4, NFC, Infrarrojos, USB-C; IP68/IP69 (resistencia a agua y polvo)",
+"Cámara trasera": "50 MP (ancho, f/1.8, OIS) + 50 MP ultra gran angular (f/2.0) + 50 MP telefoto periscópico 3× óptico (f/2.6, OIS)",
+"Cámara frontal": "32 MP (f/2.4); grabación 4K@30/60 fps",
+"Procesador": "MediaTek Dimensity 9400 (3 nm, GPU Immortalis-G925)",
+"Sistema Operativo": "Android 15 con ColorOS 15"
+
+    }
+  },
+  {
+    id: 29,
+    name: "Samsung Galaxy A26 5G",
+    image: "../img/celulares/Samsung Galaxy A26 5G Smartphone Exynos 1380, écran Super AMOLED FHD+ de 6,7_, 120 Hz, 50MP,.jpeg",
+    images: { "blanco": "../img/celulares/Samsung Galaxy A26 5G Smartphone Exynos 1380, écran Super AMOLED FHD+ de 6,7_, 120 Hz, 50MP,.jpeg", "negro": "../img/celulares/Samsung Galaxy A26 5g 128 Gb Black Dual Sim.jpeg" },
+    priceOriginal: "$414.00",
+    priceDescuento: "$350.00",
+    specs: {
+      "Color": "Negro, Blanco",
+      "Pantalla": "6.7 pulgadas Super AMOLED FHD+ (2340 × 1080 px), tasa de refresco 120 Hz, Gorilla Glass Victus+, brillo hasta ~800 nits (HBM)",
+      "Memoria": "4 GB / 6 GB / 8 GB RAM / 128 GB o 256 GB almacenamiento, expandible con microSDXC (hasta 1 TB)",
+      "Batería": "5000 mAh, carga rápida de 25 W",
+      "Conectividad": "5G (SA/NSA, sub-6 GHz), LTE/4G, Wi-Fi a/b/g/n/ac (dual-band), Bluetooth 5.3, GPS, Galileo, GLONASS, BDS, QZSS, NFC (región-dependiente), USB-C 2.0, sensor de huella lateral, IP67 (1 m/30 min), Samsung Knox Vault",
+      "Cámara trasera": "50 MP (principal, f/1.8, PDAF, OIS) + 8 MP ultra-gran angular (f/2.2) + 2 MP macro (f/2.4); vídeo hasta 4K@30 fps, 1080p@30 fps, 720p@480 fps, con HDR, EIS",
+      "Cámara frontal": "13 MP (f/2.2), vídeo 1080p@30 fps",
+      "Procesador": "Exynos 1380 (5 nm, 4×2.4 GHz Cortex-A78 + 4×2.0 GHz Cortex-A55, GPU Mali-G68 MP5) — también Exynos 1280 en Latinoamérica",
+      "Sistema Operativo": "Android 15 con One UI 7, hasta 6 actualizaciones mayores y 6 años de parches de seguridad"
+    }
+  },
+  {
+    id: 30,
+    name: "OnePlus 13",
+    image: "../img/celulares/OnePlus 13 5G up for Pre-order on Amazon UK.jpeg",
+    images: { "blanco": "../img/celulares/OnePlus 13 5G up for Pre-order on Amazon UK.jpeg", "negro": "../img/celulares/oneplus nefro.jpeg" },
+    priceOriginal: "$700.00",
+    priceDescuento: "$600.00",
+    specs: {
+      "Color": "Negro (Black Eclipse), Blanco (Arctic Dawn)",
+      "Pantalla": "6.82 pulgadas, LTPO 4.1 AMOLED ProXDR, QHD+ (3168 × 1440, ~510 ppi), 1-120 Hz dinámico, Dolby Vision, HDR10+, brillo 800 nits típico / 1600 nits HBM / 4500 nits pico, Crystal Shield super-ceramic glass",
+      "Memoria": "12 GB u 16 GB RAM LPDDR5X con almacenamiento UFS 4.0: 256 GB, 512 GB; también opción de 24 GB RAM con 1 TB (mercado indio)",
+      "Batería": "6000 mAh (silicón-carbono); carga rápida 100 W SuperVOOC (0–100 % en ≈36 min), carga inalámbrica AirVOOC 50 W (100 % ≈75 min), carga inversa inalámbrica 10 W y carga inversa por cable 5 W",
+      "Conectividad": "5G (Snapdragon X80), Wi-Fi 6/7, Bluetooth 5.4, NFC, USB-C 3.2, infrarrojos, dual-SIM, IP68/IP69 (hasta 1.5 m por 30 min), sensor de huella ultrasónico bajo pantalla, parlantes estéreo, Alert Slider",
+      "Cámara": "Trasera triple: 50 MP (principal, Sony LYT-808, OIS, f/1.6) + 50 MP periscópica (3× óptico, OIS, f/2.6) + 50 MP ultra-gran angular (120 °, f/2.0); frontal 32 MP (wide, f/2.4). Vídeo: hasta 8K@30 fps, 4K@60 fps, 1080p hasta 480fps, con Dolby Vision, EIS/Gyro-EIS, calibración Hasselblad",
+      "Procesador": "Qualcomm Snapdragon 8 Elite (3 nm), CPU octa-core (2×4.32 GHz Oryon V2 Phoenix L + 6×3.53 GHz Oryon V2 Phoenix M), GPU Adreno 830",
+      "Sistema Operativo": "Android 15, OxygenOS 15 (global) / ColorOS 15 (China), hasta 4 actualizaciones mayores y 6 años de parches de seguridad"
+    }
+  }
+
+    ];
+
+   function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+
+  function loadProduct() {
+    const productId = parseInt(getQueryParam('id'));
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+      document.body.innerHTML = "<h2>Producto no encontrado</h2>";
+      return;
+    }
+
+    // Nombre y precios
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-name-breadcrumb').textContent = product.name;
+    document.getElementById('price-original').textContent = product.priceOriginal;
+    document.getElementById('price-descuento').textContent = product.priceDescuento;
+
+    // Imagen principal (color por defecto = primer valor del objeto images)
+    const firstImage = product.images ? Object.values(product.images)[0] : product.image;
+    document.getElementById('product-image').src = firstImage;
+    document.getElementById('product-image').alt = product.name;
+
+    // Specs
+    const specsBody = document.getElementById('specs-body');
+    specsBody.innerHTML = '';
+    for (const [key, value] of Object.entries(product.specs)) {
+      const specItem = document.createElement('div');
+      specItem.className = 'specs-item';
+      
+      const specName = document.createElement('div');
+      specName.className = 'specs-name';
+      specName.textContent = key;
+      
+      const specValue = document.createElement('div');
+      specValue.className = 'specs-value';
+      specValue.textContent = value;
+      
+      specItem.appendChild(specName);
+      specItem.appendChild(specValue);
+      specsBody.appendChild(specItem);
+    }
+
+    // Colores (si el producto tiene imágenes por color)
+    if (product.images) {
+      setupColorButtons(product);
+    }
+  }
+
+  // 📌 Cambiar imagen según color
+  function setupColorButtons(product) {
+    const buttons = document.querySelectorAll(".color-btn");
+    const productImage = document.getElementById("product-image");
+
+    buttons.forEach(btn => {
+        console.log(`Button clicked: ${btn.getAttribute("data-color")}`); // Debug log
+      btn.addEventListener("click", () => {
+        const color = btn.getAttribute("data-color");
+        if (product.images[color]) {
+          productImage.src = product.images[color];
+        }
+
+        // Marcar botón seleccionado
+        buttons.forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      });
+    });
+  }
+
+  // 📌 Agregar al carrito
+  document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+    const productId = parseInt(getQueryParam('id'));
+    const product = products.find(p => p.id === productId);
+    const quantityInput = document.getElementById('quantity-input');
+    let quantity = 1;
+
+    if (quantityInput) {
+      quantity = parseInt(quantityInput.value);
+      if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+      }
+    }
+
+    if (product) {
+      window.cart.addToCart(product, quantity);
+      window.cart.updateCartUI();
+      alert(`Producto "${product.name}" agregado al carrito (Cantidad: ${quantity})`);
+    } else {
+      alert('Producto no encontrado');
+    }
+  });
+
+  // 📌 Menú de categorías
+  document.addEventListener('DOMContentLoaded', () => {
+    const label = document.querySelector('.categories-label');
+    const menu = document.querySelector('.menu-items');
+
+    function toggleMenu() {
+      const isVisible = menu.style.display === 'grid';
+      menu.style.display = isVisible ? 'none' : 'grid';
+      label.setAttribute('aria-expanded', String(!isVisible));
+    }
+
+    label.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!label.contains(e.target) && !menu.contains(e.target)) {
+        menu.style.display = 'none';
+        label.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    label.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+  });
+
+  // 📌 Ejecutar carga inicial
+  window.onload = loadProduct;
+  </script>
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

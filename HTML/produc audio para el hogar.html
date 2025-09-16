@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalle del Producto</title>
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" href="../CSS/audioparaelhogar.css" />
+  <link rel="stylesheet" href="../CSS/cart audio para el hogar.css" />
+  <style>
+.breadcrumb {
+  z-index: 1;
+  margin: 20px;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+.image-gallery {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+.product-image {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  height: auto;
+}
+.product-info {
+  display: flex;
+  gap: 40px;
+  max-width: 700px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-info-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.product-info-left h1,
+.product-info-left div,
+.product-info-left label,
+.product-info-left input,
+.product-info-left button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-info-right {
+  flex: 1;
+}
+.price-original {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
+.price-descuento {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 24px;
+}
+      /* New styles for improved specs layout */
+      .specs-container {
+        width: 100%;
+        margin-top: 10px; /* Reduced margin to bring closer */
+        font-family: Arial, sans-serif;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .specs-header {
+        background: linear-gradient(135deg, #1D1ABE, #00AEEF);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        cursor: pointer; /* Make header clickable */
+        user-select: none;
+      }
+
+      .specs-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 25px;
+      }
+
+      .specs-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .specs-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+.specs-name {
+  font-weight: 700;
+  color: #1D1ABE;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.specs-value {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  
+  .specs-item {
+    padding: 12px;
+  }
+  
+  .specs-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .product-info-left, .product-info-right {
+    width: 100%;
+  }
+  
+  .image-gallery {
+    max-width: 100%;
+  }
+}
+
+.btn-carrito {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #1D1ABE, #00AEEF); /* Changed to blue gradient */
+  color: white;
+  border: none;
+  padding: 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(29, 26, 190, 0.5); /* Adjusted shadow color */
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 100%; /* Make width 100% to match specs container */
+  display: block;
+  margin-left: 0; /* Align left */
+  margin-right: 0;
+}
+.btn-carrito:hover {
+  background: linear-gradient(135deg, #00AEEF, #1D1ABE); /* Hover gradient reversed */
+  box-shadow: 0 8px 16px rgba(0, 174, 239, 0.7);
+  transform: translateY(-3px);
+}
+.btn-carrito:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 174, 239, 0.5);
+}
+.footer {
+  background: linear-gradient(to right, #2e2e2e, #3e3e3e);
+  color: #ffffff;
+  padding: 60px 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: #ff7096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ff7096;
+  text-decoration: underline;
+}
+.social-icons a:hover {
+  transform: scale(1.15);
+}
+.social-icons a {
+  display: inline-block;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+.social-icons img {
+  width: 34px;
+  height: 34px;
+  background-color: #ff7096;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+      /* Cambios aquí: el contador junto al nombre */
+      .product-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .product-title-row h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .product-qty {
+        width: 70px;
+        height: 36px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-left: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+/* Responsive header adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+    </style>
+   <script src="../JS/cartaudioparaelhogar.js"></script>
+  <script>
+    // Toggle specs visibility on header click
+    document.addEventListener('DOMContentLoaded', () => {
+      const specsHeader = document.querySelector('.specs-header');
+      const specsGrid = document.getElementById('specs-body');
+      if (specsHeader && specsGrid) {
+        specsHeader.addEventListener('click', () => {
+          if (specsGrid.style.display === 'none') {
+            specsGrid.style.display = 'grid';
+          } else {
+            specsGrid.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+
+
+
+
+ <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/e.jpg" alt="Logo INOVATECH">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+     <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="videos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+  
+  </nav>
+   <main>
+
+
+
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inicio</a> >
+    <a href="audio para el hogar.html">Audio para hogar</a> >
+    <span id="product-name-breadcrumb">Producto</span>
+  </nav>
+
+  <main class="product-detail">
+    <div class="image-gallery">
+      <div class="main-image-container">
+        <img id="product-image" class="product-image" src="" alt="Imagen del producto" />
+      </div>
+    </div>
+
+      <div class="product-info" style="gap: 20px;"> <!-- Reduced gap from 40px to 20px -->
+        <div class="product-info-left" style="flex: 1 1 60%;"> <!-- Increased flex basis to 60% -->
+          <h1 id="product-name">Producto</h1>
+          <div>
+            <span class="price-original" id="price-original"></span>
+            <span class="price-descuento" id="price-descuento"></span>
+          </div>
+          <div style="margin-top: 15px;">
+            <label for="quantity-input" style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 6px;">Cantidad:</label>
+            <input type="number" id="quantity-input" value="1" min="1" style="width: 100px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 12px; display: block;" />
+            <button class="btn-carrito" id="add-to-cart-btn" style="width: 100%; padding: 14px 0; font-size: 18px; border-radius: 6px;">Agregar al carrito</button>
+          </div>
+          <div class="specs-container" aria-label="Especificaciones del producto" style="margin-top: 20px;"> <!-- Moved specs container here -->
+            <div class="specs-header">
+              <h2>Especificaciones Técnicas</h2>
+            </div>
+            <div class="specs-grid" id="specs-body">
+              <!-- Specs will be inserted here -->
+            </div>
+          </div>
+        </div>
+        <div class="product-info-right" style="flex: 1 1 40%; display: none;"> <!-- Hide right column -->
+          <!-- Removed specs container from here -->
+        </div>
+      </div>
+  </main>
+
+  <script>
+    // Sample product data for demonstration
+    const products = [
+   {
+        id: 113,
+        name: "Bose Acoustimass 10 seies IV",
+        image: "../img/audio para el hogar/Bose Acoustimass 10 Home Entertainment Speaker System – 5_1.jpg",
+        priceOriginal: "$799.00",
+        priceDescuento: "$599.03",
+        specs: {"🎶 Bose Acoustimass 10 Home Entertainment Speaker System": "Sistema de altavoces envolventes de 5.1 canales que proporciona un sonido envolvente excepcional.",
+"🔊 Tecnología Acoustimass": "Graves profundos y potentes para una experiencia auditiva inmersiva.",
+"🎶 Diseño elegante": "Compacto y moderno, se adapta a cualquier sala de estar.",
+"🔋 Fácil configuración": "Instalación sencilla con instrucciones claras.",
+"🌐 Compatible con receptores AV": "Funciona con la mayoría de los sistemas de cine en casa.",
+"💼 Ideal para entretenimiento en casa": "Perfecto para películas, música y juegos.",
+"🌡️ Materiales de alta calidad": "Construcción duradera que asegura un rendimiento prolongado.",
+"🧼 Mantenimiento sencillo": "Diseño que facilita la limpieza y el cuidado.",
+"🎁 Regalo perfecto": "Ideal para amantes del cine y la música."
+
+        }
+      },
+      {
+        id: 114,
+        name: "Chaine HiFi Philips BTM3360 _ Darty",
+        image: "../img/audio para el hogar/Chaine HiFi Philips BTM3360 _ Darty.jpg",
+
+        priceOriginal: "$199.00",
+        priceDescuento: "$117.49",
+        specs: {
+           "🎶 Chaine HiFi Philips BTM3360": "Sistema de audio compacto con Bluetooth que ofrece una gran calidad de sonido.",
+"🔊 Potencia de salida de 20W RMS": "Sonido claro y potente para disfrutar de tu música favorita.",
+"🎶 Reproductor de CD y radio FM": "Versatilidad para escuchar diferentes fuentes de audio.",
+"🔋 Conectividad Bluetooth": "Conexión inalámbrica fácil con dispositivos móviles.",
+"🌐 Entradas USB y AUX": "Permite conectar otros dispositivos de audio.",
+"💼 Diseño compacto": "Ideal para espacios pequeños y fácil de transportar.",
+"🌡️ Control remoto incluido": "Comodidad para manejar el sistema desde lejos.",
+"🧼 Materiales de fácil limpieza": "Superficies que repelen el polvo y son fáciles de mantener.",
+"🎁 Regalo accesible": "Perfecto para quienes buscan un sistema de audio funcional."
+
+
+        }
+      },
+      {
+        id: 115,
+        name: "Harman Kardon BDS-3D753",
+        image: "../img/audio para el hogar/Harman Kardon BDS-3D753.jpg",
+        priceOriginal: "$499.90",
+        priceDescuento: "$439.90",
+        specs: {
+         "🎶 Harman Kardon BDS-3D753": "Sistema de cine en casa 5.1 que ofrece una experiencia de sonido envolvente superior.",
+"🔊 Potencia total de 300W": "Sonido potente para películas y música.",
+"🎶 Reproducción de Blu-ray 3D": "Disfruta de tus películas en alta definición.",
+"🔋 Conectividad Wi-Fi y Bluetooth": "Fácil conexión a dispositivos móviles y streaming.",
+"🌐 Interfaz intuitiva": "Fácil de usar con controles claros.",
+"💼 Ideal para cine en casa": "Perfecto para disfrutar de películas y series.",
+"🌡️ Diseño moderno": "Se adapta a cualquier decoración.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo ideal": "Para los amantes del cine y la tecnología."
+
+}
+
+        },
+      
+      {
+        id: 116,
+        name: "LG XBOOM CJ45",
+        image: "../img/audio para el hogar/minicomponente.jpeg",
+        priceOriginal: "$999.00",
+        priceDescuento: "$699.03",
+        specs: {
+  "🎶 LG XBOOM CJ45": "Sistema de sonido envolvente inalámbrico que ofrece una experiencia cinematográfica en casa.",
+"🔊 Dolby Atmos": "Sonido tridimensional para una experiencia inmersiva.",
+"🎶 820W de potencia total": "Sonido potente y claro para cualquier tipo de contenido.",
+"🔋 Subwoofer inalámbrico": "Flexibilidad en la colocación y fácil instalación.",
+"🌐 Conectividad HDMI eARC": "Compatible con la mayoría de los televisores modernos.",
+"💼 Ideal para entretenimiento en casa": "Perfecto para películas, música y juegos.",
+"🌡️ Diseño elegante": "Se integra perfectamente en cualquier sala de estar.",
+"🧼 Mantenimiento sencillo": "Fácil de limpiar y mantener.",
+"🎁 Regalo sofisticado": "Ideal para quienes buscan calidad de audio premium."
+
+}
+
+      },
+      {
+        id: 117,
+        name: "Microcomponente Sony CMT SBT40D 50W RMS",
+        image: "../img/audio para el hogar/Microcomponente Sony CMT SBT40D 50W RMS.jpg",
+        priceOriginal: "$249.99",
+        priceDescuento: "$184.26",
+        specs: {
+ "🎶 Microcomponente Sony CMT SBT40D 50W RMS": "Sistema de microcomponentes que combina potencia y versatilidad.",
+"🔊 Potencia de 50W RMS": "Sonido fuerte y claro para disfrutar de tu música.",
+"🎶 Reproductor de CD y radio FM": "Diversidad en las fuentes de audio.",
+"🔋 Conectividad Bluetooth": "Conexión inalámbrica sencilla con dispositivos móviles.",
+"🌐 Entradas USB y AUX": "Permite conectar otros dispositivos de audio.",
+"💼 Diseño compacto": "Ideal para cualquier espacio, fácil de transportar.",
+"🌡️ Control remoto incluido": "Comodidad para manejar el sistema desde lejos.",
+"🧼 Materiales de fácil limpieza": "Superficies que repelen el polvo y son fáciles de mantener.",
+"🎁 Regalo práctico": "Perfecto para quienes buscan un sistema de audio funcional."
+
+        }
+      },
+      {
+        id: 118,
+        name: "Samsung HT-H5550W",
+        image: "../img/audio para el hogar/Samsung HT-H5550W 5_1 3D.jpeg",
+        priceOriginal: "$299.99",
+        priceDescuento: "$280.00",
+        specs: {
+   "🎧 Audífono Inalambrico JBL On Ear - Morado": "Audífonos compactos y ligeros, ideales para quienes buscan un estilo moderno y calidad de sonido.",
+  "🔊 Sonido claro": "Ofrecen un sonido nítido y equilibrado para todos los géneros musicales.",
+  "🎶 Diseño plegable": "Fáciles de llevar y almacenar en cualquier lugar.",
+  "🔋 Batería de larga duración": "Hasta 16 horas de uso con una carga completa.",
+  "🌐 Conectividad Bluetooth": "Facilita la conexión con dispositivos móviles sin cables.",
+  "💼 Perfectos para el uso diario": "Ideales para la escuela, la oficina o el hogar.",
+  "🌡️ Comodidad durante todo el día": "Diseño que permite un uso prolongado sin molestias.",
+  "🧼 Fácil de limpiar": "Materiales que permiten un mantenimiento sencillo.",
+  "🎁 Regalo moderno": "Perfectos para jóvenes y amantes de la música."
+        }
+      },
+      {
+        id: 119,
+        name: "Sharp XL-BH530 CD Mini Shelf System",
+        image: "../img/audio para el hogar/Sharp XL-BH530 CD Mini Shelf System.jpg",
+        priceOriginal: "$599.00",
+        priceDescuento: "$479.02",
+        specs: {
+  "🎶 Sharp XL-BH530 CD Mini Shelf System": "Sistema de estantería compacto que ofrece un sonido de calidad.",
+"🔊 Potencia de salida de 30W RMS": "Sonido claro y potente para disfrutar de tu música.",
+"🎶 Reproductor de CD y radio FM": "Versatilidad para escuchar diferentes fuentes de audio.",
+"🔋 Conectividad Bluetooth": "Conexión inalámbrica fácil con dispositivos móviles.",
+"🌐 Entradas USB y AUX": "Permite conectar otros dispositivos de audio.",
+"💼 Diseño compacto": "Ideal para espacios pequeños y fácil de transportar.",
+"🌡️ Control remoto incluido": "Comodidad para manejar el sistema desde lejos.",
+"🧼 Materiales de fácil limpieza": "Superficies que repelen el polvo y son fáciles de mantener.",
+"🎁 Regalo accesible": "Perfecto para quienes buscan un sistema de audio funcional."
+
+        }
+      },
+      {
+        id: 120,
+        name: "Sony modelo MHCSHAKEX3D",
+        image: "../img/audio para el hogar/Sony modelo MHCSHAKEX3D_  potencia de 1200W RMS",
+        priceOriginal: "$599.00",
+        priceDescuento: "$461.23",
+        specs: {
+     
+ "🎶 Sony modelo MHCSHAKEX3D - Potencia de 1200W": "Sistema de sonido potente que ofrece una experiencia auditiva increíble.",
+"🔊 Potencia de 1200W": "Sonido fuerte y claro para disfrutar de tu música.",
+"🎶 Reproducción de CD, USB y Bluetooth": "Diversidad en las fuentes de audio.",
+"🔋 Iluminación LED para fiestas": "Crea un ambiente festivo en cualquier ocasión.",
+"🌐 Conexiones HDMI y AUX": "Compatible con la mayoría de los dispositivos.",
+"💼 Ideal para fiestas y reuniones": "Perfecto para animar cualquier evento.",
+"🌡️ Diseño moderno": "Se adapta a cualquier decoración.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo divertido": "Ideal para quienes buscan un sistema de audio potente."
+
+}
+
+        
+      },
+      {
+        id: 121,
+        name: "SAMSUNG - Mx-j630 - Home Cinema - 2",
+        image: "../img/audio para el hogar/SAMSUNG - Mx-j630 - Home Cinema - 2 (Stereo).jpeg",
+        priceOriginal: "$399.00",
+        priceDescuento: "$323.19",
+        specs: {
+   
+ "🎶 SAMSUNG - MX-J630 - Home Cinema - 2": "Sistema de cine en casa 2.1 que ofrece un sonido envolvente.",
+"🔊 Potencia total de 300W": "Sonido potente para disfrutar de tus películas.",
+"🎶 Reproductor de CD y Bluetooth": "Diversidad en las fuentes de audio.",
+"🔋 Conectividad USB y AUX": "Permite conectar otros dispositivos de audio.",
+"🌐 Diseño elegante": "Se adapta a cualquier decoración.",
+"💼 Ideal para cine en casa": "Perfecto para disfrutar de películas y series.",
+"🌡️ Control remoto incluido": "Comodidad para manejar el sistema desde lejos.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo ideal": "Para los amantes del cine y la música."
+
+        
+        }
+      },
+      {
+        id: 122,
+        name: "MHC-GPX3_ME2  Salida 10400W .",
+        image: "../img/audio para el hogar/MHC-GPX3_ME2  Salida 10400W PMPO 950W RMS  Bandeja 1 CD.jpeg",
+        priceOriginal: "$499.00",
+        priceDescuento: "$384.23",
+        specs: {
+ "🎶 MHC-GPX3_ME2 - Salida 10400W": "Sistema de audio potente que ofrece una experiencia auditiva excepcional.",
+"🔊 Potencia de 10400W": "Sonido fuerte y claro para disfrutar de tu música.",
+"🎶 Reproducción de CD, USB y Bluetooth": "Diversidad en las fuentes de audio.",
+"🔋 Iluminación LED para fiestas": "Crea un ambiente festivo en cualquier ocasión.",
+"🌐 Conexiones HDMI y AUX": "Compatible con la mayoría de los dispositivos.",
+"💼 Ideal para fiestas y reuniones": "Perfecto para animar cualquier evento.",
+"🌡️ Diseño moderno": "Se adapta a cualquier decoración.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo divertido": "Ideal para quienes buscan un sistema de audio potente."
+
+}
+
+        
+      },
+      {
+        id: 123,
+        name: "Altavoz LG LK72B",
+        image: "../img/audio para el hogar/Altavoz LG LK72B.jpeg",
+        priceOriginal: "$149.00",
+        priceDescuento: "$119.02",
+        specs: {
+          
+ "🎶 Altavoz LG LK72B": "Altavoz portátil que ofrece un sonido de calidad.",
+"🔊 Potencia de salida de 20W": "Sonido claro y potente para disfrutar de tu música.",
+"🎶 Batería recargable": "Larga duración para llevar tu música a todas partes.",
+"🔋 Conectividad Bluetooth": "Conexión inalámbrica fácil con dispositivos móviles.",
+"🌐 Diseño compacto": "Ideal para llevar a cualquier lugar.",
+"💼 Perfecto para actividades al aire libre": "Ideal para picnics y reuniones.",
+"🌡️ Materiales de alta calidad": "Construcción duradera que asegura un rendimiento prolongado.",
+"🧼 Mantenimiento sencillo": "Fácil de limpiar y mantener.",
+"🎁 Regalo práctico": "Ideal para quienes buscan un altavoz portátil."
+
+
+
+        }
+      },
+      {
+        id: 124,
+        name: "LG XBOOM CL87 2350W",
+        image: "../img/audio para el hogar/LG XBOOM CL87 2350W.jpeg",
+        priceOriginal: "$699.00",
+        priceDescuento: "$573.18",
+        specs: {
+     
+ "🎶 LG XBOOM CL87 2350W": "Sistema de audio potente que ofrece una experiencia auditiva increíble.",
+"🔊 Potencia de 2350W": "Sonido fuerte y claro para disfrutar de tu música.",
+"🎶 Reproducción de CD, USB y Bluetooth": "Diversidad en las fuentes de audio.",
+"🔋 Iluminación LED para fiestas": "Crea un ambiente festivo en cualquier ocasión.",
+"🌐 Conexiones HDMI y AUX": "Compatible con la mayoría de los dispositivos.",
+"💼 Ideal para fiestas y reuniones": "Perfecto para animar cualquier evento.",
+"🌡️ Diseño moderno": "Se adapta a cualquier decoración.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo divertido": "Ideal para quienes buscan un sistema de audio potente."
+
+
+
+        }
+      },
+      {
+        id: 125,
+        name: "LG CK43 XBOOM",
+        image: "../img/audio para el hogar/LG CK43 XBOOM.jpeg",
+        priceOriginal: "249.00",
+        priceDescuento: "$174.03",
+        specs: {
+  
+  "🎧 Audífonos JBL T110": "Audífonos intraurales que ofrecen un sonido potente y un diseño cómodo.",
+  "🔊 Sonido equilibrado": "Controladores de 9 mm que proporcionan un audio claro.",
+  "🎶 Diseño ligero": "Fáciles de llevar y usar en cualquier lugar.",
+  "🔋 Sin batería": "Conexión por cable para uso continuo sin necesidad de carga.",
+  "🌐 Conectividad universal": "Compatible con la mayoría de dispositivos con jack de 3.5 mm.",
+  "💼 Perfectos para el uso diario": "Ideales para la escuela, la oficina o el hogar.",
+  "🌡️ Comodidad durante todo el día": "Diseño que permite un uso prolongado sin molestias.",
+  "🧼 Fácil de limpiar": "Materiales que permiten un mantenimiento sencillo.",
+  "🎁 Regalo práctico": "Ideal para quienes buscan un accesorio funcional."
+
+
+        }
+      },
+      {
+        id: 126,
+        name: "LG XBOOM CL 98",
+        image: "../img/audio para el hogar/Lg XBOOM CL 98.avif",
+        priceOriginal: "$799.00",
+        priceDescuento: "$599.25",
+        specs: {
+   
+ "🎶 LG XBOOM CL 98": "Sistema de audio potente que ofrece una experiencia auditiva excepcional.",
+"🔊 Potencia de 3000W": "Sonido fuerte y claro para disfrutar de tu música.",
+"🎶 Reproducción de CD, USB y Bluetooth": "Diversidad en las fuentes de audio.",
+"🔋 Iluminación LED para fiestas": "Crea un ambiente festivo en cualquier ocasión.",
+"🌐 Conexiones HDMI y AUX": "Compatible con la mayoría de los dispositivos.",
+"💼 Ideal para fiestas y reuniones": "Perfecto para animar cualquier evento.",
+"🌡️ Diseño moderno": "Se adapta a cualquier decoración.",
+"🧼 Mantenimiento sencillo": "Materiales que son fáciles de limpiar.",
+"🎁 Regalo divertido": "Ideal para quienes buscan un sistema de audio potente."
+
+
+
+        }
+      },
+      {
+        id: 127,
+        name: "Panasonic SC-AKX18",
+        image: "../img/audio para el hogar/Panasonic 350W Bookshelf Stereo System Black SC-AKX18.jpeg",
+        priceOriginal: "$299.00",
+        priceDescuento: "$269.01",
+        specs: {
+   "🎶 Panasonic SC-AKX18": "Sistema de audio compacto que ofrece un sonido de calidad.",
+"🔊 Potencia de salida de 40W RMS": "Sonido claro y potente para disfrutar de tu música.",
+"🎶 Reproductor de CD y radio FM": "Versatilidad para escuchar diferentes fuentes de audio.",
+"🔋 Conectividad Bluetooth": "Conexión inalámbrica fácil con dispositivos móviles.",
+"🌐 Entradas USB y AUX": "Permite conectar otros dispositivos de audio.",
+"💼 Diseño compacto": "Ideal para espacios pequeños y fácil de transportar.",
+"🌡️ Control remoto incluido": "Comodidad para manejar el sistema desde lejos.",
+"🧼 Materiales de fácil limpieza": "Superficies que repelen el polvo y son fáciles de mantener.",
+"🎁 Regalo accesible": "Perfecto para quienes buscan un sistema de audio funcional."
+
+        }
+      }
+      
+
+    ];
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function loadProduct() {
+      const productId = parseInt(getQueryParam('id'));
+      const product = products.find(p => p.id === productId);
+      if (!product) {
+        document.body.innerHTML = "<h2>Producto no encontrado</h2>";
+        return;
+      }
+
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-name-breadcrumb').textContent = product.name;
+      document.getElementById('product-image').src = product.image;
+      document.getElementById('product-image').alt = product.name;
+      document.getElementById('price-original').textContent = product.priceOriginal;
+      document.getElementById('price-descuento').textContent = product.priceDescuento;
+
+      const specsBody = document.getElementById('specs-body');
+      specsBody.innerHTML = '';
+      for (const [key, value] of Object.entries(product.specs)) {
+        const specItem = document.createElement('div');
+        specItem.className = 'specs-item';
+        
+        const specName = document.createElement('div');
+        specName.className = 'specs-name';
+        specName.textContent = key;
+        
+        const specValue = document.createElement('div');
+        specValue.className = 'specs-value';
+        specValue.textContent = value;
+        
+        specItem.appendChild(specName);
+        specItem.appendChild(specValue);
+        specsBody.appendChild(specItem);
+      }
+    }
+
+    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+      const productId = parseInt(getQueryParam('id'));
+      const product = products.find(p => p.id === productId);
+      const quantityInput = document.getElementById('quantity-input');
+      let quantity = 1;
+      if (quantityInput) {
+        quantity = parseInt(quantityInput.value);
+        if (isNaN(quantity) || quantity < 1) {
+          quantity = 1;
+        }
+      }
+      if (product) {
+        window.cart.addToCart(product, quantity);
+        window.cart.updateCartUI();
+        alert(`Producto "${product.name}" agregado al carrito (Cantidad: ${quantity})`);
+      } else {
+        alert('Producto no encontrado');
+      }
+    });
+
+
+
+
+
+     document.addEventListener('DOMContentLoaded', () => {
+      const label = document.querySelector('.categories-label');
+      const menu = document.querySelector('.menu-items');
+
+      function toggleMenu() {
+        const isVisible = menu.style.display === 'grid';
+        menu.style.display = isVisible ? 'none' : 'grid';
+        label.setAttribute('aria-expanded', String(!isVisible));
+      }
+
+      label.addEventListener('click', (e) => {
+        e.stopPropagation(); // evita que el clic cierre inmediatamente
+        toggleMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!label.contains(e.target) && !menu.contains(e.target)) {
+          menu.style.display = 'none';
+          label.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Accesibilidad con Enter o espacio
+      label.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+    });
+
+
+    window.onload = loadProduct;
+
+ 
+  </script>
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

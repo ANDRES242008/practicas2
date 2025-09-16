@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="../CSS/audifonos.css" />
+  <link rel="stylesheet" href="../CSS/cartaudifonos.css" />
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+   <style>
+
+
+.breadcrumb {
+  z-index: 1;
+  margin: 20px;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 5px;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+.image-gallery {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+.product-image {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  height: auto;
+}
+.product-info {
+  display: flex;
+  gap: 40px;
+  max-width: 700px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-info-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.product-info-left h1,
+.product-info-left div,
+.product-info-left label,
+.product-info-left input,
+.product-info-left button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-info-right {
+  flex: 1;
+}
+.price-original {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
+.price-descuento {
+  color: #e63946;
+  font-weight: bold;
+  font-size: 24px;
+}
+      /* New styles for improved specs layout */
+      .specs-container {
+        width: 100%;
+        margin-top: 10px; /* Reduced margin to bring closer */
+        font-family: Arial, sans-serif;
+        color: #333;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .specs-header {
+        background: linear-gradient(135deg, #1D1ABE, #00AEEF);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        cursor: pointer; /* Make header clickable */
+        user-select: none;
+      }
+
+      .specs-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 25px;
+      }
+
+      .specs-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .specs-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+.specs-name {
+  font-weight: 700;
+  color: #1D1ABE;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.specs-value {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .specs-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  
+  .specs-item {
+    padding: 12px;
+  }
+  
+  .specs-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .product-detail {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .product-info-left, .product-info-right {
+    width: 100%;
+  }
+  
+  .image-gallery {
+    max-width: 100%;
+  }
+}
+
+.btn-carrito {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #1D1ABE, #00AEEF); /* Changed to blue gradient */
+  color: white;
+  border: none;
+  padding: 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(29, 26, 190, 0.5); /* Adjusted shadow color */
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  width: 100%; /* Make width 100% to match specs container */
+  display: block;
+  margin-left: 0; /* Align left */
+  margin-right: 0;
+}
+.btn-carrito:hover {
+  background: linear-gradient(135deg, #00AEEF, #1D1ABE); /* Hover gradient reversed */
+  box-shadow: 0 8px 16px rgba(0, 174, 239, 0.7);
+  transform: translateY(-3px);
+}
+.btn-carrito:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 174, 239, 0.5);
+}
+.footer {
+  background: linear-gradient(to right, #2e2e2e, #3e3e3e);
+  color: #ffffff;
+  padding: 60px 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: #ff7096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ff7096;
+  text-decoration: underline;
+}
+.social-icons a:hover {
+  transform: scale(1.15);
+}
+.social-icons a {
+  display: inline-block;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+.social-icons img {
+  width: 34px;
+  height: 34px;
+  background-color: #ff7096;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+      /* Cambios aquí: el contador junto al nombre */
+      .product-title-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .product-title-row h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .product-qty {
+        width: 70px;
+        height: 36px;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-left: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+/* Responsive header adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+
+ #product-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .color-selector {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .color-btn:hover {
+      transform: scale(1.1);
+      border-color: #999;
+    }
+
+    .color-btn.selected {
+      border: 3px solid #000;
+      box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    }
+
+   
+    </style>
+  <script src="../JS/cartcelulares.js"></script>
+  <script>
+    // Toggle specs visibility on header click
+    document.addEventListener('DOMContentLoaded', () => {
+      const specsHeader = document.querySelector('.specs-header');
+      const specsGrid = document.getElementById('specs-body');
+      if (specsHeader && specsGrid) {
+        specsHeader.addEventListener('click', () => {
+          if (specsGrid.style.display === 'none') {
+            specsGrid.style.display = 'grid';
+          } else {
+            specsGrid.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+
+
+
+
+ <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/e.jpg" alt="Logo INOVATECH">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+     <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="videos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+  </nav>
+   <main>
+
+
+
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inicio</a> >
+    <a href="audifonos.html">Audifonos</a> >
+    <span id="product-name-breadcrumb">Producto</span>
+  </nav>
+
+  <main class="product-detail">
+    <div class="image-gallery">
+      <div class="main-image-container">
+        <img id="product-image" class="product-image" src="" alt="Imagen del producto" />
+      </div>
+    </div>
+
+      <div class="product-info" style="gap: 20px;"> <!-- Reduced gap from 40px to 20px -->
+<div class="product-info-left" style="flex: 1 1 60%;">
+          <h1 id="product-name">Producto</h1>
+          <div>
+            <span class="price-original" id="price-original"></span>
+            <span class="price-descuento" id="price-descuento"></span>
+          </div>
+          
+          <!-- Color selection buttons -->
+          <div id="color-selection" style="margin: 15px 0; text-align: center;">
+            <label style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 10px;">Color:</label>
+            <div id="color-buttons-container" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <div class="color-selector">
+  <button class="color-btn selected" data-color="blanco" style="background-color:#ffffff;" title="Negro"></button>
+  
+  <button class="color-btn" data-color="negro" style="background-color:#1b1b1a;" title="Oro"></button>
+</div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 15px;">
+            <label for="quantity-input" style="font-weight: 600; font-size: 16px; display: block; margin-bottom: 6px;">Cantidad:</label>
+            <input type="number" id="quantity-input" value="1" min="1" style="width: 100px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 12px; display: block;" />
+            <button class="btn-carrito" id="add-to-cart-btn" style="width: 100%; padding: 14px 0; font-size: 18px; border-radius: 6px;">Agregar al carrito</button>
+          </div>
+          <div class="specs-container" aria-label="Especificaciones del producto" style="margin-top: 20px;"> <!-- Moved specs container here -->
+            <div class="specs-header">
+              <h2>Especificaciones Técnicas</h2>
+            </div>
+            <div class="specs-grid" id="specs-body">
+              <!-- Specs will be inserted here -->
+            </div>
+          </div>
+        </div>
+        <div class="product-info-right" style="flex: 1 1 40%; display: none;"> <!-- Hide right column -->
+          <!-- Removed specs container from here -->
+        </div>
+      </div>
+  </main>
+
+  <script>
+    const products = [
+    {
+        id: 101,
+        name: "Audifonos JBL Synchros E50 BT",
+        image: "../img/audifonos/Audifonos JBL Synchros E50 BT blanco.jpg",
+        images: {
+          "blanco": "../img/audifonos/Audifonos JBL Synchros E50 BT blanco.jpg",
+        
+          "negro": "../img/audifonos/JBL E50 Synchros Headphones.jpeg"
+        },
+        priceOriginal: "$150.00",
+        priceDescuento: "$130.05",
+        specs: {"🎧 Audífonos JBL Synchros E50 BT": "Versátiles y diseñados para ofrecer una experiencia de sonido envolvente. Ideales para quienes buscan calidad de audio y comodidad en el uso diario.",
+  "🔊 Sonido de alta fidelidad": "Ofrecen un rango de frecuencias amplio para una reproducción de audio precisa.",
+  "🎶 Controles intuitivos": "Controles en el auricular para ajustar volumen y cambiar pistas fácilmente.",
+  "🔋 Batería recargable": "Hasta 15 horas de reproducción continua con carga rápida.",
+  "🌐 Conectividad múltiple": "Compatible con dispositivos Bluetooth y conexión por cable.",
+  "💼 Diseño plegable": "Fácil de transportar y almacenar en cualquier lugar.",
+  "🌡️ Aislamiento de ruido": "Minimiza el ruido externo para una experiencia auditiva inmersiva.",
+  "🧼 Materiales resistentes": "Construidos con plásticos de alta calidad que son fáciles de limpiar.",
+  "🎁 Regalo ideal": "Perfectos para quienes buscan un regalo funcional y de calidad."
+         
+
+        }
+      },
+      {
+        id: 102,
+        name: "Audifonos Bose",
+       image: "../img/audifonos/Audífonos Bluetooth Quietcomfort White Smoke___.jpeg",
+        images: {
+          "blanco": "../img/audifonos/Audífonos Bluetooth Quietcomfort White Smoke___.jpeg",
+        
+          "negro": "../img/audifonos/Audífonos de Diadema Inalámbricos Bose QuietComfort con Noise Cancelling.jpeg"
+        },
+        priceOriginal: "$369.00",
+        priceDescuento: "$217.70",
+        specs: {
+           "🎧 Audífonos Bose": "Reconocidos por su tecnología de cancelación de ruido y calidad de audio superior. Perfectos para disfrutar de la música sin distracciones.",
+  "🔇 Cancelación de ruido avanzada": "Bloquea el sonido exterior para una experiencia auditiva pura.",
+  "🎤 Micrófono integrado": "Permite realizar llamadas con claridad y sin interferencias.",
+  "🔋 Carga rápida": "Hasta 20 horas de uso con solo 15 minutos de carga.",
+  "🌟 Diseño elegante": "Acabados premium que ofrecen un aspecto sofisticado.",
+  "💼 Ideal para viajes": "Diseño ligero y compacto que se adapta a cualquier maleta.",
+  "🌡️ Comodidad prolongada": "Almohadillas suaves que permiten un uso prolongado sin molestias.",
+  "🧼 Fácil de mantener": "Materiales que repelen el polvo y son fáciles de limpiar.",
+  "🎁 Regalo elegante": "Ideal para quienes valoran la calidad de sonido y el diseño moderno."
+        }
+      },
+      {
+        id: 103,
+        name: "Audifonos JBL Tune flex 2 con ANC",
+       image: "../img/audifonos/JBL Tune Flex True Wireless Noise Cancelling Earbuds - White.jpeg",
+        images: {
+          "blanco": "../img/audifonos/JBL Tune Flex True Wireless Noise Cancelling Earbuds - White.jpeg",
+        
+          "negro": "../img/audifonos/audpp.jpg"
+        },
+        priceOriginal: "$99.90",
+        priceDescuento: "$89.90",
+        specs: {
+         
+  "🎧 Audífonos JBL Tune Flex 2 con ANC": "Audífonos inalámbricos que combinan comodidad y tecnología avanzada de cancelación de ruido. Ideales para quienes buscan calidad y funcionalidad.",
+  "🔊 Sonido equilibrado": "Controladores de 12 mm que ofrecen graves profundos y agudos nítidos.",
+  "🎶 Función de transparencia": "Permite escuchar el entorno sin quitarse los audífonos.",
+  "🔋 Autonomía extendida": "Hasta 25 horas de reproducción con el estuche de carga.",
+  "🌐 Conexión rápida": "Bluetooth 5.0 para una conexión estable y rápida.",
+  "💼 Perfectos para el día a día": "Ideales para uso en casa, oficina o durante viajes.",
+  "🌡️ Resistencia al agua": "Clasificación IPX4 para resistir salpicaduras.",
+  "🧼 Mantenimiento sencillo": "Diseño que facilita la limpieza y el mantenimiento.",
+  "🎁 Regalo práctico": "Perfectos para estudiantes y profesionales que buscan calidad y comodidad."
+}
+
+        },
+      
+      {
+        id: 104,
+        name: "Audifonos Gaming JBL Quantum 800",
+      image: "../img/audifonos/Słuchawki JBL Quantum 100P Nauszne.jpeg",
+        images: {
+          "blanco": "../img/audifonos/Słuchawki JBL Quantum 100P Nauszne.jpeg",
+        
+          "negro": "../img/audifonos/audifonos amingjbl.jpg"
+        },
+        priceOriginal: "$150.00",
+        priceDescuento: "$124.05",
+        specs: {
+  "🎧 Audífonos Gaming JBL Quantum 800": "Audífonos diseñados específicamente para gamers, ofreciendo sonido envolvente y comodidad durante largas sesiones de juego.",
+  "🔊 Sonido envolvente 3D": "Tecnología QuantumSURROUND para una experiencia inmersiva.",
+  "🎮 Micrófono ajustable": "Micrófono con cancelación de ruido para una comunicación clara.",
+  "🔋 Batería de larga duración": "Hasta 14 horas de juego continuo con una sola carga.",
+  "🌐 Conectividad versátil": "Opciones de conexión Bluetooth y por cable, compatibles con varias plataformas.",
+  "💼 Ideal para gamers": "Perfectos para quienes pasan horas jugando y requieren comodidad.",
+  "🌡️ Diseño ventilado": "Materiales que permiten una buena circulación de aire durante el uso.",
+  "🧼 Fácil de limpiar": "Diseño que facilita la limpieza y el mantenimiento.",
+  "🎁 Regalo perfecto": "Ideal para gamers y entusiastas de la tecnología."
+}
+
+      },
+      {
+        id:105,
+        name: "Audifonos inalambricos JBL tune 520 Over Ear",
+      image: "../img/audifonos/☁️.jpeg",
+        images: {
+          "blanco": "../img/audifonos/☁️.jpeg",
+        
+          "negro": "../img/audifonos/aujbl.jpg"
+        },
+        priceOriginal: "$49.99",
+        priceDescuento: "$39.02",
+        specs: {
+ "🎧 Audífonos Inalambricos JBL Tune 520 Over Ear Negro": "Audífonos inalámbricos que ofrecen un sonido superior y comodidad. Ideales para quienes buscan calidad y estilo.",
+  "🔊 Graves profundos": "Controladores de 40 mm que proporcionan un sonido potente.",
+  "🎶 Controles táctiles": "Controles intuitivos en los auriculares para una experiencia sin complicaciones.",
+  "🔋 Batería de larga duración": "Hasta 30 horas de reproducción continua.",
+  "🌐 Conectividad Bluetooth": "Conexión rápida y fácil con dispositivos móviles.",
+  "💼 Perfectos para el uso diario": "Ideales para la oficina, el hogar o durante viajes.",
+  "🌡️ Diseño acolchado": "Almohadillas suaves que ofrecen comodidad durante todo el día.",
+  "🧼 Fácil mantenimiento": "Almohadillas removibles y lavables.",
+  "🎁 Regalo elegante": "Ideal para quienes aprecian el buen sonido y el diseño moderno."
+        }
+      },
+      {
+        id: 106,
+        name: "JBL TUNE 120TWS",
+       image: "../img/audifonos/JBL TUNE 120TWS.jpg",
+        images: {
+          "blanco": "../img/audifonos/JBL TUNE 120TWS.jpg",
+        
+          "negro": "../img/audifonos/JBL TUNE 120TWS negro.jpg"
+        },
+        priceOriginal: "$99.99",
+        priceDescuento: "$84.15",
+        specs: {
+   "🎧 Audífono Inalambrico JBL On Ear - Morado": "Audífonos compactos y ligeros, ideales para quienes buscan un estilo moderno y calidad de sonido.",
+  "🔊 Sonido claro": "Ofrecen un sonido nítido y equilibrado para todos los géneros musicales.",
+  "🎶 Diseño plegable": "Fáciles de llevar y almacenar en cualquier lugar.",
+  "🔋 Batería de larga duración": "Hasta 16 horas de uso con una carga completa.",
+  "🌐 Conectividad Bluetooth": "Facilita la conexión con dispositivos móviles sin cables.",
+  "💼 Perfectos para el uso diario": "Ideales para la escuela, la oficina o el hogar.",
+  "🌡️ Comodidad durante todo el día": "Diseño que permite un uso prolongado sin molestias.",
+  "🧼 Fácil de limpiar": "Materiales que permiten un mantenimiento sencillo.",
+  "🎁 Regalo moderno": "Perfectos para jóvenes y amantes de la música."
+        }
+      },
+      {
+        id: 107,
+        name: "Audifonos inalambricos JBL vibe 200 TWS",
+      image: "../img/audifonos/jbl 200 tws.jpg",
+        images: {
+          "blanco": "../img/audifonos/jbl 200 tws.jpg",
+        
+          "negro": "../img/audifonos/Auriculares inalámbricos jbl wave 200tws negro.jpeg"
+        },
+        priceOriginal: "$80.00",
+        priceDescuento: "$64.00",
+        specs: {
+  "🎧 Audífonos Inalambricos JBL Vibe 200 TWS - Color Morado": "Audífonos verdaderamente inalámbricos que combinan estilo y funcionalidad. Ideales para quienes buscan libertad de movimiento.",
+  "🔊 Sonido potente": "Calidad de audio que realza cada nota y detalle.",
+  "🎶 Diseño ergonómico": "Se ajustan cómodamente al oído para un uso prolongado.",
+  "🔋 Autonomía extendida": "Hasta 20 horas de reproducción con el estuche de carga.",
+  "🌐 Conexión Bluetooth": "Conexión rápida y estable con dispositivos móviles.",
+  "💼 Ideales para el estilo de vida activo": "Perfectos para hacer ejercicio o moverse sin restricciones.",
+  "🌡️ Resistencia al sudor": "Diseñados para resistir el sudor y la humedad.",
+  "🧼 Fácil mantenimiento": "Materiales que son fáciles de limpiar y mantener.",
+  "🎁 Regalo divertido": "Perfectos para jóvenes y amantes de la música."
+        }
+      },
+      {
+        id: 108,
+        name: "audifonos sony WH-CH500",
+       image: "../img/audifonos/WIN- Sony WH-CH500 Wireless Bluetooth NFC On-Ear Headphones.jpeg",
+        images: {
+          "blanco": "",
+        
+          "negro": "../img/audifonos/WIN- Sony WH-CH500 Wireless Bluetooth NFC On-Ear Headphones.jpeg"
+        },
+        priceOriginal: "$112.00",
+        priceDescuento: "$84.00",
+        specs: {
+     
+  "🎧 Audífonos Sony WH-CH500": "Audífonos inalámbricos con un sonido potente y un diseño cómodo. Perfectos para disfrutar de la música en movimiento.",
+  "🔊 Sonido claro": "Ofrecen un rendimiento de audio equilibrado y nítido.",
+  "🎶 Conectividad Bluetooth": "Conexión rápida y fácil con dispositivos móviles.",
+  "🔋 Batería de larga duración": "Hasta 20 horas de reproducción continua.",
+  "🌐 Diseño plegable": "Fáciles de transportar y almacenar.",
+  "💼 Ideal para uso diario": "Perfectos para la oficina o el hogar.",
+  "🌡️ Almohadillas cómodas": "Diseño que permite un uso prolongado sin molestias.",
+  "🧼 Material fácil de limpiar": "Superficies que repelen el polvo y son fáciles de mantener.",
+  "🎁 Regalo funcional": "Ideal para quienes buscan un accesorio práctico."
+}
+
+        
+      },
+      {
+        id: 109,
+        name: "Audifonos Inalambrico Sony Wh-ch520",
+       image: "../img/audifonos/Audífonos inalámbricos Bluetooth WH CH520 Blancos.jpeg",
+        images: {
+          "blanco": "../img/audifonos/Audífonos inalámbricos Bluetooth WH CH520 Blancos.jpeg",
+        
+          "negro": "../img/audifonos/audifonos sony wh ch520.jpg"
+        },
+        priceOriginal: "$64.00",
+        priceDescuento: "$53.12",
+        specs: {
+   
+  "🎧 Audífonos Inalambricos Sony WH-CH520 - Color Negro": "Audífonos ligeros y cómodos, diseñados para ofrecer una experiencia auditiva de calidad.",
+  "🔊 Graves profundos": "Controladores de 30 mm que proporcionan un sonido potente.",
+  "🎶 Controles táctiles": "Permiten un manejo intuitivo de la música y llamadas.",
+  "🔋 Carga rápida": "Hasta 15 horas de reproducción con solo 10 minutos de carga.",
+  "🌐 Conexión Bluetooth": "Fácil emparejamiento con dispositivos móviles.",
+  "💼 Ideales para el día a día": "Perfectos para quienes se mueven constantemente.",
+  "🌡️ Diseño ligero": "Cómodos para usar durante todo el día.",
+  "🧼 Fácil mantenimiento": "Materiales que permiten una limpieza sencilla.",
+  "🎁 Regalo moderno": "Perfectos para jóvenes y amantes de la música."
+
+
+        }
+      },
+      {
+        id: 110,
+        name: "Audifonos Sansung Galaxy buds 3 ",
+      image: "../img/audifonos/Galaxy Buds3 Pro White _ Samsung Chile.jpeg",
+        images: {
+          "blanco": "../img/audifonos/Galaxy Buds3 Pro White _ Samsung Chile.jpeg",
+        
+          "negro": "../img/audifonos/Samsung Galaxy Buds 3 Pro nregros.jpeg"
+        },
+        priceOriginal: "$169.00",
+        priceDescuento: "$134.00",
+        specs: {
+ 
+  "🎧 Audífonos Samsung Galaxy Buds 3 - Plata": "Audífonos completamente inalámbricos que ofrecen un sonido envolvente y comodidad.",
+  "🔊 Sonido espacial": "Tecnología de audio que permite una experiencia inmersiva.",
+  "🎶 Cancelación activa de ruido": "Reduce el ruido exterior para disfrutar de la música sin distracciones.",
+  "🔋 Autonomía extendida": "Hasta 24 horas de reproducción con el estuche de carga.",
+  "🌐 Conexión rápida": "Bluetooth 5.0 para una conexión estable.",
+  "💼 Ideales para el estilo de vida activo": "Perfectos para hacer ejercicio o moverse sin restricciones.",
+  "🌡️ Resistencia al agua": "Clasificación IPX7 para resistir la humedad.",
+  "🧼 Mantenimiento sencillo": "Diseño que facilita la limpieza y el mantenimiento.",
+  "🎁 Regalo elegante": "Ideal para quienes buscan un accesorio funcional y estilizado."
+}
+
+        
+      },
+      {
+        id: 111,
+        name: "Audifonos Samsung buds 2 pro",
+        image: "../img/audifonos/buds blancos.jpeg",
+        images: {
+          "blanco": "../img/audifonos/buds blancos.jpeg",
+        
+          "negro": "../img/audifonos/buds negros.jpeg"
+        },
+        priceOriginal: "$54.00",
+        priceDescuento: "$45.00",
+        specs: {
+          
+  "🎧 Audífonos Samsung Buds Pro": "Audífonos premium que combinan calidad de sonido y comodidad con tecnología avanzada.",
+  "🔊 Sonido de alta fidelidad": "Ofrecen un audio claro y potente con graves profundos.",
+  "🎶 Cancelación activa de ruido inteligente": "Ajusta automáticamente la cancelación según el entorno.",
+  "🔋 Batería de larga duración": "Hasta 28 horas de uso con el estuche de carga.",
+  "🌐 Conexión Bluetooth": "Emparejamiento fácil y rápido con dispositivos Samsung.",
+  "💼 Perfectos para viajes": "Diseño compacto y ligero que se adapta a cualquier maleta.",
+  "🌡️ Comodidad prolongada": "Almohadillas suaves que permiten un uso prolongado sin molestias.",
+  "🧼 Fácil de limpiar": "Materiales que son fáciles de mantener.",
+  "🎁 Regalo sofisticado": "Ideal para quienes valoran la calidad de sonido y el diseño moderno."
+
+
+        }
+      },
+      {
+        id: 112,
+        name: "Sony WF-1000XM4",
+       image: "../img/audifonos/Sony WF-1000XM4 Blanco.jpeg",
+        images: {
+          "blanco": "../img/audifonos/Sony WF-1000XM4 Blanco.jpeg",
+        
+          "negro": "../img/audifonos/Sony WF-1000XM4 negros .jpeg"
+        },
+        priceOriginal: "$54.00",
+        priceDescuento: "$49.00",
+        specs: {
+     
+  "🎧 Audífonos JBL 200 TWS": "Audífonos verdaderamente inalámbricos que ofrecen una experiencia auditiva excepcional.",
+  "🔊 Sonido potente": "Calidad de audio que realza cada nota y detalle.",
+  "🎶 Diseño ergonómico": "Se ajustan cómodamente al oído para un uso prolongado.",
+  "🔋 Autonomía extendida": "Hasta 25 horas de reproducción con el estuche de carga.",
+  "🌐 Conexión Bluetooth": "Conexión rápida y estable con dispositivos móviles.",
+  "💼 Ideales para el estilo de vida activo": "Perfectos para hacer ejercicio o moverse sin restricciones.",
+  "🌡️ Resistencia al sudor": "Diseñados para resistir el sudor y la humedad.",
+  "🧼 Fácil mantenimiento": "Materiales que son fáciles de limpiar y mantener.",
+  "🎁 Regalo divertido": "Perfectos para jóvenes y amantes de la música."
+
+
+
+        }
+      }
+    ];
+   function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+
+  function loadProduct() {
+    const productId = parseInt(getQueryParam('id'));
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+      document.body.innerHTML = "<h2>Producto no encontrado</h2>";
+      return;
+    }
+
+    // Nombre y precios
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-name-breadcrumb').textContent = product.name;
+    document.getElementById('price-original').textContent = product.priceOriginal;
+    document.getElementById('price-descuento').textContent = product.priceDescuento;
+
+    // Imagen principal (color por defecto = primer valor del objeto images)
+    const firstImage = product.images ? Object.values(product.images)[0] : product.image;
+    document.getElementById('product-image').src = firstImage;
+    document.getElementById('product-image').alt = product.name;
+
+    // Specs
+    const specsBody = document.getElementById('specs-body');
+    specsBody.innerHTML = '';
+    for (const [key, value] of Object.entries(product.specs)) {
+      const specItem = document.createElement('div');
+      specItem.className = 'specs-item';
+      
+      const specName = document.createElement('div');
+      specName.className = 'specs-name';
+      specName.textContent = key;
+      
+      const specValue = document.createElement('div');
+      specValue.className = 'specs-value';
+      specValue.textContent = value;
+      
+      specItem.appendChild(specName);
+      specItem.appendChild(specValue);
+      specsBody.appendChild(specItem);
+    }
+
+    // Colores (si el producto tiene imágenes por color)
+    if (product.images) {
+      setupColorButtons(product);
+    }
+  }
+
+  // 📌 Cambiar imagen según color
+  function setupColorButtons(product) {
+    const buttons = document.querySelectorAll(".color-btn");
+    const productImage = document.getElementById("product-image");
+
+    buttons.forEach(btn => {
+        console.log(`Button clicked: ${btn.getAttribute("data-color")}`); // Debug log
+      btn.addEventListener("click", () => {
+        const color = btn.getAttribute("data-color");
+        if (product.images[color]) {
+          productImage.src = product.images[color];
+        }
+
+        // Marcar botón seleccionado
+        buttons.forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      });
+    });
+  }
+
+  // 📌 Agregar al carrito
+  document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+    const productId = parseInt(getQueryParam('id'));
+    const product = products.find(p => p.id === productId);
+    const quantityInput = document.getElementById('quantity-input');
+    let quantity = 1;
+
+    if (quantityInput) {
+      quantity = parseInt(quantityInput.value);
+      if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+      }
+    }
+
+    if (product) {
+      window.cart.addToCart(product, quantity);
+      window.cart.updateCartUI();
+      alert(`Producto "${product.name}" agregado al carrito (Cantidad: ${quantity})`);
+    } else {
+      alert('Producto no encontrado');
+    }
+  });
+
+  // 📌 Menú de categorías
+  document.addEventListener('DOMContentLoaded', () => {
+    const label = document.querySelector('.categories-label');
+    const menu = document.querySelector('.menu-items');
+
+    function toggleMenu() {
+      const isVisible = menu.style.display === 'grid';
+      menu.style.display = isVisible ? 'none' : 'grid';
+      label.setAttribute('aria-expanded', String(!isVisible));
+    }
+
+    label.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!label.contains(e.target) && !menu.contains(e.target)) {
+        menu.style.display = 'none';
+        label.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    label.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+  });
+
+  // 📌 Ejecutar carga inicial
+  window.onload = loadProduct;
+  </script>
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

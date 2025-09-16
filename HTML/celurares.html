@@ -1,0 +1,554 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Nova Tech Gaming</title> 
+  <link rel="stylesheet" href="../CSS/celulares.css" /> 
+  <link rel="stylesheet" href="../CSS/cartcelulares.css" />
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head> 
+<body> 
+ 
+  <style> 
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+ </style>
+    <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/logo.jpg">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+     <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="videos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+  </nav>
+   <main>
+ <br> 
+  <br> 
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Banner grande con anuncios destacados --> 
+
+
+   <div class="cards-container">
+    <div class="card">
+      <div class="shape purple"></div>
+      <img src="../img/celulares/iPhone 16e (128 GB) - Preto - Distribuidor Autorizado.jpeg" alt="celulares" />
+      <div class="card-content">
+        <h3 class="card-title">Celulares de las mejores marcas</h3>
+        <p class="card-subtitle">Pontecia asegurada y durables</p>
+        <a href="celurares.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape red"></div>
+      <img src="../img/tabletas/A9 TABLE.jpeg" alt="Tabletas" />
+      <div class="card-content">
+        <h3 class="card-title">Tabletas de la mejor potencia</h3>
+        <p class="card-subtitle">Procesadores potentes y de calidad</p>
+        <a href="tabletas.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape orange"></div>
+      <img src="../img/gadget/sostenedor de telefono.jpeg" alt="Gadget" />
+      <div class="card-content">
+        <h3 class="card-title">Gadget para celulares y tabletas</h3>
+        <p class="card-subtitle">calidad garantizada </p>
+        <a href="gadget.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape green"></div>
+      <img src="../img/telefonos fijos/fijo 4.jpeg" alt="telefonos fijos" />
+      <div class="card-content">
+        <h3 class="card-title">Telefonos fijos con garantia de hasta 2 años</h3>
+        <p class="card-subtitle">Lo mejor en telefonos fijos</p>
+        <a href="telefonosfijos.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+  </div>
+  <br> 
+     <br> 
+  <section class="resultados"> 
+    <div class="ordenar"> 
+      <label for="orden-select">Ordenar por:</label> 
+      <select id="orden-select" name="orden"> 
+        <option value="precio-asc">Precio: menor a mayor</option> 
+        <option value="precio-desc">Precio: mayor a menor</option> 
+        <option value="descuento">Mayor descuento</option> 
+      </select> 
+    </div> 
+ 
+ 
+    <div class="productos"> 
+ 
+      <!-- Aquí van los productos, máximo 8 por página --> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-13%</div> 
+        <a href="productcelulares.html?id=16">
+          <img src="../img/celulares/Nothing Phone (1).jpeg" alt="Producto 1" />
+        </a>
+        <p class="nombre-producto">Nothing Phone 1</p> 
+        <p class="precio-original">$790.00</p> 
+        <p class="precio-descuento">$690.00</p> 
+        <a href="productcelulares.html?id=16">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-41%</div> 
+        <a href="productcelulares.html?id=17">
+          <img src="../img/exclusivo/24blanco.jpeg" alt="Producto 2" />
+        </a>
+        <p class="nombre-producto">Galaxy S24 ultra</p> 
+        <p class="precio-original">$1200.00</p> 
+        <p class="precio-descuento">$1000.00</p> 
+        <a href="productcelulares.html?id=17">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-10%</div> 
+        <a href="productcelulares.html?id=18">
+          <img src="../img/celulares/galaxy a 55 blanco.jpeg" alt="Producto 3" />
+        </a>
+        <p class="nombre-producto">Galaxy A55 5G</p> 
+        <p class="precio-original">$500.99</p> 
+        <p class="precio-descuento">$450.99</p> 
+       <a href="productcelulares.html?id=18">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article>  
+ 
+      <article class="producto"> 
+        <div class="descuento">-17%</div> 
+       <a href="productcelulares.html?id=19">
+          <img src="../img/celulares/Apple's iPhone 16e Is Here_ Features, Price, Colors, & More.jpeg" alt="Producto 4" />
+        </a>
+        <p class="nombre-producto">Iphone 16e</p> 
+        <p class="precio-original">$900.00</p> 
+        <p class="precio-descuento">$800.50</p> 
+        <a href="productcelulares.html?id=19">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a> 
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-20%</div> 
+        <a href="productcelulares.html?id=20">
+          <img src="../img/celulares/Samsung Galaxy A36 5g 128 Gb _ 6 Gb - Awesome White Neu & Eu.jpeg" alt="Producto 5" />
+        </a>
+        <p class="nombre-producto"> Samsung Galaxy A36 5G</p> 
+        <p class="precio-original">$600.00</p> 
+        <p class="precio-descuento">$549.00</p> 
+        <a href="productcelulares.html?id=20">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-15%</div> 
+       <a href="productcelulares.html?id=21">
+          <img src="../img/celulares/descarga.jpeg" alt="Producto 6" />
+        </a>
+        <p class="nombre-producto">Iphone 11 pro max</p> 
+        <p class="precio-original">$500.00</p> 
+        <p class="precio-descuento">$404.50</p> 
+       <a href="productcelulares.html?id=21">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-5%</div> 
+       <a href="productcelulares.html?id=22">
+          <img src="../img/celulares/iPhone 13 Pro Max.jpeg" alt="Producto 7" />
+        </a>
+        <p class="nombre-producto">Iphone 12 pro max</p> 
+        <p class="precio-original">$700.00</p> 
+        <p class="precio-descuento">$590.50</p> 
+       <a href="productcelulares.html?id=22">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href=" productcelulares.html?id=23">
+          <img src="../img/celulares/Apple iPhone 16 Plus 256Gb - White.jpeg" alt="Producto 8" />
+        </a>
+        <p class="nombre-producto">Iphone 16 plus</p> 
+        <p class="precio-original">$1200.00</p> 
+        <p class="precio-descuento">$900.00</p> 
+       <a href="productcelulares.html?id=23">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+
+
+       <article class="producto"> 
+        <div class="descuento">-17%</div> 
+        <a href="productcelulares.html?id=24">
+          <img src="../img/celulares/oppo a60 blanco.jpeg" alt="Producto 9" />
+        </a>
+        <p class="nombre-producto">Oppo A60</p> 
+        <p class="precio-original">$210.00</p> 
+        <p class="precio-descuento">$180.50</p> 
+         <a href="productcelulares.html?id=24">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-20%</div> 
+        <a href="productcelulares.html?id=25">
+          <img src="../img/celulares/OnePlus 12 - Glacial White.jpeg" alt="Producto 10" />
+        </a>
+        <p class="nombre-producto">Oneplus 12</p> 
+        <p class="precio-original">$600.00</p> 
+        <p class="precio-descuento">$500.00</p> 
+        <a href="productcelulares.html?id=25">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-15%</div> 
+        <a href="productcelulares.html?id=26">
+          <img src="../img/celulares/Dimensiones filtradas del Galaxy Z Fold 7 y Galaxy Z Flip 7 prometen nuevos récords.jpeg" alt="Producto 11" />
+        </a>
+        <p class="nombre-producto">Samsung Galaxy Z flip 7 FE</p> 
+        <p class="precio-original">$1200.00</p> 
+        <p class="precio-descuento">$1100.50</p> 
+         <a href="productcelulares.html?id=26">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-5%</div> 
+      <a href="productcelulares.html?id=27">
+          <img src="../img/celulares/VIVO X100 PRO blanco.jpeg" alt="Producto 12" />
+        </a>
+        <p class="nombre-producto">VIVO X100 PRO</p> 
+        <p class="precio-original">$1040.00</p> 
+        <p class="precio-descuento">$850.50</p> 
+       <a href="productcelulares.html?id=27">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productcelulares.html?id=28">
+          <img src="../img/celulares/OPPO Find X8 Pro blanco.jpeg" alt="Producto 13" />
+        </a>
+        <p class="nombre-producto">OPPO find X8</p> 
+        <p class="precio-original">$960.00</p> 
+        <p class="precio-descuento">$800.00</p> 
+    <a href="productcelulares.html?id=28">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+   <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productcelulares.html?id=29">
+          <img src="../img/celulares/Samsung Galaxy A26 5G Smartphone Exynos 1380, écran Super AMOLED FHD+ de 6,7_, 120 Hz, 50MP,.jpeg" alt="Producto 14" />
+        </a>
+        <p class="nombre-producto">Samsung Galaxy A26 5G</p> 
+        <p class="precio-original">$414.00</p> 
+        <p class="precio-descuento">$350.00</p> 
+        <a href="productcelulares.html?id=29">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+
+        <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productcelulares.html?id=30">
+          <img src="../img/celulares/OnePlus 13 5G up for Pre-order on Amazon UK.jpeg" alt="Producto 15" />
+        </a>
+        <p class="nombre-producto">Oneplus 13 </p> 
+        <p class="precio-original">$700.00</p> 
+        <p class="precio-descuento">$600.00</p> 
+       <a href="productcelulares.html?id=30">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article>   
+
+    </div> 
+ 
+    <nav class="paginacion" aria-label="Paginación de resultados"> 
+      <a class="pagina-btn" href="celurares.html" aria-label="Página 1">1</a> 
+      <a class="pagina-btn" href="tabletas.html" aria-label="Página 2">2</a> 
+      <a class="pagina-btn" href="gadget.html" aria-label="Página 3">3</a>
+      <a class="pagina-btn" href="telefonosfijos.html" aria-label="Página 4">4</a> 
+    </nav> 
+ 
+  </section> 
+<br>
+<br>
+
+
+<script src="../JS/celulares.js"></script>
+<script src="../JS/cartcelulares.js"></script>
+<script>
+  // Products array for cart reference (should match product.html)
+  const products = [
+    { id: 16, name: "xiaomi M6 pro+", priceDescuento: "$390.00" },
+    { id: 17, name: "Galaxy S24 ultra", priceDescuento: "$1000.00" },
+    { id: 18, name: "Galaxy A55 5G", priceDescuento: "$450.99" },
+    { id: 19, name: "Infinix Zero 8", priceDescuento: "$190.50" },
+    { id: 20, name: "Infinix zero 30 5G", priceDescuento: "$349.00" },
+    { id: 21, name: "Iphone 11 pro max", priceDescuento: "$404.50" },
+    { id:22, name: "Iphone 12 pro max", priceDescuento: "$590.50" },
+    { id: 23, name: "iphone 14 pro max", priceDescuento: "$850.00" },
+    { id: 24, name: "Oppo A91", priceDescuento: "$180.50" },
+    { id: 25, name: "Oppo A78 4G", priceDescuento: "$240.00" },
+    { id: 26, name: "Oppo A54 5G", priceDescuento: "$270.50" },
+    { id: 27, name: "Oppo A60 4G", priceDescuento: "$250.50" },
+    { id: 28, name: "Oppo A96", priceDescuento: "$200.00" },
+    { id: 29, name: "Poco C75", priceDescuento: "$250.00" },
+    { id: 30, name: "Poco F6", priceDescuento: "$600.00" }
+  ];
+
+  window.cart.setupAddToCartButtons(products);
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body> 
+</html>

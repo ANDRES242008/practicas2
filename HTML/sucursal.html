@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sucursal · INNOVA TECH</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <style>
+    /* THEME VARIABLES (light/dark) */
+    :root{
+      --bg: linear-gradient(180deg,#0b1220,#071027);
+      --card-bg: rgba(255,255,255,0.03);
+      --text: #e6eefc;
+      --muted: rgba(230,238,252,0.7);
+      --accent1: #7c4dff;
+      --accent2: #00c2ff;
+      --glass-border: rgba(255,255,255,0.06);
+      --radius: 16px;
+      --shadow: 0 20px 50px rgba(2,6,23,0.6);
+    }
+    :root[data-theme='light']{
+      --bg: linear-gradient(180deg,#f5fbff,#fcfdff);
+      --card-bg: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+      --text: #071227;
+      --muted: #5b6b84;
+      --glass-border: rgba(10,25,45,0.04);
+      --shadow: 0 12px 30px rgba(12,24,48,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, Poppins, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      background:var(--bg); color:var(--text); padding:28px; -webkit-font-smoothing:antialiased;
+    }
+
+    .stage{max-width:1200px; margin:0 auto; display:grid; grid-template-columns:380px 1fr; gap:22px; align-items:start;}
+
+    .card-left{background:var(--card-bg); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); min-height:480px; position:relative; border:1px solid var(--glass-border); display:flex; flex-direction:column; gap:12px}
+    .brand{display:flex; justify-content:space-between; align-items:center}
+    .brand-left{display:flex; gap:12px; align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;color:white;font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--accent2),var(--accent1));}
+    h1{margin:0;font-size:18px;color:var(--accent2);font-family:Poppins}
+    .sub{color:var(--muted);font-size:13px}
+
+    .info{margin-top:6px; display:flex; flex-direction:column; gap:8px}
+    .row{display:flex; gap:10px; align-items:center}
+    .label{min-width:94px; color:var(--text); font-weight:700}
+    .value{color:var(--muted); font-size:15px}
+
+    /* Gallery (fixed images) */
+    .gallery{margin-top:10px}
+    .gallery-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:8px}
+    .thumb{height:96px; border-radius:10px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,0.04); background:rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center}
+    .thumb img{width:100%; height:100%; object-fit:cover}
+    .caption{font-size:12px;color:var(--muted);margin-top:8px}
+
+    .btn{border:none;padding:12px 14px;border-radius:12px;cursor:pointer;font-weight:800}
+    .btn.primary{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#041125}
+    .btn.ghost{background:transparent;border:1px solid var(--glass-border); color:var(--text)}
+
+    .map-wrap{height:520px;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:var(--shadow);border:1px solid var(--glass-border)}
+    #map{width:100%;height:100%}
+
+    .controls{position:absolute; left:16px; top:16px; display:flex; gap:8px; z-index:999}
+    .control{background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); padding:8px 12px; border-radius:10px; font-weight:700; cursor:pointer}
+
+    .map-card-cta{position:absolute; right:18px; bottom:18px; background:var(--card-bg); border:1px solid var(--glass-border); padding:12px 14px; border-radius:12px; display:flex; gap:12px; align-items:center}
+
+    /* Theme toggle */
+    .theme-toggle{background:transparent;border:1px solid var(--glass-border); padding:8px 10px; border-radius:10px; cursor:pointer; color:var(--text); font-weight:700}
+
+    @media (max-width:1000px){ .stage{grid-template-columns:1fr} .map-wrap{height:440px} }
+    @media (max-width:600px){ body{padding:12px} .map-wrap{height:360px} .logo{width:48px;height:48px} .gallery-grid{grid-template-columns:repeat(3,1fr)} }
+  </style>
+</head>
+<body>
+  <main class="stage" role="main">
+    <section class="card-left" aria-label="Panel de sucursal">
+      <div class="brand">
+        <div class="brand-left">
+          <div class="logo">IT</div>
+          <div>
+            <h1>INNOVA TECH · Sucursal</h1>
+            <div class="sub">Versión premium · Personalizable</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="themeBtn" class="theme-toggle" title="Cambiar tema">🌙 Oscuro</button>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="row"><div class="label">Nombre</div><div id="branchName" class="value">Sucursal Centro</div></div>
+        <div class="row"><div class="label">Dirección</div><div id="branchAddress" class="value">Calle Principal 123</div></div>
+        <div class="row"><div class="label">Teléfono</div><div id="branchPhone" class="value">N/D</div></div>
+
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <div class="pill" style="background:transparent;border:1px solid var(--glass-border);padding:8px 10px;border-radius:8px;color:var(--muted);font-weight:700">Lun - Vie · 9:00 - 18:00</div>
+          <div class="pill" style="background:transparent;border:1px solid var(--glass-border);padding:8px 10px;border-radius:8px;color:var(--muted);font-weight:700">Sáb · 9:00 - 14:00</div>
+        </div>
+
+        <!-- FIXED GALLERY: reemplaza las URLs en el array 'images' dentro del script para cambiarlas -->
+        <div class="gallery">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong style="color:var(--text)">Galería de la sucursal</strong>
+            <small style="color:var(--muted)">Imágenes fijas (no editable)</small>
+          </div>
+
+          <div id="galleryGrid" class="gallery-grid" style="margin-top:8px">
+          </div>
+
+          <div class="caption">Si quieres reemplazar estas imágenes, abre el archivo y edita la lista `images` en el script (línea indicada).</div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:auto">
+        <button id="directionsBtn" class="btn ghost">🧭 Cómo llegar</button>
+        <button id="callBtn" class="btn primary">📞 Llamar</button>
+        <button id="copyBtn" class="btn ghost">📋 Copiar</button>
+      </div>
+
+      <div style="position:absolute;left:14px;bottom:14px;font-size:12px;color:var(--muted)">Plus Code: <span id="plusCode">P7GG+88C</span></div>
+    </section>
+
+    <section class="map-wrap" aria-label="Mapa de la sucursal">
+      <div id="map" role="application" aria-label="Mapa interactivo"></div>
+
+      <div class="controls" role="toolbar" aria-label="Controles del mapa">
+        <div id="centerBtn" class="control">📍 Centrar</div>
+        <div id="toggleBtn" class="control">🖐️ Arrastrar: ON</div>
+        <div id="satBtn" class="control">🛰️ Satélite</div>
+      </div>
+
+      <div class="map-card-cta" aria-hidden>
+        <div style="display:flex;flex-direction:column">
+          <strong style="color:var(--accent2)">Colegio Salarrué</strong>
+          <span style="font-size:13px;color:var(--muted)">Avenida Morazán, Sonsonate</span>
+        </div>
+        <button id="openStreet" class="btn primary" style="padding:8px 10px;">Abrir mapa</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <script>
+    // ---------- CONFIG (edita las 3 URLs aquí para cambiar las imágenes fijas) ----------
+    const images = [
+      'https://images.unsplash.com/photo-1529338171692-8c2a0f4f3f7f?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1564736022659-0a08a7d2d2a8?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop'
+    ];
+
+    // ---------- BRANCH INFO ----------
+    const branch = {
+      lat: 13.72579,
+      lng: -89.72429,
+      name: "Colegio Salarrué, Tercer Ciclo y Bachillerato",
+      address: "Avenida Morazán, Sonsonate (P7GG+88C)",
+      phone: "+503 7648 2812",
+      plusCode: "P7GG+88C"
+    };
+
+    // UI fill
+    document.getElementById('branchName').textContent = branch.name;
+    document.getElementById('branchAddress').textContent = branch.address;
+    document.getElementById('branchPhone').textContent = branch.phone;
+    document.getElementById('plusCode').textContent = branch.plusCode;
+
+    // ---------- THEME TOGGLE ----------
+    const themeBtn = document.getElementById('themeBtn');
+    const storedTheme = localStorage.getItem('innova_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', storedTheme);
+    updateThemeButton(storedTheme);
+
+    themeBtn.addEventListener('click', ()=>{
+      const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('innova_theme', next);
+      updateThemeButton(next);
+    });
+    function updateThemeButton(theme){ themeBtn.textContent = theme==='light' ? '☀️ Claro' : '🌙 Oscuro'; }
+
+    // ---------- MAP ----------
+    const map = L.map('map', { zoomControl: false, dragging: true, scrollWheelZoom: false }).setView([branch.lat, branch.lng],16);
+    const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{ attribution:'&copy; CartoDB', maxZoom:19 });
+    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{ attribution:'Esri', maxZoom:19 });
+    light.addTo(map);
+
+    const html = `<div style="position:relative; width:44px; height:44px; display:grid; place-items:center;"><div class="pulse-ring"></div><div class="pulse-marker"></div></div>`;
+    const icon = L.divIcon({ html, className:'', iconSize:[44,44], iconAnchor:[22,44] });
+    const marker = L.marker([branch.lat, branch.lng],{ icon }).addTo(map);
+    marker.bindPopup(`<div style="min-width:180px;font-family:Inter"><strong style="color:${'#00c2ff'}">${escapeHtml(branch.name)}</strong><div style="margin-top:6px;color:#c7d9ff">${escapeHtml(branch.address)}</div><div style="margin-top:6px;color:#c7d9ff">📞 ${escapeHtml(branch.phone)}</div></div>`);
+
+    document.getElementById('centerBtn').addEventListener('click', ()=>{ map.setView([branch.lat, branch.lng],16,{animate:true}); marker.openPopup(); });
+    const toggleBtn = document.getElementById('toggleBtn'); let dragging=true; toggleBtn.addEventListener('click', ()=>{ dragging=!dragging; if(dragging) map.dragging.enable(); else map.dragging.disable(); toggleBtn.textContent = `🖐️ Arrastrar: ${dragging? 'ON':'OFF'}`; });
+    let satOn=false; document.getElementById('satBtn').addEventListener('click', ()=>{ if(!satOn){ map.addLayer(satellite); map.removeLayer(light); satOn=true; document.getElementById('satBtn').textContent='🌐 Calle'; } else{ map.addLayer(light); map.removeLayer(satellite); satOn=false; document.getElementById('satBtn').textContent='🛰️ Satélite'; } });
+
+    document.getElementById('directionsBtn').addEventListener('click', ()=>{ const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(branch.lat+','+branch.lng)}&travelmode=driving`; window.open(url,'_blank'); });
+    document.getElementById('callBtn').addEventListener('click', ()=>{ window.location.href = `tel:${branch.phone.replace(/[^+0-9]/g,'')}`; });
+    document.getElementById('copyBtn').addEventListener('click', async ()=>{ const text = `${branch.lat}, ${branch.lng}`; try{ await navigator.clipboard.writeText(text); showToast('Coordenadas copiadas'); } catch(e){ fallbackCopy(text); } });
+    document.getElementById('openStreet').addEventListener('click', ()=>{ const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.lat+','+branch.lng)}`; window.open(url,'_blank'); });
+
+    // ---------- GALLERY RENDER (FIXED, NO UPLOAD) ----------
+    const galleryGrid = document.getElementById('galleryGrid');
+    function renderGallery(){ galleryGrid.innerHTML = '';
+      images.forEach(src=>{
+        const div = document.createElement('div'); div.className='thumb'; const img = document.createElement('img'); img.src = src; img.alt = 'Imagen sucursal'; div.appendChild(img); galleryGrid.appendChild(div);
+      });
+    }
+    renderGallery();
+
+    // ---------- helpers ----------
+    function showToast(msg){ const t=document.createElement('div'); t.textContent=msg; t.style.position='fixed'; t.style.left='50%'; t.style.bottom='28px'; t.style.transform='translateX(-50%)'; t.style.background='rgba(2,6,23,0.8)'; t.style.color='white'; t.style.padding='10px 14px'; t.style.borderRadius='10px'; t.style.zIndex=99999; document.body.appendChild(t); setTimeout(()=>{ t.style.opacity=0; setTimeout(()=>t.remove(),300) },1500); }
+    function fallbackCopy(txt){ const el=document.createElement('textarea'); el.value=txt; el.style.position='fixed'; el.style.left='-9999px'; document.body.appendChild(el); el.select(); document.execCommand('copy'); el.remove(); showToast('Coordenadas copiadas'); }
+    function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>'"`=\/]/g, function(s){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;','`':'&#x60;','=':'&#x3D;'})[s]; }); }
+
+    // small UX touches
+    setTimeout(()=>{ marker.openPopup(); },700);
+    marker.getElement().addEventListener('click', ()=>{ marker.openPopup(); });
+  </script>
+</body>
+</html>

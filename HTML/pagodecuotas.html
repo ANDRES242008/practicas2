@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pago de Cuotas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon"> 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f9;
+    }
+    .cuota-pago {
+      background: linear-gradient(to right, #f5f7fa, #eaeff5);
+      padding: 40px 24px;
+      border-radius: 16px;
+      max-width: 740px;
+      margin: 60px auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .cuota-titulo {
+      text-align: center;
+      font-size: 1.7rem;
+      color: #1D1ABE;
+      margin-bottom: 8px;
+    }
+    .cuota-descripcion {
+      text-align: center;
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 32px;
+    }
+    .cuota-formulario {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .cuota-formulario label {
+      font-weight: 600;
+      color: #333;
+    }
+    .cuota-formulario select,
+    .cuota-formulario input {
+      padding: 10px;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    .btn-ver-cuentas {
+      background-color: #1D1ABE;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .btn-ver-cuentas:hover {
+      background-color: #152bb2;
+    }
+    .resultado-cuentas {
+      margin-top: 30px;
+    }
+    .cuenta-titulo {
+      font-size: 1.2rem;
+      color: #1D1ABE;
+      margin-bottom: 10px;
+    }
+    .cuentas-lista {
+      list-style: none;
+      padding: 0;
+    }
+    .cuentas-lista li {
+      background: #fff;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cuentas-lista button {
+      background-color: #d50000;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .cuentas-lista button:hover {
+      background-color: #a61018;
+    }
+    .ocultar {
+      display: none;
+    }
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #1D1ABE;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+      margin: 30px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .carrito-productos {
+      margin-top: 32px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px #1976d211;
+      padding: 24px;
+    }
+    .carrito-productos h3 {
+      color: #1976d2;
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .carrito-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .carrito-lista li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eaeaea;
+      font-size: 1.05rem;
+    }
+    .carrito-lista li:last-child {
+      border-bottom: none;
+    }
+    .carrito-lista img {
+      width: 48px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 18px;
+    }
+    .carrito-total {
+      font-weight: bold;
+      color: #1976d2;
+      font-size: 1.15rem;
+      text-align: right;
+      margin-top: 18px;
+    }
+    .btn-pagar-carrito {
+      width: 100%;
+      background: linear-gradient(90deg,#1976d2,#00bfff);
+      color: white;
+      border: none;
+      padding: 16px 0;
+      border-radius: 32px;
+      cursor: pointer;
+      font-size: 1.18rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #1976d233;
+      margin-top: 24px;
+      transition: background 0.2s;
+    }
+    .btn-pagar-carrito:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <section class="cuota-pago">
+    <h2 class="cuota-titulo">Paga tus cuotas a cualquier hora y desde cualquier lugar</h2>
+    <p class="cuota-descripcion">Solo ingresa tu tipo de documento y número para ver tus cuentas activas</p>
+    <form class="cuota-formulario" id="form-cuota">
+      <label for="tipo-documento">Tipo de documento</label>
+      <select id="tipo-documento" required>
+        <option disabled selected>Seleccione tipo de documento</option>
+        <option value="dui">DUI</option>
+        <option value="pasaporte">Pasaporte</option>
+        <option value="carnet">Carnet estudiantil</option>
+      </select>
+      <label for="numero-documento">Número de documento</label>
+      <input type="text" id="numero-documento" placeholder="Ej. 01234567-9" required />
+      <button class="btn-ver-cuentas" type="submit">Ver cuentas</button>
+    </form>
+    <div class="resultado-cuentas ocultar" id="resultado-cuentas"></div>
+    <div class="carrito-productos" id="carrito-productos"></div>
+  </section>
+  <script>
+  // Simulación de productos (agrega todos los productos que tienes)
+const products = [
+ { id: 31, name: "Apple iPad Pro 13", priceDescuento: "$1199.00", image: "../img/tabletas/Apple iPad Pro 13-.jpeg" },
+  { id: 32, name: "Samsung Galaxy Tab S10 +", priceDescuento: "$1149.00", image: "../img/tabletas/s10+.jpeg" },
+  { id: 33, name: "Xiaomi Pad 6S Pro", priceDescuento: "$669.00", image: "../img/tabletas/Xiaomi Pad 6S Pro Global Version.jpeg" },
+  { id: 34, name: "HONOR MagicPad 2", priceDescuento: "$599.00", image: "../img/tabletas/Honor-MagicPad-2.jpg" },
+  { id: 35, name: "Lenovo Yoga Tab Plus", priceDescuento: "$699.00", image: "../img/tabletas/LENOVO Yoga Tab .jpeg" },
+  { id: 36, name: "Samsung Galaxy Tab S10 FE+", priceDescuento: "$579.50", image: "../img/tabletas/Samsung Galaxy Tab S10 Fe+ .jpeg" },
+  { id: 37, name: "Xiaomi Pad 7 Pro", priceDescuento: "$639.50", image: "../img/tabletas/xiami pad 7.jpeg" },
+  { id: 38, name: "Google Pixel Tablet", priceDescuento: "$529.00", image: "../img/tabletas/google pixle.jpeg" },
+  { id: 39, name: "Huawei MatePad 11.5", priceDescuento: "$479.50", image: "../img/tabletas/huawei.jpeg" },
+  { id: 40, name: "iPad (2025)", priceDescuento: "$549.00", image: "../img/tabletas/Apple iPad 11-inch.jpeg" },
+  { id: 41, name: "Lenovo Tab M11", priceDescuento: "$479.00", image: "../img/tabletas/Lenovo Tab M11.jpeg" },
+  { id: 42, name: "Samsung Galaxy Tab A9", priceDescuento: "$469.00", image: "../img/tabletas/A9 TABLE.jpeg" },
+  { id: 43, name: "Amazon Fire HD 10", priceDescuento: "$459.00", image: "../img/tabletas/amanzo 10HD.jpeg" },
+  { id: 44, name: "Amazon Fire 7", priceDescuento: "$449.00", image: "../img/tabletas/Amazon Fire 7 .jpeg" },
+  { id: 45, name: "Apple iPad mini (2024)", priceDescuento: "$579.00", image: "../img/tabletas/Apple iPad mini.jpeg" },
+
+
+  { id: 16, name: "Nothing Phone 1", priceDescuento: "$690.00", image: "../img/celulares/Nothing Phone (1).jpeg" },
+  { id: 17, name: "Galaxy S24 ultra", priceDescuento: "$1000.00", image: "../img/exclusivo/24blanco.jpeg" },
+  { id: 18, name: "Galaxy A55 5G", priceDescuento: "$450.99", image: "../img/celulares/galaxy a 55 blanco.jpeg" },
+  { id: 19, name: "Iphone 16e", priceDescuento: "$800.50", image: "../img/celulares/Apple's iPhone 16e Is Here_ Features, Price, Colors, & More.jpeg" },
+  { id: 20, name: "Samsung Galaxy A36 5G", priceDescuento: "$549.00", image: "../img/celulares/Samsung Galaxy A36 5g 128 Gb _ 6 Gb - Awesome White Neu & Eu.jpeg" },
+  { id: 21, name: "Iphone 11 pro max", priceDescuento: "$404.50", image: "../img/celulares/descarga.jpeg" },
+  { id: 22, name: "Iphone 12 pro max", priceDescuento: "$590.50", image: "../img/celulares/iPhone 13 Pro Max.jpeg" },
+  { id: 23, name: "Iphone 14 pro max", priceDescuento: "$850.00", image: "../img/celulares/iphone.jpeg" },
+  { id: 24, name: "Oppo A60", priceDescuento: "$180.50", image: "../img/celulares/oppo a60 blanco.jpeg" },
+  { id: 25, name: "Oneplus 12", priceDescuento: "$500.00", image: "../img/celulares/OnePlus 12 - Glacial White.jpeg" },
+  { id: 26, name: "Samsung Galaxy Z flip 7 FE", priceDescuento: "$1100.50", image: "../img/celulares/Dimensiones filtradas del Galaxy Z Fold 7 y Galaxy Z Flip 7 prometen nuevos récords.jpeg" },
+  { id: 27, name: "VIVO X100 PRO", priceDescuento: "$850.50", image: "../img/celulares/VIVO X100 PRO blanco.jpeg" },
+  { id: 28, name: "OPPO find X8", priceDescuento: "$800.00", image: "../img/celulares/OPPO Find X8 Pro blanco.jpeg" },
+  { id: 29, name: "Samsung Galaxy A26 5G", priceDescuento: "$350.00", image: "../img/celulares/Samsung Galaxy A26 5G Smartphone Exynos 1380, écran Super AMOLED FHD+ de 6,7_, 120 Hz, 50MP,.jpeg" },
+  { id: 30, name: "Oneplus 13", priceDescuento: "$600.00", image: "../img/celulares/OnePlus 13 5G up for Pre-order on Amazon UK.jpeg" },
+
+
+
+
+
+{id:46, name:"Sagencom D27", image:"../img/telefonos fijos/fijo 3.jpeg", priceDescuento:"$30.00"},
+{id:47, name:"Panasonic 40s", image:"../img/telefonos fijos/fijo 4.jpeg", priceDescuento:"$34.00"},
+{id:48, name:"philips 20t", image:"../img/telefonos fijos/fijo1.jpeg", priceDescuento:"$40.00"},
+{id:49, name:"Gigaset 10gen", image:"../img/telefonos fijos/fijo10.jpeg", priceDescuento:"$39.00"},
+{id:50, name:"gigaset 5gen", image:"../img/telefonos fijos/fijo11.jpeg", priceDescuento:"$33.00"},
+{id:51, name:"Vtech 12l", image:"../img/telefonos fijos/fijo12.jpeg", priceDescuento:"$15.00"},
+{id:52, name:"Vtech 10l", image:"../img/telefonos fijos/fijo13.jpeg", priceDescuento:"$35.00"},
+{id:53, name:"Panasonic 20s", image:"../img/telefonos fijos/fijo14.jpeg", priceDescuento:"$50.00"},
+{id:54, name:"Gigaset 7gen", image:"../img/telefonos fijos/fijo2.jpeg", priceDescuento:"$25.00"},
+{id:55, name:"panasonic 10s", image:"../img/telefonos fijos/fijo5.jpeg", priceDescuento:"$15.00"},
+{id:56, name:"Avaya 5progen", image:"../img/telefonos fijos/Avaya 1416 digital phone 1416 telephone IP Office.jpg", priceDescuento:"$24.00"},
+{id:57, name:"Gigaset 8gen", image:"../img/telefonos fijos/fijo7.jpeg", priceDescuento:"$40.00"},
+{id:58, name:"Gigaset 4gen", image:"../img/telefonos fijos/fijo8.jpeg", priceDescuento:"$36.00"},
+{id:59, name:"Gigaset pro 12gen", image:"../img/telefonos fijos/fijo9.jpeg", priceDescuento:"$20.00"},
+{id:60, name:"gigaset note 19gen", image:"../img/telefonos fijos/descarga.jpg", priceDescuento:"$17.00"},
+{id:1, name:"Adaptador OTG", image:"../img/gadget/adaptador otg.jpeg", priceDescuento:"$6.99"},
+{id:2, name:"Anillo de luz", image:"../img/gadget/anillo de luz.jpeg", priceDescuento:"$12.00"},
+{id:3, name:"Cargador Inalambrico magnetico", image:"../img/gadget/Cargador Inalambrico Magnetic.jpeg", priceDescuento:"$9.00"},
+{id:4, name:"control bluetooth para tomar fotos", image:"../img/gadget/Controle Remoto.jpeg", priceDescuento:"$8.00"},
+{id:5, name:"guantes tactiles", image:"../img/gadget/Guantes tactiless.jpeg", priceDescuento:"$18.00"},
+{id:6, name:"Lampara para lectura", image:"../img/gadget/lamapra de lentura.jpeg", priceDescuento:"$14.50"},
+{id:7, name:"Lente macro", image:"../img/gadget/lente macro.jpeg", priceDescuento:"$19.50"},
+{id:8, name:"soporte multiuso", image:"../img/gadget/Mobile charger holding.jpeg", priceDescuento:"$5.00"},
+{id:9, name:"Powerban", image:"../img/gadget/power ban.jpeg", priceDescuento:"$25.50"},
+{id:10, name:"soporte para telefonos", image:"../img/gadget/sostenedor de telefono.jpeg", priceDescuento:"$7.00"},
+{id:11, name:"Style pen", image:"../img/gadget/style pen .jpeg", priceDescuento:"$3.00"},
+{id:12, name:"Soporte magnetico para carro", image:"../img/gadget/Suporte Magnético .jpeg", priceDescuento:"$4.00"},
+{id:13, name:"Teclado para telefono y tablets", image:"../img/gadget/teclado para telefono y tables.jpeg", priceDescuento:"$22.00"},
+{id:14, name:"Tripode para fotos", image:"../img/gadget/tripode flexible.jpeg", priceDescuento:"$7.00"},
+{id:15, name:"funda para celular", image:"../img/gadget/funda con espaco para accses.jpeg", priceDescuento:"$17.00"},
+{id:76, name:"iPhone 14 Pro Max", image:"../img/exclusivo/iphone14 2.jpeg", priceDescuento:"$999.00"},
+{id:77, name:"iPad Air 5", image:"../img/exclusivo/ipadblanca.jpeg", priceDescuento:"$699.00"},
+{id:78, name:"Samsung Galaxy S24 Ultra", image:"../img/celulares/gaalxy34.jpeg", priceDescuento:"$1199.00"},
+{id:79, name:"Xiaomi Pad 6 Pro", image:"../img/exclusivo/Xiaomi Pad 6.jpeg", priceDescuento:"$499.00"},
+{id:80, name:"Apple Watch Series 9", image:"../img/exclusivo/apleee waht 9 series.jpeg", priceDescuento:"$429.00"},
+{id:81, name:"Sony WH-1000XM5", image:"../img/exclusivo/audisoni2.jpeg", priceDescuento:"$349.00"},
+{id:82, name:"GoPro HERO12 Black", image:"../img/exclusivo/gopro2.jpeg", priceDescuento:"$429.00"},
+{id:83, name:"Nintendo Switch OLED", image:"../img/exclusivo/OLED.jpeg", priceDescuento:"$260.00"},
+{id:84, name:"DJI Mini 4 Pro", image:"../img/exclusivo/dron.jpeg", priceDescuento:"$849.00"},
+{id:85, name:"Logitech MX Master 3S", image:"../img/exclusivo/mouseamazon2.jpeg", priceDescuento:"$99.00"},
+{id:86, name:"Samsung Galaxy Tab S9", image:"../img/exclusivo/A9 2.jpeg", priceDescuento:"$799.00"},
+{id:87, name:"Amazon Echo Dot 5th Gen", image:"../img/exclusivo/bocina.jpeg", priceDescuento:"$49.00"},
+{id:88, name:"Xbox Series X", image:"../img/exclusivo/Xbox series x.jpeg", priceDescuento:"$349.00"},
+{id:89, name:"Canon EOS R10", image:"../img/exclusivo/canon10.jpeg", priceDescuento:"$899.00"},
+{id:90, name:"TP-Link Archer AX11000", image:"../img/exclusivo/router.jpeg", priceDescuento:"$399.00"},
+{id:91, name:"MacBook Pro M3", image:"../img/exclusivo/macbookpro.jpeg", priceDescuento:"$1799.00"},
+{id:92, name:"Surface Pro 9", image:"../img/exclusivo/surfacepro9.jpeg", priceDescuento:"$1275.00"},
+{id:93, name:"PlayStation 5", image:"../img/exclusivo/ps5.jpeg", priceDescuento:"$559.00"},
+{id:94, name:"Galaxy Watch 6", image:"../img/exclusivo/galaxywatch6.jpeg", priceDescuento:"$335.00"},
+{id:95, name:"AirPods Pro 2", image:"../img/exclusivo/airpodspro2.jpeg", priceDescuento:"$263.00"},
+{id:96, name:"Lenovo Yoga 9i", image:"../img/exclusivo/lenovoyoga9i.jpeg", priceDescuento:"$1458.00"},
+{id:97, name:"Razer Blade 16", image:"../img/exclusivo/razerblade16.jpeg", priceDescuento:"$2656.00"},
+{id:98, name:"Google Nest Hub Max", image:"../img/exclusivo/nesthubmax.jpeg", priceDescuento:"$197.00"},
+{id:99, name:"Fujifilm Instax Mini 12", image:"../img/exclusivo/instaxmini12.jpeg", priceDescuento:"$84.00"},
+{id:100, name:"Fitbit Charge 6", image:"../img/exclusivo/fitbitcharge6.jpeg", priceDescuento:"$139.00"},
+{ id: 101, name: "Audifonos JBL Synchros E50 BT", priceDescuento: "$130.05", image: "../img/audifonos/Audifonos JBL Synchros E50 BT blanco.jpg" },
+  { id: 102, name: "Audifonos Bose Quietcomfort", priceDescuento: "$217.70", image: "../img/audifonos/Audífonos Bluetooth Quietcomfort White Smoke___.jpeg" },
+  { id: 103, name: "Audifonos JBL Tune flex 2 con ANC", priceDescuento: "$89.90", image: "../img/audifonos/JBL Tune Flex True Wireless Noise Cancelling Earbuds - White.jpeg" },
+  { id: 104, name: "Audifonos Gaming JBL Quantum 800", priceDescuento: "$124.05", image: "../img/audifonos/Słuchawki JBL Quantum 100P Nauszne.jpeg" },
+  { id: 105, name: "Audifonos inalambricos JBL tune 520 Over Ear", priceDescuento: "$39.02", image: "../img/audifonos/☁️.jpeg" },
+  { id: 106, name: "JBL TUNE 120TWS", priceDescuento: "$84.15", image: "../img/audifonos/JBL TUNE 120TWS.jpg" },
+  { id: 107, name: "Audifonos JBL 200 TWS", priceDescuento: "$64.00", image: "../img/audifonos/jbl 200 tws.jpg" },
+  { id: 108, name: "Audifonos Sony WH-CH500", priceDescuento: "$84.00", image: "../img/audifonos/WIN- Sony WH-CH500 Wireless Bluetooth NFC On-Ear Headphones.jpeg" },
+  { id: 109, name: "Audifonos Inalambricos Sony WH-CH520", priceDescuento: "$53.12", image: "../img/audifonos/Audífonos inalámbricos Bluetooth WH CH520 Blancos.jpeg" },
+  { id: 110, name: "Audifonos Samsung Galaxy Buds 3 Pro", priceDescuento: "$134.00", image: "../img/audifonos/Galaxy Buds3 Pro White _ Samsung Chile.jpeg" },
+  { id: 111, name: "Audifonos Samsung Buds 2 Pro", priceDescuento: "$45.00", image: "../img/audifonos/buds blancos.jpeg" },
+  { id: 112, name: "Sony WF-1000XM4", priceDescuento: "$246.00", image: "../img/audifonos/Sony WF-1000XM4 Blanco.jpeg" },
+
+  /* ---------- AUDIO PARA EL HOGAR (113 - 127) ---------- */
+  { id: 113, name: "Bose Acoustimass 10 seies IV", priceDescuento: "$559.03", image: "../img/audio para el hogar/Bose Acoustimass 10 Home Entertainment Speaker System – 5_1.jpg" },
+  { id: 114, name: "Chaine HiFi Philips BTM3360 _ Darty", priceDescuento: "$117.41", image: "../img/audio para el hogar/Chaine HiFi Philips BTM3360 _ Darty.jpg" },
+  { id: 115, name: "Harman Kardon BDS-3D753", priceDescuento: "$439.90", image: "../img/audio para el hogar/Harman Kardon BDS-3D753.jpg" },
+  { id: 116, name: "LG XBOOM CJ45", priceDescuento: "$699.03", image: "../img/audio para el hogar/minicomponente.jpeg" },
+  { id: 117, name: "Microcomponente Sony CMT SBT40D 50W RMS", priceDescuento: "$184.26", image: "../img/audio para el hogar/Microcomponente Sony CMT SBT40D 50W RMS.jpg" },
+  { id: 118, name: "Samsung HT-H5550W", priceDescuento: "$280.00", image: "../img/audio para el hogar/Samsung HT-H5550W 5_1 3D.jpeg" },
+  { id: 119, name: "Sharp XL-BH530 CD Mini Shelf System", priceDescuento: "$479.02", image: "../img/audio para el hogar/Sharp XL-BH530 CD Mini Shelf System.jpg" },
+  { id: 120, name: "Sony modelo MHCSHAKEX3D", priceDescuento: "$461.23", image: "../img/audio para el hogar/Sony modelo MHCSHAKEX3D_  potencia de 1200W RMS" },
+  { id: 121, name: "SAMSUNG - Mx-j630 - Home Cinema - 2", priceDescuento: "$323.19", image: "../img/audio para el hogar/SAMSUNG - Mx-j630 - Home Cinema - 2 (Stereo).jpeg" },
+  { id: 122, name: "MHC-GPX3_ME2  Salida 10400W .", priceDescuento: "$384.23", image: "../img/audio para el hogar/MHC-GPX3_ME2  Salida 10400W PMPO 950W RMS  Bandeja 1 CD.jpeg" },
+  { id: 123, name: "Altavoz LG LK72B", priceDescuento: "$119.02", image: "../img/audio para el hogar/Altavoz LG LK72B.jpeg" },
+  { id: 124, name: "LG XBOOM CL87 2350W", priceDescuento: "$573.18", image: "../img/audio para el hogar/LG XBOOM CL87 2350W.jpeg" },
+  { id: 125, name: "LG CK43 XBOOM", priceDescuento: "$174.03", image: "../img/audio para el hogar/LG CK43 XBOOM.jpeg" },
+  { id: 126, name: "LG XBOOM CL 98", priceDescuento: "$599.25", image: "../img/audio para el hogar/Lg XBOOM CL 98.avif" },
+  { id: 127, name: "Panasonic SC-AKX18", priceDescuento: "$269.01", image: "../img/audio para el hogar/Panasonic 350W Bookshelf Stereo System Black SC-AKX18.jpeg" },
+
+  /* ---------- AUDIO PERSONAL (128 - 139) ---------- */
+  { id: 128, name: "Bocina JBL Boombox 3 Wi-Fi 80W", priceDescuento: "$498.00", image: "../img/audio personal/Bocina jbl  Boombox  3 Wi-Fi 80W negra.jpg" },
+  { id: 129, name: "Bocina JBL Clip 4", priceDescuento: "$59.50", image: "../img/audio personal/Bocina jbl  Boombox  3 Wi-Fi 80W negra.jpg" /* si tienes versión blanca, cámbiala aquí */ },
+  { id: 130, name: "Bocina JBL Flip 6", priceDescuento: "$110.50", image: "../img/audio personal/JBL Flip 5 blanca.jpg" },
+  { id: 131, name: "Bocina JBL Go 3", priceDescuento: "$37.50", image: "../img/audio personal/BOcina jbl go 3 blanca.jpg" },
+  { id: 132, name: "Bocina JBL Go 4", priceDescuento: "$49.00", image: "../img/audio personal/Bocina jbl go4 blanca.jpg" },
+  { id: 133, name: "Ultimate Ears Megaboom 3", priceDescuento: "$162.00", image: "../img/audio personal/ultimate ear megaboom 3 blanca.jpg" },
+  { id: 134, name: "Ultimate Ears Megaboom 4", priceDescuento: "$202.50", image: "../img/audio personal/ultimate ear megaboom 4 negra.webp" },
+  { id: 135, name: "Ultimate Ears Wonderboom", priceDescuento: "$77.00", image: "../img/audio personal/ultimate ears wonderboom negra.webp" },
+  { id: 136, name: "Sony SRS-XB100", priceDescuento: "$57.40", image: "../img/audio personal/SONY SRS-XB100 negra.jpg" },
+  { id: 137, name: "JBL Charge 6", priceDescuento: "$153.00", image: "../img/audio personal/jbl charge 6 blanca.jpg" },
+  { id: 138, name: "JBL Flip 5", priceDescuento: "$103.20", image: "../img/audio personal/JBL Flip 5 negra.jpg" },
+  { id: 139, name: "Sony ULT Field 5", priceDescuento: "$270.00", image: "../img/audio personal/SONY ULT FIELD 5 blanca.jpg" },
+
+  /* ---------- AUDIO PROFESIONAL (140 - 154) ---------- */
+  { id: 140, name: "Altavoz JBL 1100 W Bluetooth Negro", priceDescuento: "$1,749.00", image: "../img/audio pro/Altavoz JBL 1100 W Bluetooth Negro PartyBox Ultimate_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 141, name: "Micrófono inalámbrico RadioShack Negro 330158", priceDescuento: "$33.99", image: "../img/audio pro/Micrófono inalámbrico RadioShack Negro 3301587_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 142, name: "Micrófono USB para transmisión con filtro RadioShack Negro", priceDescuento: "$42.49", image: "../img/audio pro/Micrófono USB para transmisión con filtro RadioShack Negro_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 143, name: "Parlante de torre RadioShack 4001942 150 W", priceDescuento: "$189.99", image: "../img/audio pro/Parlante de torre RadioShack 4001942 150 W_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 144, name: "Parlante LG XBOOM RNC7 420 W Bluetooth Negro", priceDescuento: "$184.26", image: "../img/audio pro/Parlante LG XBOOM RNC7 420 W Bluetooth Negro_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 145, name: "Parlante RadioShack Activo 4001923 60 W Bluetooth Negro", priceDescuento: "$129.99", image: "../img/audio pro/Parlante RadioShack Activo 4001923 60 W Bluetooth Negro_LE_upscale_balanced_x4.jpg" },
+  { id: 146, name: "Parlante Sony 1000 Watts Bluetooth Negro SRSULT1000", priceDescuento: "$969.00", image: "../img/audio pro/Parlante Sony 1000 Watts Bluetooth Negro SRSULT1000_LE_upscale_balanced_x4.jpg" },
+  { id: 147, name: "Parlantes RadioShack Activo dual 500 W Bluetooth Negro", priceDescuento: "$461.23", image: "../img/audio pro/Parlantes RadioShack Activo dual 500 W Bluetooth Negro_LE_upscale_balanced_x4.jpg" },
+  { id: 148, name: "Sistema de micrófono inalámbrico DJI Negro Mic Mini", priceDescuento: "$323.19", image: "../img/audio pro/Sistema de micrófono inalámbrico DJI Negro Mic Mini_LE_upscale_balanced_x4.jpg" },
+  { id: 149, name: "Sistema de micrófonos inalámbricos RadioShack Negro", priceDescuento: "$384.23", image: "../img/audio pro/Sistema de micrófonos inalámbricos RadioShack Negro_LE_upscale_balanced_x4.jpg" },
+  { id: 150, name: "Micrófono Radioshack 2607050", priceDescuento: "$119.02", image: "../img/audio pro/Micrófono Radioshack 2607050_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 151, name: "Megáfono RadioShack 3202715 25 W Blanco y rojo", priceDescuento: "$573.18", image: "../img/audio pro/Megáfono RadioShack 3202715 25 W Blanco y rojo_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 152, name: "Megáfono RadioShack 3202716 75W Blanco con Azul", priceDescuento: "$174.03", image: "../img/audio pro/Megáfono RadioShack 3202716 75W Blanco con Azul_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 153, name: "Karaoke Portátil RadioShack 4001970 Negro", priceDescuento: "$599.25", image: "../img/audio pro/Karaoke Portátil RadioShack 4001970 Negro_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+  { id: 154, name: "Altavoz tipo torre RadioShack 240 W Bluetooth Negro", priceDescuento: "$269.01", image: "../img/audio pro/Altavoz tipo torre RadioShack 240 W Bluetooth Negro_LE_upscale_balanced_x4_tone_enhance_50_color_enhance_50.jpg" },
+
+  /* ---------- ACCESORIOS (155 - 169) ---------- */
+  { id: 155, name: "Spectra Vision Pro (Blanco)", priceDescuento: "$24.00", image: "../img/Acessorios/gafas blancas.jpeg" },
+  { id: 156, name: "Spectra Vision Pro (Negro)", priceDescuento: "$25.60", image: "../img/Acessorios/gafas negras.jpeg" },
+  { id: 157, name: "Aurelius X2 Wireless (Azul)", priceDescuento: "$36.00", image: "../img/Acessorios/audifonos azul.jpeg" },
+  { id: 158, name: "Aurelius X2 Wireless (Morado)", priceDescuento: "$40.00", image: "../img/Acessorios/audifonos morados.jpeg" },
+  { id: 159, name: "Aurelius X2 Wireless (Rojo)", priceDescuento: "$44.00", image: "../img/Acessorios/audifonos rojos.jpeg" },
+  { id: 160, name: "Logitech G733 Wireless", priceDescuento: "$72.00", image: "../img/Acessorios/Logitech - Auriculares inalámbricos G733….jpeg" },
+  { id: 161, name: "RedWave Studio USB Mic", priceDescuento: "$48.00", image: "../img/Acessorios/microfono rojo.jpeg" },
+  { id: 162, name: "Nebula M7 (Azul)", priceDescuento: "$22.40", image: "../img/Acessorios/mouse azul.jpeg" },
+  { id: 163, name: "Nebula M7 RGB", priceDescuento: "$28.00", image: "../img/Acessorios/Mouse rgb usb.jpeg" },
+  { id: 164, name: "Spectra SunShield", priceDescuento: "$32.00", image: "../img/Acessorios/gafas blancas.jpeg" },
+  { id: 165, name: "Spectra UV Shield", priceDescuento: "$30.40", image: "../img/Acessorios/gafas negras.jpeg" },
+  { id: 166, name: "900° Racing Pedal Pro", priceDescuento: "$96.00", image: "../img/Acessorios/Hot Sale 900 Degree  Pedal and Gear  Gaming Racing….jpeg" },
+  { id: 167, name: "Titan Switchboard Pro", priceDescuento: "$48.00", image: "../img/Acessorios/teclado rgb sin mouse.jpeg" },
+  { id: 168, name: "Titan Mini RGB 60%", priceDescuento: "$36.00", image: "../img/Acessorios/teclado rgb.jpeg" },
+  { id: 169, name: "Titan Switchboard Pro (Edición Morada)", priceDescuento: "$56.00", image: "../img/Acessorios/teclado morado.jpeg" },
+
+  /* ---------- GAMING (170 - 184) ---------- */
+  { id: 170, name: "Silla Gamer Elite", priceDescuento: "$135.00", image: "IMG/Gamer _ set up_ silla gamer _ black _.jpeg" },
+  { id: 171, name: "Silla Gamer Pro", priceDescuento: "$153.00", image: "IMG/silla.jpeg" },
+  { id: 172, name: "Silla Gamer Comfort", priceDescuento: "$160.00", image: "IMG/¡descubre La Comodidad Definitiva Para Tus….jpeg" },
+  { id: 173, name: "Escritorio Gamer ThunderX3", priceDescuento: "$187.50", image: "IMG/ThunderX3- Mesa gaming con iluminación RGB y….jpeg" },
+  { id: 174, name: "Silla Gamer Premium", priceDescuento: "$210.00", image: "IMG/Cadeira Gamer Black Hawk com Apoio Cervical….jpeg" },
+  { id: 175, name: "Silla Gamer Ergonomía", priceDescuento: "$187.00", image: "IMG/Amazon_com_ RESPAWN 110 Ergonomic Gaming Chair….jpeg" },
+  { id: 176, name: "Escritorio Gamer Esquinero ShadowEdge", priceDescuento: "$140.00", image: "IMG/mesa blanca.jpeg" },
+  { id: 177, name: "Silla Gamer Dowinx Pro", priceDescuento: "$144.00", image: "IMG/Cadeira Gamer Ii Reclinável 180º Giratória Preta….jpeg" },
+  { id: 178, name: "Silla Gamer Deluxe", priceDescuento: "$210.00", image: "IMG/silla con celeste.jpeg" },
+  { id: 179, name: "Escritorio Gamer Elevado", priceDescuento: "$110.50", image: "IMG/b5b12714-deb1-4521-9490-9a9920721246.jpeg" },
+  { id: 180, name: "Silla Gamer ThunderX3 STYLE", priceDescuento: "$192.00", image: "IMG/ThunderX3 Spain Professional Gaming Chair Bc3 Blue.jpeg" },
+  { id: 181, name: "Escritorio Gamer Esquinero BlackFire", priceDescuento: "$161.50", image: "IMG/b94213bd-e8b1-470d-a72c-454406dda68d.jpeg" },
+  { id: 182, name: "Escritorio Gamer Modular", priceDescuento: "$136.00", image: "IMG/mesa amarilla.jpeg" },
+  { id: 183, name: "Silla Gamer Merax Viper", priceDescuento: "$240.00", image: "IMG/PRICES MAY VARY_ ✔Ergonomic Design of Gaming….jpeg" },
+  { id: 184, name: "Silla Gamer Dowinx Sakura", priceDescuento: "$126.00", image: "IMG/silla rosada.jpeg" },
+
+  /* ---------- VIDEOJUEGOS (185 - 199) ---------- */
+  { id: 185, name: "Control Xbox", priceDescuento: "$55.00", image: "../img/VIDEOJUEGOS/Xbox Wireless Controller – Dawn Shadow Special Edition [Discontinued].jpeg" },
+  { id: 186, name: "Spider-Man 2 (PS5)", priceDescuento: "$65.00", image: "../img/VIDEOJUEGOS/spidermas 2 ps5.jpeg" },
+  { id: 187, name: "The Last of Us Part 2 (PS4)", priceDescuento: "$45.00", image: "../img/VIDEOJUEGOS/the last of us part 2 ps4.jpeg" },
+  { id: 188, name: "Mando Retro N64", priceDescuento: "$25.00", image: "../img/VIDEOJUEGOS/miadore Retro N 64 Bit N64 Controller,Wired Gamepad Controller Joystick for N64 Console N64 System,Gray.jpeg" },
+  { id: 189, name: "Control PS5 DualSense", priceDescuento: "$65.00", image: "../img/VIDEOJUEGOS/control de ps5.jpeg" },
+  { id: 190, name: "Control DualShock 4", priceDescuento: "$55.00", image: "../img/VIDEOJUEGOS/Controle Dualshock Sem Fio Playstation 4 Preto CUH-ZCT2U.jpeg" },
+  { id: 191, name: "Marvel's Spider-Man Miles Morales PS4", priceDescuento: "$35.00", image: "../img/VIDEOJUEGOS/Marvel's Spider-Man_ Miles Morales.jpeg" },
+  { id: 192, name: "Control Xbox One Fat 500GB", priceDescuento: "$230.00", image: "../img/VIDEOJUEGOS/Xbox One Fat 500gb Completo Frete Grátis Leia Toda DescriçãobSz.jpeg" },
+  { id: 193, name: "Mortal Kombat X", priceDescuento: "$45.00", image: "../img/VIDEOJUEGOS/Mortal kombat x.jpeg" },
+  { id: 194, name: "PlayStation 2 (PS2)", priceDescuento: "$85.00", image: "../img/VIDEOJUEGOS/PlayStation 2 (PS2).jpeg" },
+  { id: 195, name: "Nintendo Switch (Neon Red/Neon Blue)", priceDescuento: "$280.00", image: "../img/VIDEOJUEGOS/Nintendo Switch (Neon Red_Neon blue).jpeg" },
+  { id: 196, name: "PlayStation 3", priceDescuento: "$120.00", image: "../img/VIDEOJUEGOS/SONY PS3.jpeg" },
+  { id: 197, name: "Viernes 13 (PS5)", priceDescuento: "$56.00", image: "../img/VIDEOJUEGOS/ps4 viernes 13.jpeg" },
+  { id: 198, name: "Xbox Series S", priceDescuento: "$255.00", image: "../img/VIDEOJUEGOS/https___amzn_to_3Vcviqc #xbox #xboxgames….jpeg" },
+  { id: 199, name: "PS5", priceDescuento: "$630.00", image: "../img/VIDEOJUEGOS/PlayStation 5 Console.jpeg" },
+
+  /* ---------- LAPTOPS (200 - 214) ---------- */
+  { id: 200, name: "ASUS TUF Gaming Laptop", priceDescuento: "$760.00", image: "../img/LAPS/🔥 Power and performance with the ASUS TUF Gaming….jpeg" },
+  { id: 201, name: "Lenovo ThinkPad Windows 11", priceDescuento: "$748.00", image: "../img/LAPS/The ThinkPad T14s Gen 3 has all you need to get….jpeg" },
+  { id: 202, name: "ASUS ROG Strix Gaming Laptop", priceDescuento: "$1,148.00", image: "../img/LAPS/ASUS ZenBook 13 Ultra-Slim Laptop 13_3_ FHD….jpeg" },
+  { id: 203, name: "Lenovo Legion Gaming Laptop", priceDescuento: "$975.00", image: "../img/LAPS/lap.jpeg" },
+  { id: 204, name: "Acer Nitro Gaming Laptop", priceDescuento: "$880.00", image: "../img/LAPS/Notebook Acer Gamer Nitro V15 ANV15-51-7837….jpeg" },
+  { id: 205, name: "MSI GE62VR Apache Pro", priceDescuento: "$1,120.50", image: "../img/LAPS/MSI GE62VR Apache Pro Gaming Laptop [Intel® Core™….jpeg" },
+  { id: 206, name: "Laptop Gaming Metal Series", priceDescuento: "$850.50", image: "../img/LAPS/lap.jpeg" },
+  { id: 207, name: "ACEMAGIC Metal Series Laptop", priceDescuento: "$616.20", image: "../img/LAPS/Limited-time deal_ ACEMAGIC Laptop Computer, 16GB….jpeg" },
+  { id: 208, name: "Lenovo LOQ Gaming Laptop", priceDescuento: "$840.00", image: "../img/LAPS/Latest LENOVO LOQ 15IRH8 GAMING LAPTOP gives you a….jpeg" },
+  { id: 209, name: "MSI Gaming Laptop", priceDescuento: "$1,020.00", image: "../img/LAPS/MSI GE62VR Apache Pro Gaming Laptop [Intel® Core™….jpeg" },
+  { id: 210, name: "MSI Vector Gaming Laptop", priceDescuento: "$1,290.00", image: "../img/LAPS/Laptop mit 18_ QWUXGA Display, Intel Core….jpeg" },
+  { id: 211, name: "MSI Raider GE Gaming Laptop", priceDescuento: "$1,740.00", image: "../img/LAPS/NOW is the time to score the hottest holiday deals….jpeg" },
+  { id: 212, name: "HP Omen Gaming Laptop", priceDescuento: "$1,760.00", image: "../img/LAPS/HP OMEN 16 16_1_ FHD 165Hz Gaming Laptop (Intel….jpeg" },
+  { id: 213, name: "MSI Gaming Laptop (Ryzen)", priceDescuento: "$1,530.00", image: "../img/LAPS/Latest AMD Ryzen 5 7430U Processors is here_ The….jpeg" },
+  { id: 214, name: "ASUS TUF Gaming Laptop (144Hz)", priceDescuento: "$1,312.00", image: "../img/LAPS/asus.jpeg" },
+ /* ---------- TV (215 - 229) ---------- */
+   { id: 215, name: "SAMSUNG UHD 4K", priceDescuento: "$800.99", image: "../img/tv/IMG 2025-08-12 a las 19.31.49_453e839d.jpg" },
+  { id: 216, name: "DYNAMIC CRYSTAL COLOUR", priceDescuento: "$750.00", image: "../img/tv/IMG-20250723-WA0004.jpg" },
+  { id: 217, name: "SAMSUNG UHP", priceDescuento: "$330.00", image: "../img/tv/IMG-20250723-WA0005.jpg" },
+  { id: 218, name: "LG UHP", priceDescuento: "$450.00", image: "../img/tv/IMG-20250812-WA0064.jpg" },
+  { id: 219, name: "SONY", priceDescuento: "$375.00", image: "../img/tv/IMG-20250812-WA0065.jpg" },
+  { id: 220, name: "LG SMART TV", priceDescuento: "$430.50", image: "../img/tv/IMG-20250812-WA0067.jpg" },
+  { id: 221, name: "NOC-ROKU TV", priceDescuento: "$679.50", image: "../img/tv/IMG-20250812-WA0069.jpg" },
+  { id: 222, name: "HISENSE TV", priceDescuento: "$995.00", image: "../img/tv/IMG-20250812-WA0086.jpg" },
+  { id: 223, name: "TD SYSTEMS TV", priceDescuento: "$259.50", image: "../img/tv/IMG-20250812-WA0087.jpg" },
+  { id: 224, name: "TCL TV", priceDescuento: "$600.00", image: "../img/tv/IMG-20250812-WA0088.jpg" },
+  { id: 225, name: "SAMSUNG TV PLUS", priceDescuento: "$800.00", image: "../img/tv/IMG-20250812-WA0089.jpg" },
+  { id: 226, name: "TUTU TV 42", priceDescuento: "$680.00", image: "../img/tv/IMG-20250812-WA0090.jpg" },
+  { id: 227, name: "SAMSUNG TV", priceDescuento: "$622.00", image: "../img/tv/samsung.2020.jpg" },
+  { id: 228, name: "SAMSUNG TV 4K", priceDescuento: "$480.00", image: "../img/tv/samsung.4k UHD.jpg" },
+  { id: 229, name: "SAMSUNG SMART TV", priceDescuento: "$550.00", image: "../img/tv/samsung.UHD.jpg" },
+  /* ---------- ACCESORIOS PARA TV (230 - 244) ---------- */
+   { id: 230, name: "Convertidor de AV (RCA) a HDMI", priceDescuento: "$12.00", image: "../img/accesorios tv/IMG-20250819-WA0019.jpg" },
+  { id: 231, name: "Klip Xtreme, modelo KPM", priceDescuento: "$30.00", image: "../img/accesorios tv/IMG-20250819-WA0020.jpg" },
+  { id: 232, name: "LG Magic Remote", priceDescuento: "$84.00", image: "../img/accesorios tv/IMG-20250819-WA0021.jpg" },
+  { id: 233, name: "Convertidor de RCA a HDMI", priceDescuento: "$13.00", image: "../img/accesorios tv/IMG-20250819-WA0022.jpg" },
+  { id: 234, name: "Cable HDMI 4k PoerBear", priceDescuento: "$8.00", image: "../img/accesorios tv/IMG-20250819-WA0023.jpg" },
+  { id: 235, name: "Soporte de pared para TV", priceDescuento: "$33.50", image: "../img/accesorios tv/IMG-20250819-WA0024.jpg" },
+  { id: 236, name: "Soporte de pared TV de 32 pulgadas", priceDescuento: "$29.50", image: "../img/accesorios tv/IMG-20250819-WA0025.jpg" },
+  { id: 237, name: "Cable AV (Audios/videos)", priceDescuento: "$18.00", image: "../img/accesorios tv/IMG-20250819-WA0026.jpg" },
+  { id: 238, name: "Control remoto PIX 6428", priceDescuento: "$27.50", image: "../img/accesorios tv/IMG-20250819-WA0027.jpg" },
+  { id: 239, name: "Adaptador de HDMI MinI", priceDescuento: "$7.00", image: "../img/accesorios tv/IMG-20250819-WA0028.jpg" },
+  { id: 240, name: "Amazon fire TV Stick Lite", priceDescuento: "$39.00", image: "../img/accesorios tv/IMG-20250819-WA0029.jpg" },
+  { id: 241, name: "Soporte de TV de 26 a 55 pulgadas", priceDescuento: "$20.00", image: "../img/accesorios tv/IMG-20250819-WA0033.jpg" },
+  { id: 242, name: "Mando a distancia", priceDescuento: "$9.00", image: "../img/accesorios tv/IMG-20250819-WA0034.jpg" },
+  { id: 243, name: "Soporte de TV de 37 a 70 Pulgadas", priceDescuento: "$19.00", image: "../img/accesorios tv/IMG-20250819-WA0036.jpg" },
+  { id: 244, name: "Control Remoto LG SMART TV", priceDescuento: "$10.00", image: "../img/accesorios tv/IMG-20250819-WA0037.jpg" }
+
+
+
+];
+
+
+
+
+
+
+
+// Obtiene el carrito desde localStorage
+function getCart() {
+  return JSON.parse(localStorage.getItem('shoppingCart')) || [];
+}
+
+// Renderiza los productos del carrito SOLO si mostrar es true
+function renderCarrito(mostrar = false) {
+  const carritoDiv = document.getElementById('carrito-productos');
+  if (!mostrar) {
+    carritoDiv.innerHTML = '';
+    return;
+  }
+  const cart = getCart();
+  if (cart.length === 0) {
+    carritoDiv.innerHTML = `<h3>Tu carrito está vacío</h3>`;
+    return;
+  }
+  let total = 0;
+  let html = `<h3>Productos en tu carrito</h3><ul class="carrito-lista">`;
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
+    const precio = parseFloat(product.priceDescuento.replace('$',''));
+    total += precio * item.quantity;
+    html += `<li>
+      <span style="display:flex;align-items:center;">
+        <img src="${product.image}" alt="${product.name}">
+        ${product.name} <span style="color:#1976d2; font-weight:700; margin-left:8px;">x${item.quantity}</span>
+      </span>
+      <span>$${(precio * item.quantity).toFixed(2)}</span>
+    </li>`;
+  });
+  html += `</ul>
+    <div class="carrito-total">Total a pagar: $${total.toFixed(2)}</div>
+    <button class="btn-pagar-carrito" onclick="pagarCarrito()">Pagar ahora</button>
+  `;
+  carritoDiv.innerHTML = html;
+}
+
+// Pagar carrito
+function pagarCarrito() {
+  Swal.fire({
+    title: "Procesando pago...",
+    text: "Por favor espera mientras se realiza tu pago.",
+    icon: "info",
+    showConfirmButton: false,
+    timer: 2000
+  });
+  setTimeout(() => {
+    Swal.fire({
+      icon: "success",
+      title: "Pago realizado",
+      text: "Tu pago fue procesado con éxito.",
+      timer: 2000,
+      showConfirmButton: false
+    });
+    localStorage.removeItem('shoppingCart');
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2000);
+  }, 2000);
+}
+
+// Simulación de cuentas
+const formulario = document.getElementById("form-cuota");
+const tipoDocumento = document.getElementById("tipo-documento");
+const numeroDocumento = document.getElementById("numero-documento");
+const resultado = document.getElementById("resultado-cuentas");
+const cuentasSimuladas = {
+  dui: ["#001", "#002"],
+  pasaporte: ["#003"],
+  carnet: ["#004", "#005"]
+};
+
+formulario.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const tipo = tipoDocumento.value;
+  const numero = numeroDocumento.value.trim();
+  if (!tipo || !numero) {
+    mostrarAlerta("Por favor, complete todos los campos.");
+    renderCarrito(false);
+    return;
+  }
+  if (tipo === "dui" && !/^\d{8}-\d$/.test(numero)) {
+    mostrarAlerta("Formato de DUI inválido. Ej: 01234567-9");
+    renderCarrito(false);
+    return;
+  }
+  resultado.innerHTML = `<div class="loader"></div>`;
+  resultado.classList.remove("ocultar");
+  setTimeout(() => {
+    const cuentas = cuentasSimuladas[tipo] || [];
+    if (cuentas.length === 0) {
+      resultado.innerHTML = `<p>No se encontraron cuentas activas.</p>`;
+      renderCarrito(false);
+      return;
+    }
+    let html = `<h3 class="cuenta-titulo">Cuentas disponibles</h3><ul class="cuentas-lista">`;
+    cuentas.forEach((cuenta) => {
+      const saldo = (Math.random() * 200 + 50).toFixed(2);
+      html += `<li>${cuenta} - Saldo pendiente: $${saldo}
+          <button onclick="confirmarPago('${cuenta}', '${saldo}')">Pagar cuota</button>
+      </li>`;
+    });
+    html += `</ul>`;
+    resultado.innerHTML = html;
+    // Mostrar productos del carrito SOLO después de documento válido
+    renderCarrito(true);
+  }, 1500);
+});
+
+function mostrarAlerta(mensaje) {
+  Swal.fire({
+    icon: "warning",
+    title: "Atención",
+    text: mensaje,
+    confirmButtonColor: "#1D1ABE"
+  });
+}
+
+function confirmarPago(cuenta, monto) {
+  Swal.fire({
+    title: "¿Confirmar pago de cuota?",
+    text: `Estás por pagar $${monto} en la cuenta ${cuenta}`,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#d50000",
+    cancelButtonColor: "#ccc",
+    confirmButtonText: "Sí, pagar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        icon: "success",
+        title: "Pago realizado",
+        text: "Tu cuota fue procesada con éxito.",
+        timer: 2000,
+        showConfirmButton: false
+      });
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2000);
+    }
+  });
+}
+
+// Al cargar la página NO muestra el carrito
+renderCarrito(false);
+  </script>
+</body>
+</html>

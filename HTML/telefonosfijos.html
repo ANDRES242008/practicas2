@@ -1,0 +1,561 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>Nova Tech Gaming</title> 
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../CSS/telefonosfijos.css" /> 
+  <link rel="stylesheet" href="../CSS/cartfijos.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head> 
+<body> 
+ 
+  <style> 
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-left, .header-right {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .search-container {
+    order: 3;
+    margin: 10px 0;
+    max-width: 100%;
+  }
+  
+  .user-cart {
+    gap: 10px;
+  }
+  
+  .icon-user, .icon-cart {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 5px 10px;
+    top: 70px;
+  }
+  
+  nav .categories-label {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .pago-cuota a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .menu-items {
+    gap: 10px 12px;
+  }
+  
+  .menu-items a {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .header-left, .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-cart {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .product-qty {
+    width: 60px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .btn-carrito {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+  
+  .footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    gap: 20px;
+  }
+  
+  .footer-col {
+    min-width: 100%;
+  }
+}
+
+
+
+
+
+ </style>
+ 
+    <div class="top-bar" aria-label="Promotional and banking info">
+    <div class="red-highlight" aria-label="Offer banner">COMPRA HASTA <strong>12 meses</strong> sin intereses</div>
+    <a href="#" class="bank" aria-label="Banco Agrícola">BancoAgrícola</a>
+    <a href="#" class="bank" aria-label="Banco CUSCATLAN">CUSCATLAN</a>
+    <a href="#" class="bank" aria-label="Caja de Crédito">Caja de Crédito</a>
+    <a href="#" class="bank" aria-label="Banco BAC">BAC</a>
+  </div>
+
+  <header role="banner" aria-label="Encabezado principal">
+    <a href="index.html" class="logo" aria-label="INOVATECH">
+   <img src="../img/logos/logo.jpg">
+      </a>
+<div class="header-left" aria-label="Enlaces de sucursal y contacto">
+  <a href="#"><span class="icon">🏠</span>Sucursales</a>
+  <a href="contactenos.html"><span class="icon">📞</span>Contactanos</a>
+  <a href="formulario.html"><span class="icon">🤔</span>¿Problemas?</a>
+</div>
+
+    <div class="search-container" role="search" aria-label="Búsqueda de productos">
+      <input type="search" name="search" id="search" placeholder="¿Qué estás buscando?" aria-label="Campo de búsqueda"/>
+      <button aria-label="Buscar" title="Buscar">
+        🔍
+      </button>
+    </div>
+
+    <div class="header-right user-cart" aria-label="Cuenta de usuario y carrito de compras">
+      <a href="inicio.html" aria-label="Entrar o registrarse en mi cuenta" title="Mi Cuenta">
+        <svg class="icon-user" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M4 21c0-4 8-4 8-4s8 0 8 4" />
+        </svg>
+        Mi Cuenta
+      </a>
+      <a href="#" aria-label="Ver mi carrito de compras" title="Mi carrito">
+        <svg class="icon-cart" viewBox="0 0 24 24" fill="none">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Mi carrito
+      </a>
+<span class="cart-count">0</span>
+
+
+    <div class="cart-panel" style="display:none;">
+  <h3>Tu carrito</h3>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">
+    Total: <span id="cart-total">$0.00</span>
+  </div>
+  <a href="carrito.html" class="btn-ver-carrito" style="display:block; margin:16px auto 0; background:#007bff; color:white; text-align:center; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mi carrito</a>
+</div>
+</div>
+      
+    </div>
+  </header>
+
+<nav aria-label="Navegación principal">
+    <div class="categories-label" aria-haspopup="true" tabindex="0" aria-expanded="false">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" fill="white"><path d="M2 4h12v2H2zM2 9h12v2H2z"/></svg>
+      Categorías
+    </div>
+    <div class="menu-items" role="menubar" aria-label="Categorías de productos">
+      <a href="celurares.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📱</span>Celulares</a>
+   <a href="gaming.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎮</span>Gaming</a>
+      <a href="#" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🖥️</span>Computacion</a>
+    <a href="videos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">📽️</span>Video</a>
+    <a href="audifonos.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🎧</span>Audio</a>
+       <a href="exclusivo.html" class="active" role="menuitem" aria-current="page"><span class="fire-icon" aria-label="Promociones">🏆</span>Exclusivo online</a>
+    </div>
+    </div>
+  
+  </nav>
+   <main>
+ <br> 
+  <br> 
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Banner grande con anuncios destacados --> 
+
+
+  <div class="cards-container">
+    <div class="card">
+      <div class="shape purple"></div>
+      <img src="../img/celulares/iPhone 16e (128 GB) - Preto - Distribuidor Autorizado.jpeg" alt="celulares" />
+      <div class="card-content">
+        <h3 class="card-title">Celulares de las mejores marcas</h3>
+        <p class="card-subtitle">Pontecia asegurada y durables</p>
+        <a href="celurares.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape red"></div>
+      <img src="../img/tabletas/A9 TABLE.jpeg" alt="Tabletas" />
+      <div class="card-content">
+        <h3 class="card-title">Tabletas de la mejor potencia</h3>
+        <p class="card-subtitle">Procesadores potentes y de calidad</p>
+        <a href="tabletas.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape orange"></div>
+      <img src="../img/gadget/sostenedor de telefono.jpeg" alt="Gadget" />
+      <div class="card-content">
+        <h3 class="card-title">Gadget para celulares y tabletas</h3>
+        <p class="card-subtitle">calidad garantizada </p>
+        <a href="gadget.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="shape green"></div>
+      <img src="../img/telefonos fijos/fijo 4.jpeg" alt="telefonos fijos" />
+      <div class="card-content">
+        <h3 class="card-title">Telefonos fijos con garantia de hasta 2 años</h3>
+        <p class="card-subtitle">Lo mejor en telefonos fijos</p>
+        <a href="telefonosfijos.html" class="btn" role="button" tabindex="0">Compra ya</a>
+      </div>
+    </div>
+  </div>
+  <br> 
+     <br> 
+  <section class="resultados"> 
+    <div class="ordenar"> 
+      <label for="orden-select">Ordenar por:</label> 
+      <select id="orden-select" name="orden"> 
+        <option value="precio-asc">Precio: menor a mayor</option> 
+        <option value="precio-desc">Precio: mayor a menor</option> 
+        <option value="descuento">Mayor descuento</option> 
+      </select> 
+    </div> 
+ 
+    <h2>Techno Gaming / 10 de 24 resultados</h2> 
+ 
+    <div class="productos"> 
+ 
+      <!-- Aquí van los productos, máximo 8 por página --> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-13%</div> 
+        <a href="productfijos.html?id=46">
+          <img src="../img/telefonos fijos/fijo 3.jpeg" alt="Producto 1" />
+        </a>
+        <p class="nombre-producto">Sagencom D27</p> 
+        <p class="precio-original">40.00</p> 
+        <p class="precio-descuento">$30.00</p> 
+        <a href="productfijos.html?id=46">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-41%</div> 
+        <a href="productfijos.html?id=47">
+          <img src="../img/telefonos fijos/fijo 4.jpeg" alt="Producto 2" />
+        </a>
+        <p class="nombre-producto">Panasonic 40s</p> 
+        <p class="precio-original">$39.00</p> 
+        <p class="precio-descuento">$34.00</p> 
+      <a href="productfijos.html?id=47">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-10%</div> 
+        <a href="productfijos.html?id=48">
+          <img src="../img/telefonos fijos/fijo1.jpeg" alt="Producto 3" />
+        </a>
+        <p class="nombre-producto">philips 20t</p> 
+        <p class="precio-original">$50.00</p> 
+        <p class="precio-descuento">$40.00</p> 
+      <a href="productfijos.html?id=48">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article>  
+ 
+      <article class="producto"> 
+        <div class="descuento">-17%</div> 
+       <a href="productfijos.html?id=49">
+          <img src="../img/telefonos fijos/fijo10.jpeg" alt="Producto 4" />
+        </a>
+        <p class="nombre-producto">Gigaset 10gen</p> 
+        <p class="precio-original">$55.00</p> 
+        <p class="precio-descuento">$39.00</p> 
+        <a href="productfijos.html?id=49">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-20%</div> 
+        <a href="productfijos.html?id=50">
+          <img src="../img/telefonos fijos/fijo11.jpeg" alt="Producto 5" />
+        </a>
+        <p class="nombre-producto">gigaset 5gen</p> 
+        <p class="precio-original">$40.00</p> 
+        <p class="precio-descuento">$33.00</p> 
+         <a href="productfijos.html?id=50">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-15%</div> 
+       <a href="productfijos.html?id=51">
+          <img src="../img/telefonos fijos/fijo12.jpeg" alt="Producto 6" />
+        </a>
+        <p class="nombre-producto">Vtech 12l</p> 
+        <p class="precio-original">$44.00</p> 
+        <p class="precio-descuento">$15.00</p> 
+       <a href="productfijos.html?id=51">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-5%</div> 
+       <a href="productfijos.html?id=52">
+          <img src="../img/telefonos fijos/fijo13.jpeg" alt="Producto 7" />
+        </a>
+        <p class="nombre-producto">Vtech 10l</p> 
+        <p class="precio-original">$45.00</p> 
+        <p class="precio-descuento">$35.00</p> 
+       <a href="productfijos.html?id=52">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href=" productfijos.html?id=53">
+          <img src="../img/telefonos fijos/fijo14.jpeg" alt="Producto 8" />
+        </a>
+        <p class="nombre-producto">Panasonic 20s</p> 
+        <p class="precio-original">$60.00</p> 
+        <p class="precio-descuento">$50.00</p> 
+       <a href="productfijos.html?id=53">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+
+
+       <article class="producto"> 
+        <div class="descuento">-17%</div> 
+        <a href="productfijos.html?id=54">
+          <img src="../img/telefonos fijos/fijo2.jpeg" alt="Producto 9" />
+        </a>
+        <p class="nombre-producto">Gigaset 7gen</p> 
+        <p class="precio-original">$30.00</p> 
+        <p class="precio-descuento">$25.00</p> 
+         <a href="productfijos.html?id=54">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-20%</div> 
+        <a href="productfijos.html?id=55">
+          <img src="../img/telefonos fijos/fijo5.jpeg" alt="Producto 10" />
+        </a>
+        <p class="nombre-producto">panasonic 10s</p> 
+        <p class="precio-original">$18.00</p> 
+        <p class="precio-descuento">$15.00</p> 
+        <a href="productfijos.html?id=55">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-15%</div> 
+        <a href="productfijos.html?id=56">
+          <img src="../img/telefonos fijos/Avaya 1416 digital phone 1416 telephone IP Office.jpg" alt="Producto 11" />
+        </a>
+        <p class="nombre-producto">Avaya 5progen</p> 
+        <p class="precio-original">$30.00</p> 
+        <p class="precio-descuento">$24.00</p> 
+      <a href="productfijos.html?id=56">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-5%</div> 
+      <a href="productfijos.html?id=57">
+          <img src="../img/telefonos fijos/fijo7.jpeg" alt="Producto 12" />
+        </a>
+        <p class="nombre-producto">Gigaset 8gen</p> 
+        <p class="precio-original">$80.00</p> 
+        <p class="precio-descuento">$40.00</p> 
+         <a href="productfijos.html?id=57">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+      <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productfijos.html?id=58">
+          <img src="../img/telefonos fijos/fijo8.jpeg" alt="Producto 13" />
+        </a>
+        <p class="nombre-producto">Gigaset 4gen</p> 
+        <p class="precio-original">$48.00</p> 
+        <p class="precio-descuento">$36.00</p> 
+       <a href="productfijos.html?id=58">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+ 
+   <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productfijos.html?id=59">
+          <img src="../img/telefonos fijos/fijo9.jpeg" alt="Producto 14" />
+        </a> 
+        <p class="nombre-producto">Gigaset pro 12gen</p> 
+        <p class="precio-original">$25.00</p> 
+        <p class="precio-descuento">$20.00</p> 
+      <a href="productfijos.html?id=59">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article> 
+
+        <article class="producto"> 
+        <div class="descuento">-25%</div> 
+       <a href="productfijos.html?id=60">
+          <img src="../img/telefonos fijos/descarga.jpg" alt="Producto 15" />
+        </a>
+        <p class="nombre-producto">gigaset note 19gen</p> 
+        <p class="precio-original">$30.00</p> 
+        <p class="precio-descuento">$17.00</p> 
+       <a href="productfijos.html?id=60">
+          <button class="btn-carrito">Ver detalles</button> 
+        </a>
+      </article>   
+
+    </div> 
+ 
+    <nav class="paginacion" aria-label="Paginación de resultados"> 
+      <a class="pagina-btn" href="celurares.html" aria-label="Página 1">1</a> 
+      <a class="pagina-btn" href="tabletas.html" aria-label="Página 2">2</a> 
+      <a class="pagina-btn" href="gadget.html" aria-label="Página 3">3</a>
+      <a class="pagina-btn" href="telefonosfijos.html" aria-label="Página 4">4</a> 
+    </nav> 
+ 
+  </section> 
+
+<br>
+<br>
+
+
+<script src="../JS/fijos.js"></script>
+<script src="../JS/cartfijos.js"></script>
+<script>
+  // Products array for cart reference (should match product.html)
+  const products = [
+    { id: 46, name: "Sagencom D27", priceDescuento: "$30.00" },
+    { id: 47, name: "Panasonic 40s", priceDescuento: "$34.00" },
+    { id: 48, name: "philips 20t", priceDescuento: "$40.00" },
+    { id: 49, name: "Gigaset 10gen", priceDescuento: "$39.00" },
+    { id: 50, name: "gigaset 5gen", priceDescuento: "$33.00" },
+    { id: 51, name: "Vtech 12l", priceDescuento: "$15.00" },
+    { id: 52, name: "Vtech 10l", priceDescuento: "$19.50" },
+    { id: 53, name: "Panasonic 20s", priceDescuento: "$50.00" },
+    { id: 54, name: "Gigaset 7gen", priceDescuento: "$25.00" },
+    { id: 55, name: "panasonic 10s", priceDescuento: "$15.00" },
+    { id:56, name: "Avaya 5progen", priceDescuento: "$24.00" },
+    { id: 57, name: "Gigaset 8gen", priceDescuento: "$40.00" },
+    { id: 58, name: "Gigaset 4gen", priceDescuento: "$36.00" },
+    { id: 59, name: "Gigaset pro 12gen", priceDescuento: "$20.00" },
+    { id: 60, name: "Gigaset note 19gen", priceDescuento: "$17.00" }
+  ];
+
+  // Setup add to cart buttons using cart.js helper
+  window.cart.setupAddToCartButtons(products);
+</script>
+
+
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Compra segura</h4>
+        <ul>
+          <li><a href="por que es seguro.html">¿Por qué es seguro?</a></li>
+          <li><a href="por que es comodo.html">¿Por qué es cómodo?</a></li>
+        </ul>
+        <h4>Eventos</h4>
+        <ul>
+          <li><a href="exclusivo.html">Exclusivo Innovaparty</a></li>
+           <li><a href="que es el innovaparty.html">¿Que es el Innovaparty?</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Beneficios</h4>
+        <ul>
+          <li><a href="beneficios.html">Beneficios Innovatech</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Políticas</h4>
+        <ul>
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios al cliente</h4>
+        <ul>
+          <li><a href="formulario.html">Contáctenos</a></li>
+            <li><a href="mailto:innvatech24@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%20INOVATECH,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank">innvatech24@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Redes Sociales</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61581077995128" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+         <a href="  https://www.instagram.com/innovatech234/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram"></a>
+          <a href="https://x.com/INNOVATECH244" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="RSS"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body> 
+</html>

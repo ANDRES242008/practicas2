@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(#5611a8, #27004f);
+}
+
+.login-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px #00000044;
+  width: 300px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #27004f;
+}
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-box input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#password {
+  width: 100%;
+  padding-right: 36px;
+  box-sizing: border-box;
+  
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px;
+  border-radius: 4px;
+  background: white;
+}
+
+input:invalid {
+  border: 2px solid #d50000;
+}
+
+input:valid {
+  border: 2px solid #1d1abe;
+}
+
+.login-btn {
+  background: #5611a8;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #8d42ff;
+}
+
+.forgot-link {
+  font-size: 0.85rem;
+  text-align: right;
+  color: #5611a8;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.extra-option {
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+.extra-option a {
+  color: #d50000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-btn {
+    font-size: 0.95rem;
+  }
+}
+
+input:invalid:focus {
+  border-color: #d50000;
+  box-shadow: 0 0 5px #d50000aa;
+}
+
+input:valid:focus {
+  border-color: #1d1abe;
+  box-shadow: 0 0 5px #1d1abeaa;
+}
+
+/* Mensaje animado de error */
+.error-message {
+  font-size: 0.8rem;
+  color: #d50000;
+  animation: fadeIn 0.6s ease-out;
+  margin-bottom: 5px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

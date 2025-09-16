@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión</title>
+   <link rel="shortcut icon" href="../img/logos/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../CSS/ho.css" />
+  <style>
+    /* Estilos rápidos para los botones sociales */
+    .social-login {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .google { background: #db4437; }
+    .facebook { background: #1877f2; }
+    .github { background: #333; }
+
+    .social-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="login-section">
+    <div class="login-box">
+      <h2>¡Bienvenido!</h2>
+
+      <form id="loginForm">
+        <label for="username">Nombre de usuario</label>
+        <input type="text" id="username" placeholder="Tu usuario..." required />
+
+        <label for="password">Contraseña</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="Tu contraseña..." required />
+          <span id="togglePassword" class="toggle-icon">👁️</span>
+        </div>
+
+        <a href="#" class="forgot-link">¿Olvidó su contraseña?</a>
+
+        <button type="submit" class="login-btn">Iniciar</button>
+      </form>
+
+      <!-- Botones de inicio de sesión social -->
+      <div class="social-login">
+        <button class="social-btn google">
+          <img src="https://img.icons8.com/color/20/000000/google-logo.png"/> 
+          Iniciar con Google
+        </button>
+        <button class="social-btn facebook">
+          <img src="https://img.icons8.com/color/20/000000/facebook-new.png"/> 
+          Iniciar con Facebook
+        </button>
+        <button class="social-btn github">
+          <img src="https://img.icons8.com/ios-glyphs/20/ffffff/github.png"/> 
+          Iniciar con GitHub
+        </button>
+      </div>
+
+      <div class="extra-option">
+        <span>¿No tienes cuenta?</span>
+        <a href="registro.html" id="goRegister">Quiero hacer el registro</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="../JS/ja.js"></script>
+</body>
+</html>

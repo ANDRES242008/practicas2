@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Innovatech — ¿Por qué es cómodo?</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #e9f7fb;
+      --accent: #00AEEF;
+      --card: #ffffff;
+      --muted: #546071;
+      --radius: 14px;
+    }
+    body{ background: linear-gradient(180deg, var(--bg), #f6fbff 60%); font-family: Inter, system-ui, -apple-system, 'Helvetica Neue', Arial; color:#203040; }
+    .hero{ padding:4.5rem 1rem; text-align:center; }
+    .hero .title{ font-size:clamp(2rem, 4.5vw, 3.5rem); font-weight:800; letter-spacing:-0.02em; }
+    .hero .subtitle{ color:var(--muted); font-size:1.05rem; margin-top:.6rem }
+    .badge-trust{ background:rgba(0,174,239,0.12); color:var(--accent); border-radius:999px; padding:.35rem .7rem; font-weight:600; }
+    .card-feature{ border:none; border-radius:var(--radius); box-shadow: 0 8px 30px rgba(35,69,110,0.06); }
+    .feature-icon{ width:56px; height:56px; display:inline-grid; place-items:center; border-radius:12px; background:linear-gradient(180deg,rgba(0,174,239,0.12), rgba(0,174,239,0.06)); color:var(--accent); font-size:1.25rem }
+    .trust-row{ gap:1rem; align-items:center }
+    .trust-badge{ background:var(--card); padding:.6rem .9rem; border-radius:12px; box-shadow: 0 6px 18px rgba(32,48,64,0.04); display:flex; gap:.8rem; align-items:center }
+    footer{ margin-top:3rem; padding:2rem 0; color:var(--muted); }
+    .cta-btn{ background:var(--accent); border:none; padding:.75rem 1.1rem; color:white; border-radius:12px; box-shadow:0 8px 20px rgba(0,174,239,0.18); }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <nav class="d-flex justify-content-between align-items-center py-3">
+      <div class="d-flex align-items-center gap-3">
+        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#0098d6,#00c1ff);display:grid;place-items:center;color:white;font-weight:700">IN</div>
+        <div>
+          <div style="font-weight:700">Innovatech</div>
+          <small style="color:var(--muted);font-size:.8rem">Tienda electrónica</small>
+        </div>
+      </div>
+      <div>
+        <a class="btn btn-outline-primary btn-sm" href="index.html">Volver</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="badge-trust mb-3 d-inline-block">Confort + Facilidad</div>
+      <h1 class="title">¿Por qué es cómodo?</h1>
+      <p class="subtitle mx-auto" style="max-width:760px">En <strong>Innovatech</strong> nos importa que tu experiencia de compra sea sencilla, rápida y sin complicaciones. Aquí te contamos por qué comprar con nosotros es tan cómodo.</p>
+
+      <div class="mt-4 d-flex justify-content-center">
+        <a class="cta-btn" href="#comodidad">Descubre cómo lo logramos <i class="bi bi-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container py-4">
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <div class="card p-4 card-feature">
+          <div class="d-flex gap-3 align-items-start">
+            <div class="feature-icon"><i class="bi bi-phone"></i></div>
+            <div>
+              <h5 style="margin-bottom:.25rem">Compra desde cualquier dispositivo</h5>
+              <p class="mb-0" style="color:var(--muted)">Nuestra tienda está optimizada para móviles, tablets y computadoras. Puedes comprar cómodamente desde cualquier lugar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card p-4 card-feature">
+          <div class="d-flex gap-3 align-items-start">
+            <div class="feature-icon"><i class="bi bi-bag-check"></i></div>
+            <div>
+              <h5 style="margin-bottom:.25rem">Proceso de compra rápido</h5>
+              <p class="mb-0" style="color:var(--muted)">Solo unos clics para elegir, pagar y recibir. Sin formularios eternos ni pasos innecesarios.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card p-4 card-feature">
+          <div class="d-flex gap-3 align-items-start">
+            <div class="feature-icon"><i class="bi bi-box-seam"></i></div>
+            <div>
+              <h5 style="margin-bottom:.25rem">Entrega a domicilio flexible</h5>
+              <p class="mb-0" style="color:var(--muted)">Recibe tus productos donde prefieras y en el horario que más te convenga, sin salir de casa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card p-4 card-feature">
+          <div class="d-flex gap-3 align-items-start">
+            <div class="feature-icon"><i class="bi bi-chat-dots"></i></div>
+            <div>
+              <h5 style="margin-bottom:.25rem">Asistencia en todo momento</h5>
+              <p class="mb-0" style="color:var(--muted)">Nuestro soporte responde rápido tus dudas para que tu experiencia sea fluida y sin estrés.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="comodidad" class="mt-5">
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="card p-4 card-feature">
+            <h5>Diseño simple e intuitivo</h5>
+            <p style="color:var(--muted)">Nuestra página está diseñada para que encuentres lo que buscas en segundos, con menús claros y filtros útiles.</p>
+            <ul style="color:var(--muted)">
+              <li>Menús organizados por categorías</li>
+              <li>Buscador inteligente</li>
+              <li>Carrito visible y rápido de usar</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="card p-4 card-feature">
+            <h5>Experiencia personalizada</h5>
+            <p style="color:var(--muted)">Recordamos tus preferencias y compras anteriores para que no pierdas tiempo repitiendo pasos.</p>
+            <div class="d-flex trust-row mt-3">
+              <div class="trust-badge">
+                <i class="bi bi-heart" style="font-size:1.4rem"></i>
+                <div>
+                  <div style="font-weight:700">Favoritos</div>
+                  <small style="color:var(--muted)">Guarda tus productos</small>
+                </div>
+              </div>
+
+              <div class="trust-badge">
+                <i class="bi bi-lightning" style="font-size:1.4rem"></i>
+                <div>
+                  <div style="font-weight:700">Compras rápidas</div>
+                  <small style="color:var(--muted)">Con un solo clic</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <div class="card p-4 card-feature">
+        <h5>Preguntas frecuentes rápidas</h5>
+        <div class="accordion" id="faq">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">¿Tengo que crear cuenta para comprar?</button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faq">
+              <div class="accordion-body">No, puedes comprar como invitado y crear tu cuenta después si quieres guardar tus pedidos y favoritos.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">¿Puedo hacer seguimiento a mis pedidos?</button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faq">
+              <div class="accordion-body">Sí, te enviamos un enlace de seguimiento por correo o WhatsApp para que veas en qué etapa está tu entrega.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container text-center">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 text-md-start mb-3 mb-md-0">
+        <strong>Innovatech</strong><br>
+        <small style="color:var(--muted)">© Innovatech — Comodidad y rapidez garantizadas</small>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <small style="color:var(--muted)">Entrega a domicilio <i class="bi bi-house-door-fill ms-2"></i> · Compras desde cualquier dispositivo</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
